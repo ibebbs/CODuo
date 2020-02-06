@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6279c845-92f8-4333-ab99-3d213163593c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CODuo</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CompositionGrid.xaml.cs">
+      <DependentUpon>CompositionGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CountryByRegion.xaml.cs">
+      <DependentUpon>CountryByRegion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomTwoPaneView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Hub.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SquarePanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ElementWidthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NumberToGridLengthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ValueToMinHeightConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\Bus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutChanged.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Home\Left.xaml.cs">
+      <DependentUpon>$fileinputname$.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Home\Portrait.xaml.cs">
+      <DependentUpon>$fileinputname$.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Home\Right.xaml.cs">
+      <DependentUpon>$fileinputname$.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Home\Single.xaml.cs">
+      <DependentUpon>$fileinputname$.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Home\ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Platform\ISchedulers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platform\ILayout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\Instance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\IProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\Mode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platform\Services.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Root\Attributes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Root\Layout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Root\View.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Root\ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Factory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Home\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Initializing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\ITransition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Home\LeftRight.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Machine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Home\Single.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Home\TopBottom.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToHome.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewLocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Factory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\WindowHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CompositionGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CountryByRegion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Home\Left.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Home\Portrait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Home\Right.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Home\Single.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Root\View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)State\Home\" />
+  </ItemGroup>
+</Project>
