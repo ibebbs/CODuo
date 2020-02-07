@@ -1,0 +1,10 @@
+coal = c82538
+oil = c22b24
+gas = bc4223
+biomass = b65722
+imports = aa7d20
+other = 85971c
+nuclear = 6d911b
+hydro = 568b1a
+solar = 418519
+wind = 2e7f18

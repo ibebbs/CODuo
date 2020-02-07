@@ -2,7 +2,7 @@
     x:Class="CODuo.Root.View"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:CODuo.Root"
+    xmlns:controls="using:CODuo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:xaml="using:CODuo.Xaml"
@@ -18,20 +18,7 @@
             </StackPanel>
         </NavigationView.PaneHeader>
         <NavigationView.Content>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition x:Name="LayoutRow1" Height="0"/>
-                    <RowDefinition x:Name="LayoutRow2" Height="*"/>
-                </Grid.RowDefinitions>
-                <Canvas x:Name="Canvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" xaml:LayoutExtensions.ActualSizeBindingEnabled="True">
-                    <Border x:Name="Pane1" xaml:LayoutExtensions.ActualSizeBindingEnabled="True" Visibility="Collapsed"/>
-                    <Border x:Name="Pane2" xaml:LayoutExtensions.ActualSizeBindingEnabled="True" Visibility="Collapsed"/>
-                    <StackPanel>
-                        <TextBlock Text="{Binding ElementName=Canvas, Path=(xaml:LayoutExtensions.ActualWidth), TargetNullValue='ActualWidth'}"/>
-                        <TextBlock Text="{Binding ElementName=Canvas, Path=(xaml:LayoutExtensions.ActualHeight), TargetNullValue='ActualHeight'}"/>
-                    </StackPanel>
-                </Canvas>
-            </Grid>
+            <TwoPaneView x:Name="TwoPaneView" TallModeConfiguration="SinglePane"/>
         </NavigationView.Content>
     </NavigationView>
 </Page>

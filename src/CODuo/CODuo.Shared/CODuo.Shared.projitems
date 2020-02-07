@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ValueToMinHeightConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\Bus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutChanged.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeChanged.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\Left.xaml.cs">
       <DependentUpon>$fileinputname$.xaml</DependentUpon>
     </Compile>
