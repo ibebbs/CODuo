@@ -58,7 +58,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\IProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\Mode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Services.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Root\Attributes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Root\Layout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Root\View.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Root\ViewModel.cs" />
@@ -73,6 +72,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToHome.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewLocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Factory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\LayoutExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\WindowHelper.cs" />
   </ItemGroup>
   <ItemGroup>

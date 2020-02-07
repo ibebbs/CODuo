@@ -29,7 +29,7 @@ namespace CODuo.Home
 
         public double GetHeight()
         {
-            var size = Root.Attributes.FindSize(this);
+            var size = Xaml.LayoutExtensions.FindSize(this);
 
             if (size.HasValue)
             {

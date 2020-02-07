@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Viewbox Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Viewbox Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform">
         <Canvas x:Name="svg8900" Width="210" Height="297">
             <Canvas.RenderTransform>
                 <TranslateTransform X="0" Y="0"/>

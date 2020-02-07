@@ -27,17 +27,17 @@ namespace CODuo.Home
             this.InitializeComponent();
         }
 
-        public double GetHeight()
+        public GridLength GetHeight()
         {
-            var size = Root.Attributes.FindSize(this);
+            var size = Xaml.LayoutExtensions.FindSize(this);
 
             if (size.HasValue)
             {
-                return Math.Min(size.Value.Item1, size.Value.Item2) * 0.8;
+                return new GridLength(Math.Min(size.Value.Item1, size.Value.Item2) * 0.8);
             }
             else
             {
-                return 500;
+                return new GridLength(500);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -16,7 +17,7 @@ namespace CODuo.Root
             this.InitializeComponent();
         }
 
-        private void LayoutPane(Border pane, bool paneVisible, Vector4 paneLocation, object paneContent, double dipScaling)
+        private void LayoutPane(Border pane, bool paneVisible, Vector4 paneLocation, object paneContent, double maxHeight)
         {
             pane.Visibility = Visibility.Collapsed;
 
@@ -26,10 +27,7 @@ namespace CODuo.Root
                 Canvas.SetTop(pane, paneLocation.Y);
 
                 pane.Width = paneLocation.W;
-                pane.Height = paneLocation.Z;
-
-                Attributes.SetWidth(pane, pane.Width);
-                Attributes.SetHeight(pane, pane.Height);
+                pane.Height = Math.Min(paneLocation.Z, maxHeight);
 
                 pane.Child = paneContent as UIElement;
                 pane.Visibility = Visibility.Visible;
@@ -38,8 +36,14 @@ namespace CODuo.Root
 
         public void PerformLayout(Layout layout)
         {
-            LayoutPane(Pane1, layout.Pane1Visible, layout.Pane1Location, layout.Pane1Content, layout.DipScaling);
-            LayoutPane(Pane2, layout.Pane2Visible, layout.Pane2Location, layout.Pane2Content, layout.DipScaling);
+            // Hack to ensure the Canvas element is resized before first being shown
+            LayoutRow1.Height = new GridLength(1, GridUnitType.Star);
+            LayoutRow2.Height = new GridLength(0);
+
+            var height = Xaml.LayoutExtensions.GetActualHeight(Canvas);
+
+            LayoutPane(Pane1, layout.Pane1Visible, layout.Pane1Location, layout.Pane1Content, height);
+            LayoutPane(Pane2, layout.Pane2Visible, layout.Pane2Location, layout.Pane2Content, height);
         }
     }
 }

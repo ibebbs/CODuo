@@ -27,7 +27,7 @@ namespace CODuo.Platform.Layout
 
         private ILayout AsLayout(Size size)
         {
-            return new Instance(new Vector4(0, 0, Convert.ToSingle(size.Width), Convert.ToSingle(size.Height)));
+            return new Instance(new Vector4(0, 0, Convert.ToSingle(size.Width), Convert.ToSingle(size.Height)), 1);
         }
 
         public IObservable<ILayout> Changes => _layouts;
