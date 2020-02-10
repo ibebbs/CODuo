@@ -13,13 +13,13 @@ namespace CODuo.Root
     {
         private readonly Event.IBus _eventBus;
         private readonly Platform.ISchedulers _schedulers;
-        private readonly Subject<View> _view;
+        private readonly BehaviorSubject<View> _view;
 
         public ViewModel(Event.IBus eventBus, Platform.ISchedulers schedulers)
         {
             _eventBus = eventBus;
             _schedulers = schedulers;
-            _view = new Subject<View>();
+            _view = new BehaviorSubject<View>(null);
         }
 
         private IDisposable ShouldSendLayoutModeChangedEventWhenModeChanges()
@@ -27,6 +27,15 @@ namespace CODuo.Root
             return _view
                 .Select(view => view is null ? Observable.Never<Platform.Layout.Mode>() : view.CurrentMode)
                 .Switch()
+                .Select(mode => new Event.LayoutModeChanged(mode))
+                .Subscribe(_eventBus.Publish);
+        }
+
+        private IDisposable ShouldSendLayoutModeResponseWhenLayoutModeRequestReceived()
+        {
+            return _eventBus
+                .GetEvent<Event.LayoutModeRequest>()
+                .SelectMany(_ => _view.Where(view => view != null).SelectMany(view => view.CurrentMode).Take(1))
                 .Select(mode => new Event.LayoutModeChanged(mode))
                 .Subscribe(_eventBus.Publish);
         }
@@ -59,6 +68,7 @@ namespace CODuo.Root
         {
             return new CompositeDisposable(
                 ShouldSendLayoutModeChangedEventWhenModeChanges(),
+                ShouldSendLayoutModeResponseWhenLayoutModeRequestReceived(),
                 ShouldUpdateLayoutWhenLayoutUpdatedReceivedOrLayoutUpdaterChanges()
             );
         }

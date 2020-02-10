@@ -31,9 +31,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NumberToGridLengthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ValueToMinHeightConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Provider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\Bus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutChanged.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeChanged.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\Left.xaml.cs">
       <DependentUpon>$fileinputname$.xaml</DependentUpon>
     </Compile>
@@ -59,6 +62,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\IProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\Mode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Services.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Root\Helpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Root\Layout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Root\View.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Root\ViewModel.cs" />
@@ -73,6 +77,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToHome.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewLocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Factory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\IntensityToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\LayoutExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\WindowHelper.cs" />
   </ItemGroup>

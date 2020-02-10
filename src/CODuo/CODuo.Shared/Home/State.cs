@@ -64,12 +64,16 @@ namespace CODuo.Home
                 {
                     var viewModel = _viewModelFactory.Create<IViewModel>();
 
-                    var layouts = _eventBus
-                        .GetEvent<Event.LayoutModeChanged>()
+                    var layouts = Observable
+                        .Merge(
+                            _eventBus.GetEvent<Event.LayoutModeResponse>().Select(@event => @event.Mode),
+                            _eventBus.GetEvent<Event.LayoutModeChanged>().Select(@event => @event.Mode))
                         .ObserveOn(_schedulers.Dispatcher)
-                        .Select(@event => AsLayout(viewModel, @event.Mode))
+                        .Select(mode => AsLayout(viewModel, mode))
                         .Select(AsEvent)
                         .Subscribe(_eventBus.Publish);
+
+                    _eventBus.Publish(new Event.LayoutModeRequest());
 
                     return new CompositeDisposable(
                         viewModel.Activate(),

@@ -18,7 +18,9 @@
             </StackPanel>
         </NavigationView.PaneHeader>
         <NavigationView.Content>
-            <TwoPaneView x:Name="TwoPaneView" TallModeConfiguration="SinglePane"/>
+            <Grid>
+                <TwoPaneView x:Name="TwoPaneView" TallModeConfiguration="SinglePane"/>
+            </Grid>
         </NavigationView.Content>
     </NavigationView>
 </Page>

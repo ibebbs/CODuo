@@ -20,6 +20,8 @@ namespace CODuo.Platform
         {
             services.AddSingleton<Event.IBus, Event.Bus>();
 
+            services.AddSingleton<Data.IProvider, Data.Provider>();
+
             services.AddTransient<State.Initializing>();
 
             services.AddSingleton<State.IFactory, State.Factory>();

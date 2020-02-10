@@ -105,6 +105,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\Styles.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CODuo.Common\CODuo.Common.csproj">
+      <Project>{b6085c3b-2368-4b61-b933-a1b70848438b}</Project>
+      <Name>CODuo.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\CODuo.Shared\CODuo.Shared.projitems" Label="Shared" Condition="Exists('..\CODuo.Shared\CODuo.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- This will force the generation of the APK when not building inside visual studio -->
