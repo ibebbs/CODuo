@@ -25,13 +25,14 @@
                                         VeryHigh="{StaticResource VeryHigh}"/>
     </Page.Resources>
 
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="{x:Bind Path=GetHeight()}"/>
-            <RowDefinition Height="Auto" MinHeight="300"/>
-        </Grid.RowDefinitions>
-        <Border Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <controls:CountryByRegion HorizontalAlignment="Center" 
+    <ScrollViewer HorizontalScrollMode="Disabled">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{x:Bind Path=GetHeight()}"/>
+                <RowDefinition Height="Auto" MinHeight="300"/>
+            </Grid.RowDefinitions>
+            <Border>
+                <controls:CountryByRegion HorizontalAlignment="Center" 
                 Region1Brush="{Binding Path=RegionIntensity[1], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region2Brush="{Binding Path=RegionIntensity[2], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region3Brush="{Binding Path=RegionIntensity[3], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
@@ -47,9 +48,9 @@
                 Region13Brush="{Binding Path=RegionIntensity[13], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region14Brush="{Binding Path=RegionIntensity[14], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region15Brush="{Binding Path=RegionIntensity[15], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}">
-            </controls:CountryByRegion>
-        </Border>
-        <TextBlock Text="{Binding Path=RegionIntensity.Count, Mode=OneWay, FallbackValue='fallback', TargetNullValue='null'}" FontSize="48"/>
-        <controls:CompositionGrid Grid.Row="1" />
-    </Grid>
+                </controls:CountryByRegion>
+            </Border>
+            <controls:CompositionGrid Grid.Row="1" />
+        </Grid>
+    </ScrollViewer>
 </Page>
