@@ -20,16 +20,25 @@ namespace CODuo.Home
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Portrait : Page
+    public sealed partial class Tall : Page
     {
-        public Portrait()
+        public Tall()
         {
             this.InitializeComponent();
         }
 
-        public double GetSectionWidth()
+        public GridLength GetHeight()
         {
-            return Window.Current.Bounds.Width - 50;
+            var size = Xaml.LayoutExtensions.FindSize(this);
+
+            if (size.HasValue)
+            {
+                return new GridLength(Math.Min(size.Value.Item1, size.Value.Item2) * 0.8);
+            }
+            else
+            {
+                return new GridLength(500);
+            }
         }
     }
 }

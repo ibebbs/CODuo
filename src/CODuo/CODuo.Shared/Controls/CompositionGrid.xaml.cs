@@ -1,31 +1,48 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using System.ComponentModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace CODuo.Controls
 {
-    public sealed partial class CompositionGrid : UserControl
+    public sealed partial class CompositionGrid : UserControl, INotifyPropertyChanged
     {
-        public static readonly DependencyProperty CoalPercentProperty = DependencyProperty.Register(nameof(CoalPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
-        public static readonly DependencyProperty OilPercentProperty = DependencyProperty.Register(nameof(OilPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
-        public static readonly DependencyProperty GasPercentProperty = DependencyProperty.Register(nameof(GasPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
-        public static readonly DependencyProperty ImportsPercentProperty = DependencyProperty.Register(nameof(ImportsPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
-        public static readonly DependencyProperty OtherPercentProperty = DependencyProperty.Register(nameof(OtherPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
-        public static readonly DependencyProperty BioMassPercentProperty = DependencyProperty.Register(nameof(BioMassPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
-        public static readonly DependencyProperty NuclearPercentProperty = DependencyProperty.Register(nameof(NuclearPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
-        public static readonly DependencyProperty HydroPercentProperty = DependencyProperty.Register(nameof(HydroPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
-        public static readonly DependencyProperty SolarPercentProperty = DependencyProperty.Register(nameof(SolarPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
-        public static readonly DependencyProperty WindPercentProperty = DependencyProperty.Register(nameof(WindPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty CoalPercentProperty       = DependencyProperty.Register(nameof(CoalPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty OilPercentProperty        = DependencyProperty.Register(nameof(OilPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty GasPercentProperty        = DependencyProperty.Register(nameof(GasPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty ImportsPercentProperty    = DependencyProperty.Register(nameof(ImportsPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty OtherPercentProperty      = DependencyProperty.Register(nameof(OtherPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty BioMassPercentProperty    = DependencyProperty.Register(nameof(BioMassPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty NuclearPercentProperty    = DependencyProperty.Register(nameof(NuclearPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty HydroPercentProperty      = DependencyProperty.Register(nameof(HydroPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty SolarPercentProperty      = DependencyProperty.Register(nameof(SolarPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
+        public static readonly DependencyProperty WindPercentProperty       = DependencyProperty.Register(nameof(WindPercent), typeof(double), typeof(CompositionGrid), new PropertyMetadata(0.1));
 
-        public static readonly DependencyProperty SimpleModeProperty = DependencyProperty.Register("SimpleMode", typeof(bool), typeof(CompositionGrid), new PropertyMetadata(false));
+        public static readonly DependencyProperty SimpleModeProperty = DependencyProperty.Register("SimpleMode", typeof(bool), typeof(CompositionGrid), new PropertyMetadata(false, SimpleModePropertyChanged));
+
+        private static void SimpleModePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is CompositionGrid cg)
+            {
+                cg.SimpleModeChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public CompositionGrid()
         {
             this.InitializeComponent();
         }
 
+        private void SimpleModeChanged()
+        {
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(LabelVisibility)));
+        }
+
         public Visibility LabelVisibility
         {
-            get { return SimpleMode ? Visibility.Visible : Visibility.Collapsed; }
+            get { return SimpleMode ? Visibility.Collapsed : Visibility.Visible; }
         }
 
         public double CoalPercent

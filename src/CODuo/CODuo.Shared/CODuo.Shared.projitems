@@ -37,18 +37,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeChanged.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\RefreshData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\Left.xaml.cs">
-      <DependentUpon>$fileinputname$.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Home\Portrait.xaml.cs">
       <DependentUpon>$fileinputname$.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\Right.xaml.cs">
       <DependentUpon>$fileinputname$.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Home\Single.xaml.cs">
-      <DependentUpon>$fileinputname$.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Home\Tall.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />
@@ -94,15 +90,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Home\Portrait.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Home\Right.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Home\Single.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Home\Tall.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

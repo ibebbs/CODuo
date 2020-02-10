@@ -8,11 +8,13 @@ namespace CODuo.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return parameter switch
+            var result = parameter switch
             {
                 string format => string.Format(format.Replace('[', '{').Replace(']', '}'), value),
                 _ => DependencyProperty.UnsetValue
             };
+
+            return result;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

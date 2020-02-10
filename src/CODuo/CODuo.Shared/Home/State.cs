@@ -32,11 +32,11 @@ namespace CODuo.Home
             return new Root.Layout(Vector4.Zero, left, Vector4.Zero, right, 0);
         }
 
-        private Root.Layout Single(IViewModel viewModel)
+        private Root.Layout Tall(IViewModel viewModel)
         {
             viewModel.DetachViews();
 
-            var view = new Single();
+            var view = new Tall();
 
             viewModel.AttachView(view);
 
@@ -48,7 +48,7 @@ namespace CODuo.Home
             return mode switch
             {
                 Platform.Layout.Mode.LeftRight => LeftRight(viewModel),
-                _ => Single(viewModel) 
+                _ => Tall(viewModel) 
             };
         }
 

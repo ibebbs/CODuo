@@ -18,12 +18,19 @@ namespace CODuo.Data
 
         private readonly IConnectableObservable<Common.Container> _observable;
 
-        public Provider(Platform.ISchedulers schedulers)
+        public Provider(Platform.ISchedulers schedulers, Event.IBus eventBus)
         {
             var httpClient = new HttpClient();
 
+            var timedSource = Observable
+                .Interval(TimeSpan.FromMinutes(15), schedulers.Default);
+
+            var requestSource = eventBus
+                .GetEvent<Event.RefreshData>()
+                .Select(_ => schedulers.Default.Now.Ticks);
+
             _observable = Observable
-                .Interval(TimeSpan.FromMinutes(15), schedulers.Default)
+                .Merge(timedSource, requestSource)
                 .StartWith(0)
                 .SelectMany(_ => FetchContainer(httpClient))
                 .Replay(1);

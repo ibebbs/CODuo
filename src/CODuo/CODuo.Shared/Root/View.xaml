@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <NavigationView PaneDisplayMode="Top">
+    <NavigationView x:Name="NavigationBar" PaneDisplayMode="Top">
         <NavigationView.PaneHeader>
             <StackPanel Orientation="Horizontal" Margin="4">
                 <!-- <Image Source="/Assets/Square44x44Logo.altform-lightunplated_targetsize-48.png"/> -->
@@ -22,5 +22,8 @@
                 <TwoPaneView x:Name="TwoPaneView" TallModeConfiguration="SinglePane"/>
             </Grid>
         </NavigationView.Content>
+        <NavigationView.PaneFooter>
+            <NavigationViewItem x:Name="Refresh" Icon="Refresh" />
+        </NavigationView.PaneFooter>
     </NavigationView>
 </Page>

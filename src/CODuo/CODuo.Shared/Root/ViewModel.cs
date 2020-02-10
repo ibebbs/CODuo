@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -49,6 +50,15 @@ namespace CODuo.Root
                 .Subscribe(tuple => tuple.View.PerformLayout(tuple.Layout));
         }
 
+        private IDisposable ShouldSendRefreshDataWhenRefreshDataCommandExecuted()
+        {
+            return _view
+                .Select(view => view is null ? Observable.Never<Unit>() : view.RefreshData)
+                .Switch()
+                .Select(_ => new Event.RefreshData())
+                .Subscribe(_eventBus.Publish);
+        }
+
         public void AttachView(object view)
         {
             switch (view)
@@ -69,7 +79,8 @@ namespace CODuo.Root
             return new CompositeDisposable(
                 ShouldSendLayoutModeChangedEventWhenModeChanges(),
                 ShouldSendLayoutModeResponseWhenLayoutModeRequestReceived(),
-                ShouldUpdateLayoutWhenLayoutUpdatedReceivedOrLayoutUpdaterChanges()
+                ShouldUpdateLayoutWhenLayoutUpdatedReceivedOrLayoutUpdaterChanges(),
+                ShouldSendRefreshDataWhenRefreshDataCommandExecuted()
             );
         }
     }

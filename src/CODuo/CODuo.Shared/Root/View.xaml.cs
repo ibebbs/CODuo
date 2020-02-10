@@ -4,8 +4,13 @@ using System.Reactive.Linq;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Reactive;
+using Windows.UI.Xaml.Input;
 #if NETFX_CORE
 using TwoPaneView = Windows.UI.Xaml.Controls.TwoPaneView;
+using NavigationView = Windows.UI.Xaml.Controls.NavigationView;
+using NavigationViewItem = Windows.UI.Xaml.Controls.NavigationViewItem;
+using NavigationViewItemInvokedEventArgs = Windows.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs;
 #endif
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -29,6 +34,13 @@ namespace CODuo.Root
                 .Select(twoPaneView => twoPaneView.Mode)
                 .StartWith(TwoPaneView.Mode)
                 .Select(mode => Helpers.MapMode(mode));
+
+            RefreshData = Observable
+                .FromEvent<TappedEventHandler, TappedRoutedEventArgs>(
+                    handler => (s, e) => handler(e),
+                    handler => Refresh.Tapped += handler,
+                    handler => Refresh.Tapped -= handler)
+                .Select(_ => Unit.Default);
         }
 
         public void PerformLayout(Layout layout)
@@ -38,5 +50,7 @@ namespace CODuo.Root
         }
 
         public IObservable<Platform.Layout.Mode> CurrentMode { get; }
+
+        public IObservable<Unit> RefreshData { get; }
     }
 }

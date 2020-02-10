@@ -1,14 +1,17 @@
-﻿using Windows.UI;
+﻿using System;
+using System.ComponentModel;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace CODuo.Controls
 {
-    public sealed partial class CountryByRegion : ContentControl
+    public sealed partial class CountryByRegion : ContentControl, INotifyPropertyChanged
     {
         private static readonly Brush DefaultBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0xAA, 0xAA, 0xAA));
 
@@ -44,15 +47,73 @@ namespace CODuo.Controls
         public static readonly DependencyProperty Region14DescriptionProperty = DependencyProperty.Register(nameof(Region14Description), typeof(string), typeof(CountryByRegion), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty Region15DescriptionProperty = DependencyProperty.Register(nameof(Region15Description), typeof(string), typeof(CountryByRegion), new PropertyMetadata(string.Empty));
 
+        public static readonly DependencyProperty NonSelectedOpactiyProperty = DependencyProperty.Register("NonSelectedOpactiy", typeof(double), typeof(CountryByRegion), new PropertyMetadata(0.5, NonSelectedOpactiyPropertyChanged));
+
+        private static void NonSelectedOpactiyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is CountryByRegion control)
+            {
+                control.OpacityChanged();
+            }
+        }
+
+        public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register("SelectedRegion", typeof(int?), typeof(CountryByRegion), new PropertyMetadata(null));
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public CountryByRegion()
         {
             this.InitializeComponent();
         }
 
+        private int? GetRegionForSender(object sender)
+        {
+            switch (sender)
+            {
+                case Path x when Equals(x, Region1): return 1;
+                case Path x when Equals(x, Region2): return 2;
+                case Path x when Equals(x, Region3): return 3;
+                case Path x when Equals(x, Region4): return 4;
+                case Path x when Equals(x, Region5): return 5;
+                case Path x when Equals(x, Region6): return 6;
+                case Path x when Equals(x, Region7): return 7;
+                case Path x when Equals(x, Region8): return 8;
+                case Path x when Equals(x, Region9): return 9;
+                case Path x when Equals(x, Region10): return 10;
+                case Path x when Equals(x, Region11): return 11;
+                case Path x when Equals(x, Region12): return 12;
+                case Path x when Equals(x, Region13): return 13;
+                case Path x when Equals(x, Region14): return 14;
+                default: return 0;
+            }
+        }
+
+        private void OpacityChanged()
+        {
+            PropertyChanged!.Invoke(this, new PropertyChangedEventArgs(nameof(GetOpacity)));
+        }
+
         private void Region_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            System.Diagnostics.Debugger.Break();
+            var selectedRegion = GetRegionForSender(sender);
+
+            SetValue(SelectedRegionProperty, selectedRegion);
+
+            OpacityChanged();
+        }
+
+        public double GetOpacity(int region)
+        {
+            int selectedRegion = SelectedRegion ?? 0;
+
+            if (selectedRegion == 0 || selectedRegion == region)
+            {
+                return 1.0;
+            }
+            else
+            {
+                return NonSelectedOpactiy;
+            }
         }
 
         public Brush Region1Brush
@@ -235,5 +296,16 @@ namespace CODuo.Controls
             set { SetValue(Region15DescriptionProperty, value); }
         }
 
+        public int? SelectedRegion
+        {
+            get { return (int?)GetValue(SelectedRegionProperty); }
+            set { SetValue(SelectedRegionProperty, value); }
+        }
+
+        public double NonSelectedOpactiy
+        {
+            get { return (double)GetValue(NonSelectedOpactiyProperty); }
+            set { SetValue(NonSelectedOpactiyProperty, value); }
+        }
     }
 }
