@@ -15,6 +15,19 @@
                 <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Top" Margin="0" Foreground="#FF2E7F18" />
             </StackPanel>
         </NavigationView.PaneHeader>
+        <NavigationView.MenuItems>
+            <NavigationViewItemSeparator />
+            <NavigationViewItem Content="Generation" IsSelected="True">
+                <NavigationViewItem.Icon>
+                    <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="D" Foreground="#FF2E7F18" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Content="Action">
+                <NavigationViewItem.Icon>
+                    <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="F" Foreground="#FF2E7F18" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
         <NavigationView.Content>
             <Grid Background="#FFEBF5F9">
                 <TwoPaneView x:Name="TwoPaneView" TallModeConfiguration="SinglePane" MinWideModeWidth="1024"/>
