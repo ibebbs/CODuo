@@ -111,6 +111,9 @@
       <Name>CODuo.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\splash.xml" />
+  </ItemGroup>
   <Import Project="..\CODuo.Shared\CODuo.Shared.projitems" Label="Shared" Condition="Exists('..\CODuo.Shared\CODuo.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- This will force the generation of the APK when not building inside visual studio -->

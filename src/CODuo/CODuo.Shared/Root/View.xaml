@@ -10,7 +10,7 @@
     <NavigationView x:Name="NavigationBar" PaneDisplayMode="Top">
         <NavigationView.PaneHeader>
             <StackPanel Orientation="Horizontal" Margin="4">
-                <!-- <Image Source="/Assets/Square44x44Logo.altform-lightunplated_targetsize-48.png"/> -->
+                <Image Source="/Assets/Square44x44Logo.altform-lightunplated_targetsize-48.png"/>
                 <TextBlock Text="CO" FontSize="24" FontFamily="Impact" VerticalAlignment="Bottom" Margin="4,0,0,0"/>
                 <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Top" Margin="0" Foreground="#FF2E7F18" />
             </StackPanel>
