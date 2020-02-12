@@ -20,14 +20,30 @@
             <ColumnDefinition Width="{x:Bind NonDomesticConsumptionLength, Mode=OneWay}" MinWidth="120"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <Rectangle Fill="#85971c" Stroke="White" StrokeThickness="1" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" Fill="#85971c" Stroke="White" StrokeThickness="1" />
             <TextBlock Text="Domestic" Foreground="White" HorizontalAlignment="Left" Margin="4" />
             <TextBlock Text="{x:Bind DomesticConsumptionPercent, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0], Mode=OneWay}" Foreground="White" HorizontalAlignment="Right" Margin="4" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4,0,4,4">
+                <TextBlock Text="{x:Bind DomesticConsumption, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N]}" Foreground="White" />
+                <TextBlock Text="MWatts" Foreground="White" Margin="2,0" />
+            </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
-            <Rectangle Fill="#b65722" Stroke="White" StrokeThickness="1" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" Fill="#b65722" Stroke="White" StrokeThickness="1" />
             <TextBlock Text="Non-Domestic" Foreground="White" HorizontalAlignment="Right" Margin="4" />
             <TextBlock Text="{x:Bind NonDomesticConsumptionPercent, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0], Mode=OneWay}" Foreground="White" HorizontalAlignment="Left" Margin="4" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4,0,4,4">
+                <TextBlock Text="{x:Bind NonDomesticConsumption, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N]}" Foreground="White" />
+                <TextBlock Text="MWatts" Foreground="White" Margin="2,0" />
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

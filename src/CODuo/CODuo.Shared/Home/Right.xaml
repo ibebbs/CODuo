@@ -27,12 +27,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="400"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -44,55 +38,77 @@
                 <TextBlock Text="As of:" Style="{StaticResource CaptionTextBlockStyle}"  Foreground="White"/>
                 <TextBlock Text="{Binding Path=CurrentContainer.LastUpdated}" Margin="4,0,4,0" Style="{StaticResource CaptionTextBlockStyle}"  Foreground="White"/>
             </StackPanel>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Network Operator:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentRegion.Operator, Mode=OneWay}" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Current Generation:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Network Operator:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentRegion.Operator, Mode=OneWay}" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Supplying:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
             <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.TotalMW, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N]}" Margin="4,0,0,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+                <TextBlock Text="~" Margin="4,0,0,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+                <TextBlock Text="{Binding Path=CurrentRegionPopulation, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N0]}" Margin="2,0,0,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
+                <TextBlock Text="people" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+            </StackPanel>
+            <Path Grid.Row="4" Grid.ColumnSpan="2" Data="M0,0 L252,0" Fill="White" HorizontalAlignment="Left" Height="1" Margin="75,20" Stretch="Fill" Stroke="White" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Current Generation:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+            <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.TotalMW, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N]}" Margin="4,0,0,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
                 <TextBlock Text="MWatts" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
             </StackPanel>
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="Carbon Intensity:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
-            <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.GramsOfCO2PerkWh, Mode=OneWay}" Margin="4,0,0,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Carbon Intensity:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+            <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.GramsOfCO2PerkWh, Mode=OneWay}" Margin="4,0,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="White"/>
                 <TextBlock Text="gCO₂/kWh" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
             </StackPanel>
-            <TextBlock Grid.Row="5" Grid.Column="0" Text="Carbon Emitted:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
-            <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=TonnesOfCO2PerHour, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="4,0,0,0" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="White"/>
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="Carbon Emitted:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+            <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=TonnesOfCO2PerHour, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="4,0,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="White"/>
                 <TextBlock Text="tonnes per hour" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White" VerticalAlignment="Bottom"/>
             </StackPanel>
-            <Path Grid.Row="6" Grid.ColumnSpan="2" Data="M0,0 L252,0" Fill="White" HorizontalAlignment="Left" Height="1" Margin="75,20" Stretch="Fill" Stroke="White" VerticalAlignment="Center" />
-            <TextBlock Grid.Row="7" Grid.Column="0" Text="Consumption:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
-            <controls:DomesticToNonDomesticConsumption Grid.Row="8" Grid.ColumnSpan="2" DomesticConsumptionPercent="{Binding Path=CurrentRegion.PercentOfConsumptionBeingDomestic}" Margin="10"/>
-            <TextBlock Grid.Row="9" Grid.Column="0" Text="Domestic Consumption:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
-            <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=DomesticConsumption, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="0" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="White"/>
-                <TextBlock Text="MWatts" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White" VerticalAlignment="Bottom"/>
-            </StackPanel>
-            <TextBlock Grid.Row="10" Grid.Column="0" Text="Carbon Offset Cost:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
-            <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="£" Margin="4,0,0,0" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="White"/>
-                <TextBlock Text="{Binding Path=DomesticCarbonOffsetCostPerHour, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="0" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="White"/>
-                <TextBlock Text="per hour" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White" VerticalAlignment="Bottom"/>
-            </StackPanel>
-            <StackPanel Grid.Row="11" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="£" Margin="4,0,0,0" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="White"/>
-                <TextBlock Text="{Binding Path=DomesticCarbonOffsetCostPerPersonPerYear, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="0" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="White"/>
-                <TextBlock Text="per person per year" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White" VerticalAlignment="Bottom"/>
-            </StackPanel>
-            <Path Grid.Row="12" Grid.ColumnSpan="2" Data="M0,0 L252,0" Fill="White" HorizontalAlignment="Left" Height="1" Margin="75,20" Stretch="Fill" Stroke="White" VerticalAlignment="Center" />
-            <TextBlock Grid.Row="13" Grid.Column="0" Text="Generation Composition:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
-            <controls:CompositionGrid Grid.Row="14" Grid.ColumnSpan="2" SimpleMode="False" Margin="10"
-                CoalPercent="{Binding Path=CurrentComposition[Coal], Mode=OneWay}"
-                OilPercent="{Binding Path=CurrentComposition[Oil], Mode=OneWay}"
-                GasPercent="{Binding Path=CurrentComposition[Gas], Mode=OneWay}"
-                ImportsPercent="{Binding Path=CurrentComposition[Import], Mode=OneWay}"
-                OtherPercent="{Binding Path=CurrentComposition[Other], Mode=OneWay}"
-                BioMassPercent="{Binding Path=CurrentComposition[Biomass], Mode=OneWay}"
-                NuclearPercent="{Binding Path=CurrentComposition[Nuclear], Mode=OneWay}"
-                HydroPercent="{Binding Path=CurrentComposition[Hydro], Mode=OneWay}"
-                SolarPercent="{Binding Path=CurrentComposition[Solar], Mode=OneWay}"
-                WindPercent="{Binding Path=CurrentComposition[Wind], Mode=OneWay}" />
+            <Pivot Grid.Row="8" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Margin="-8,10">
+                <PivotItem Header="Composition">
+                    <controls:CompositionGrid Grid.Row="14" Grid.ColumnSpan="2" SimpleMode="False"
+                        CoalPercent="{Binding Path=CurrentComposition[Coal], Mode=OneWay}"
+                        OilPercent="{Binding Path=CurrentComposition[Oil], Mode=OneWay}"
+                        GasPercent="{Binding Path=CurrentComposition[Gas], Mode=OneWay}"
+                        ImportsPercent="{Binding Path=CurrentComposition[Import], Mode=OneWay}"
+                        OtherPercent="{Binding Path=CurrentComposition[Other], Mode=OneWay}"
+                        BioMassPercent="{Binding Path=CurrentComposition[Biomass], Mode=OneWay}"
+                        NuclearPercent="{Binding Path=CurrentComposition[Nuclear], Mode=OneWay}"
+                        HydroPercent="{Binding Path=CurrentComposition[Hydro], Mode=OneWay}"
+                        SolarPercent="{Binding Path=CurrentComposition[Solar], Mode=OneWay}"
+                        WindPercent="{Binding Path=CurrentComposition[Wind], Mode=OneWay}" />
+                </PivotItem>
+                <PivotItem Header="Distribution" Foreground="White">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <controls:DomesticToNonDomesticConsumption Grid.Row="0" Grid.ColumnSpan="2" DomesticConsumptionPercent="{Binding Path=CurrentRegion.PercentOfConsumptionBeingDomestic}" TotalGeneration="{Binding Path=CurrentRegionGeneration.Estimated.TotalMW, Mode=OneWay}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Domestic Consumption:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=DomesticConsumption, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
+                            <TextBlock Text="MWatts" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Carbon Offset Cost:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="£" Margin="4,0,0,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
+                            <TextBlock Text="{Binding Path=DomesticCarbonOffsetCostPerHour, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
+                            <TextBlock Text="per hour" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="£" Margin="4,0,0,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
+                            <TextBlock Text="{Binding Path=DomesticCarbonOffsetCostPerPersonPerYear, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
+                            <TextBlock Text="per person per year" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </Grid>
+                </PivotItem>
+            </Pivot>
         </Grid>
     </Border>
 </Page>

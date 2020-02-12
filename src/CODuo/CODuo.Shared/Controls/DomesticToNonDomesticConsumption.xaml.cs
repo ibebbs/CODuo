@@ -19,27 +19,40 @@ namespace CODuo.Controls
 {
     public sealed partial class DomesticToNonDomesticConsumption : UserControl
     {
-
         public static readonly DependencyProperty DomesticConsumptionLengthProperty = DependencyProperty.Register(nameof(DomesticConsumptionLength), typeof(GridLength), typeof(DomesticToNonDomesticConsumption), new PropertyMetadata(new GridLength(0.5, GridUnitType.Star)));
         public static readonly DependencyProperty NonDomesticConsumptionLengthProperty = DependencyProperty.Register(nameof(NonDomesticConsumptionLength), typeof(GridLength), typeof(DomesticToNonDomesticConsumption), new PropertyMetadata(new GridLength(0.5, GridUnitType.Star)));
 
         public static readonly DependencyProperty NonDomesticConsumptionPercentProperty = DependencyProperty.Register("NonDomesticConsumptionPercent", typeof(double), typeof(DomesticToNonDomesticConsumption), new PropertyMetadata(0.5));
-        public static readonly DependencyProperty DomesticConsumptionPercentProperty = DependencyProperty.Register("DomesticConsumptionPercent", typeof(double), typeof(DomesticToNonDomesticConsumption), new PropertyMetadata(0.5, DomesticConsumptionPercentPropertyChanged));
+        public static readonly DependencyProperty DomesticConsumptionPercentProperty = DependencyProperty.Register("DomesticConsumptionPercent", typeof(double), typeof(DomesticToNonDomesticConsumption), new PropertyMetadata(0.5, DependentPropertyChanged));
 
-        private static void DomesticConsumptionPercentPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static readonly DependencyProperty TotalGenerationProperty = DependencyProperty.Register("TotalGeneration", typeof(double), typeof(DomesticToNonDomesticConsumption), new PropertyMetadata(0.0, DependentPropertyChanged));
+        public static readonly DependencyProperty DomesticConsumptionProperty = DependencyProperty.Register("DomesticConsumption", typeof(double), typeof(DomesticToNonDomesticConsumption), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty NonDomesticConsumptionProperty = DependencyProperty.Register("NonDomesticConsumption", typeof(double), typeof(DomesticToNonDomesticConsumption), new PropertyMetadata(0.0));
+
+        private static void DependentPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is DomesticToNonDomesticConsumption v && e.NewValue is double domesticConsumptionPercent)
+            if (d is DomesticToNonDomesticConsumption v)
             {
-                double nonDomesticConsumptionPercent = 1.0 - domesticConsumptionPercent;
-                v.SetValue(NonDomesticConsumptionPercentProperty, nonDomesticConsumptionPercent);
-                v.SetValue(DomesticConsumptionLengthProperty, new GridLength(domesticConsumptionPercent, GridUnitType.Star));
-                v.SetValue(NonDomesticConsumptionLengthProperty, new GridLength(nonDomesticConsumptionPercent, GridUnitType.Star));
+                v.Refresh();
             }
         }
 
         public DomesticToNonDomesticConsumption()
         {
             this.InitializeComponent();
+        }
+
+        private void Refresh()
+        {
+            double totalGeneration = (double)GetValue(TotalGenerationProperty);
+            double domesticConsumptionPercent = (double)GetValue(DomesticConsumptionPercentProperty);
+            double nonDomesticConsumptionPercent = 1.0 - domesticConsumptionPercent;
+
+            SetValue(NonDomesticConsumptionPercentProperty, nonDomesticConsumptionPercent);
+            SetValue(DomesticConsumptionLengthProperty, new GridLength(domesticConsumptionPercent, GridUnitType.Star));
+            SetValue(NonDomesticConsumptionLengthProperty, new GridLength(nonDomesticConsumptionPercent, GridUnitType.Star));
+            SetValue(DomesticConsumptionProperty, totalGeneration * domesticConsumptionPercent);
+            SetValue(NonDomesticConsumptionProperty, totalGeneration * nonDomesticConsumptionPercent);
         }
 
         public GridLength DomesticConsumptionLength
@@ -61,6 +74,24 @@ namespace CODuo.Controls
         {
             get { return (double)GetValue(DomesticConsumptionPercentProperty); }
             set { SetValue(DomesticConsumptionPercentProperty, value); }
+        }
+
+        public double TotalGeneration
+        {
+            get { return (double)GetValue(TotalGenerationProperty); }
+            set { SetValue(TotalGenerationProperty, value); }
+        }
+
+
+        public double DomesticConsumption
+        {
+            get { return (double)GetValue(DomesticConsumptionProperty); }
+        }
+
+
+        public double NonDomesticConsumption
+        {
+            get { return (double)GetValue(NonDomesticConsumptionProperty); }
         }
     }
 }
