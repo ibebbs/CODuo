@@ -3,7 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
-namespace CODuo.Xaml
+namespace CODuo.Converters
 {
     public class IntensityToBrushConverter : IValueConverter
     {

@@ -25,6 +25,9 @@
       <DependentUpon>CountryByRegion.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomTwoPaneView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DomesticToNonDomesticConsumption.xaml.cs">
+      <DependentUpon>DomesticToNonDomesticConsumption.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Hub.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquarePanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ElementWidthConverter.cs" />
@@ -73,7 +76,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToHome.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewLocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Factory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xaml\IntensityToBrushConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IntensityToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\LayoutExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\WindowHelper.cs" />
   </ItemGroup>
@@ -86,7 +89,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\DomesticToNonDomesticConsumption.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Home\Left.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Home\Resources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Resources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,6 +15,9 @@ namespace CODuo.Home
 
     public class ViewModel : IViewModel, INotifyPropertyChanged
     {
+        private const double CarbonOffsetCostPerTonne = 13.15;
+        private const int UkContributingPopulation = 35321599;
+
         private readonly Data.IProvider _dataProvider;
         private readonly Platform.ISchedulers _schedulers;
 
@@ -26,6 +29,10 @@ namespace CODuo.Home
         private readonly MVx.Observable.Property<IReadOnlyDictionary<string, double>> _currentComposition;
         private readonly MVx.Observable.Property<Common.Region> _currentRegion;
         private readonly MVx.Observable.Property<Common.RegionGeneration> _currentRegionGeneration;
+        private readonly MVx.Observable.Property<double> _tonnesOfCO2PerHour;
+        private readonly MVx.Observable.Property<double> _domesticConsumption;
+        private readonly MVx.Observable.Property<double> _domesticCarbonOffsetCostPerHour;
+        private readonly MVx.Observable.Property<double> _domesticCarbonOffsetCostPerPersonPerYear;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -36,10 +43,14 @@ namespace CODuo.Home
             
             _currentContainer = new MVx.Observable.Property<Common.Container>(nameof(CurrentContainer), args => PropertyChanged?.Invoke(this, args));
             _selectedRegion = new MVx.Observable.Property<int>(0, nameof(SelectedRegion), args => PropertyChanged?.Invoke(this, args));
-            _regionIntensity = new MVx.Observable.Property<IReadOnlyDictionary<int, double?>>(new Dictionary<int, double?>(), nameof(RegionIntensity), args => PropertyChanged?.Invoke(this, args));
-            _currentComposition = new MVx.Observable.Property<IReadOnlyDictionary<string, double>>(new Dictionary<string, double>(), nameof(CurrentComposition), args => PropertyChanged?.Invoke(this, args));
+            _regionIntensity = new MVx.Observable.Property<IReadOnlyDictionary<int, double?>>(Enumerable.Range(0, 15).ToDictionary(i => i, _ => default(double?)), nameof(RegionIntensity), args => PropertyChanged?.Invoke(this, args));
+            _currentComposition = new MVx.Observable.Property<IReadOnlyDictionary<string, double>>(Enum.GetNames(typeof(Common.FuelType)).ToDictionary(name => name, _ => 0.0), nameof(CurrentComposition), args => PropertyChanged?.Invoke(this, args));
             _currentRegion = new MVx.Observable.Property<Common.Region>(nameof(CurrentRegion), args => PropertyChanged?.Invoke(this, args));
             _currentRegionGeneration = new MVx.Observable.Property<Common.RegionGeneration>(nameof(CurrentRegionGeneration), args => PropertyChanged?.Invoke(this, args));
+            _tonnesOfCO2PerHour = new MVx.Observable.Property<double>(nameof(TonnesOfCO2PerHour), args => PropertyChanged?.Invoke(this, args));
+            _domesticConsumption = new MVx.Observable.Property<double>(nameof(DomesticConsumption), args => PropertyChanged?.Invoke(this, args));
+            _domesticCarbonOffsetCostPerHour = new MVx.Observable.Property<double>(nameof(DomesticCarbonOffsetCostPerHour), args => PropertyChanged?.Invoke(this, args));
+            _domesticCarbonOffsetCostPerPersonPerYear = new MVx.Observable.Property<double>(nameof(DomesticCarbonOffsetCostPerPersonPerYear), args => PropertyChanged?.Invoke(this, args));
 
             _currentPeriod = _currentContainer
                 .Where(container => !(container is null))
@@ -86,7 +97,7 @@ namespace CODuo.Home
                 .Subscribe(_currentComposition);
         }
 
-        public IDisposable ShouldRefreshRegionWhenDataOrSelectedRegionChanges()
+        public IDisposable ShouldRefreshCurrentRegionWhenDataOrSelectedRegionChanges()
         {
             return Observable
                 .CombineLatest(_currentContainer, _selectedRegion, (container, regionId) => container?.Regions.Where(region => region.Id == regionId).FirstOrDefault())
@@ -104,14 +115,63 @@ namespace CODuo.Home
                 .Subscribe(_currentRegionGeneration);
         }
 
+        private IDisposable ShouldRefreshTonnesOfCO2PerHourWhenPeriodOrSelectedRegionChanges()
+        {
+            return Observable
+                .CombineLatest(_currentPeriod, _selectedRegion, (period, regionId) => period.Regions
+                    .Where(region => region.RegionId == regionId)
+                    .Select(region => (region.Estimated.TotalMW * region.Estimated.GramsOfCO2PerkWh) / 1000.0 ?? 0.0)
+                    .FirstOrDefault())
+                .ObserveOn(_schedulers.Dispatcher)
+                .Subscribe(_tonnesOfCO2PerHour);
+        }
+
+        private IDisposable ShouldRefreshDomesticConsumptionWhenCurrentPeriodOrRegionChanges()
+        {
+            return Observable
+                .CombineLatest(_currentPeriod, _currentRegion, (period, currentRegion) => (Period: period, Region: currentRegion))
+                .Where(tuple => !(tuple.Region is null))
+                .Select(tuple => tuple.Period.Regions
+                    .Where(region => region.RegionId == tuple.Region.Id)
+                    .Select(region => region.Estimated.TotalMW * tuple.Region.PercentOfConsumptionBeingDomestic ?? 0.0)
+                    .FirstOrDefault())
+                .ObserveOn(_schedulers.Dispatcher)
+                .Subscribe(_domesticConsumption);
+        }
+
+        private IDisposable ShouldRefreshCarbonOffsetCostPerHourWhenTonnesOfCO2PerHourChanges()
+        {
+            return Observable
+                .CombineLatest(_currentPeriod, _currentRegion, (period, currentRegion) => (Period: period, Region: currentRegion))
+                .Where(tuple => !(tuple.Region is null))
+                .Select(tuple => tuple.Period.Regions
+                    .Where(region => region.RegionId == tuple.Region.Id)
+                    .Select(region => (region.Estimated.TotalMW * tuple.Region.PercentOfConsumptionBeingDomestic * region.Estimated.GramsOfCO2PerkWh / 1000.0 * CarbonOffsetCostPerTonne) ?? 0.0)
+                    .FirstOrDefault())
+                .ObserveOn(_schedulers.Dispatcher)
+                .Subscribe(_domesticCarbonOffsetCostPerHour);
+        }
+
+        private IDisposable ShouldRefreshCarbonOffsetCostPerPersonPerYearWhenCarbonOffsetCostPerPersonPerHourChanges()
+        {
+            return Observable
+                .CombineLatest(_domesticCarbonOffsetCostPerHour, _currentRegion, (cost, currentRegion) => (cost * 24 * 365.25) / (UkContributingPopulation * (currentRegion?.PercentOfNationalPopulation ?? 1)))
+                .ObserveOn(_schedulers.Dispatcher)
+                .Subscribe(_domesticCarbonOffsetCostPerPersonPerYear);
+        }
+
         public IDisposable Activate()
         {
             return new CompositeDisposable(
                 ShouldRefreshCurrentContainerWhenDataChanges(),
                 ShouldRefreshRegionIntensityWhenDataChanges(),
                 ShouldRefreshCompositionWhenDataOrSelectedRegionChanges(),
-                ShouldRefreshRegionWhenDataOrSelectedRegionChanges(),
-                ShouldRefreshRegionGenerationWhenDataOrSelectedRegionChanges()
+                ShouldRefreshCurrentRegionWhenDataOrSelectedRegionChanges(),
+                ShouldRefreshRegionGenerationWhenDataOrSelectedRegionChanges(),
+                ShouldRefreshTonnesOfCO2PerHourWhenPeriodOrSelectedRegionChanges(),
+                ShouldRefreshDomesticConsumptionWhenCurrentPeriodOrRegionChanges(),
+                ShouldRefreshCarbonOffsetCostPerHourWhenTonnesOfCO2PerHourChanges(),
+                ShouldRefreshCarbonOffsetCostPerPersonPerYearWhenCarbonOffsetCostPerPersonPerHourChanges()
             );
         }
 
@@ -156,6 +216,26 @@ namespace CODuo.Home
         {
             get { return _selectedRegion.Get(); }
             set { _selectedRegion.Set(value); }
+        }
+
+        public double TonnesOfCO2PerHour
+        {
+            get { return _tonnesOfCO2PerHour.Get(); }
+        }
+
+        public double DomesticConsumption
+        {
+            get { return _domesticConsumption.Get(); }
+        }
+
+        public double DomesticCarbonOffsetCostPerHour
+        {
+            get { return _domesticCarbonOffsetCostPerHour.Get(); }
+        }
+
+        public double DomesticCarbonOffsetCostPerPersonPerYear
+        {
+            get { return _domesticCarbonOffsetCostPerPersonPerYear.Get(); }
         }
     }
 }

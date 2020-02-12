@@ -20,5 +20,11 @@ namespace CODuo.Common
         public string Operator { get; set; }
 
         public string OperatorLogoUri { get; set; }
+
+        public double PercentOfNationalEnergyConsumption { get; set; }
+
+        public double PercentOfNationalPopulation { get; set; }
+
+        public double PercentOfConsumptionBeingDomestic { get; set; }
     }
 }

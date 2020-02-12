@@ -2,99 +2,20 @@
     x:Class="CODuo.Home.Tall"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:CODuo.Controls"
-    xmlns:xaml="using:CODuo.Xaml"
+    xmlns:local="using:CODuo.Home"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Page.Resources>
-        <SolidColorBrush x:Key="Default" Color="#FFF2F2F2"/>
-        <SolidColorBrush x:Key="VeryLow" Color="#FF2E7F18"/>
-        <SolidColorBrush x:Key="Low" Color="#FF45731E"/>
-        <SolidColorBrush x:Key="Moderate" Color="#FF675E24"/>
-        <SolidColorBrush x:Key="High" Color="#FF8D472B"/>
-        <SolidColorBrush x:Key="VeryHigh" Color="#FFB13433"/>
-        <xaml:IntensityToBrushConverter x:Key="IntensityToBrushConverter" 
-                                        Default="{StaticResource Default}" 
-                                        VeryLow="{StaticResource VeryLow}" 
-                                        Low="{StaticResource Low}" 
-                                        Moderate="{StaticResource Moderate}" 
-                                        High="{StaticResource High}"
-                                        VeryHigh="{StaticResource VeryHigh}"/>
-    </Page.Resources>
+    Background="#FFEBF5F9">
 
     <ScrollViewer HorizontalScrollMode="Disabled">
-        <Grid Background="#FFEBF5F9">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="{x:Bind Path=GetHeight()}"/>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Border>
-                <controls:CountryByRegion Background="#FFEBF5F9" HorizontalAlignment="Center" SelectedRegion="{Binding Path=SelectedRegion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Region1Brush="{Binding Path=RegionIntensity[1], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region2Brush="{Binding Path=RegionIntensity[2], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region3Brush="{Binding Path=RegionIntensity[3], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region4Brush="{Binding Path=RegionIntensity[4], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region5Brush="{Binding Path=RegionIntensity[5], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region6Brush="{Binding Path=RegionIntensity[6], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region7Brush="{Binding Path=RegionIntensity[7], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region8Brush="{Binding Path=RegionIntensity[8], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region9Brush="{Binding Path=RegionIntensity[9], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region10Brush="{Binding Path=RegionIntensity[10], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region11Brush="{Binding Path=RegionIntensity[11], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region12Brush="{Binding Path=RegionIntensity[12], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region13Brush="{Binding Path=RegionIntensity[13], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region14Brush="{Binding Path=RegionIntensity[14], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region15Brush="{Binding Path=RegionIntensity[15], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}">
-                </controls:CountryByRegion>
-            </Border>
-            <Border Grid.Row="1" Margin="10,10,10,10" Background="#FFD0E8F1">
-                <Grid Padding="10,0,10,10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="400"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Path=CurrentRegion.Name, Mode=OneWay}" Style="{StaticResource SubheaderTextBlockStyle}" Margin="4"/>
-                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Orientation="Horizontal" Margin="4,-10,4,4">
-                        <TextBlock Text="As of:" Style="{StaticResource CaptionTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Path=CurrentContainer.LastUpdated}" Margin="4,0,4,0" Style="{StaticResource CaptionTextBlockStyle}"/>
-                    </StackPanel>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Network Operator:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentRegion.Operator, Mode=OneWay}" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Current Generation:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"/>
-                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.TotalMW, Mode=OneWay}" Margin="4,0,0,0" Style="{StaticResource BodyTextBlockStyle}"/>
-                        <TextBlock Text="MWatt(s)" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}"/>
-                    </StackPanel>
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Carbon Intensity:" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"/>
-                    <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.GramsOfCO2PerkWh, Mode=OneWay}" Margin="4,0,0,0" Style="{StaticResource BodyTextBlockStyle}"/>
-                        <TextBlock Text="gCO²/kWh" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}"/>
-                    </StackPanel>
-                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=CurrentRegionGeneration.Estimated.GramsOfCO2PerkWh, Mode=OneWay}" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"/>
-                    <controls:CompositionGrid Grid.Row="5" Grid.ColumnSpan="2" SimpleMode="False" Margin="0,10,0,0"
-                CoalPercent="{Binding Path=CurrentComposition[Coal], Mode=OneWay}"
-                OilPercent="{Binding Path=CurrentComposition[Oil], Mode=OneWay}"
-                GasPercent="{Binding Path=CurrentComposition[Gas], Mode=OneWay}"
-                ImportsPercent="{Binding Path=CurrentComposition[Import], Mode=OneWay}"
-                OtherPercent="{Binding Path=CurrentComposition[Other], Mode=OneWay}"
-                BioMassPercent="{Binding Path=CurrentComposition[Biomass], Mode=OneWay}"
-                NuclearPercent="{Binding Path=CurrentComposition[Nuclear], Mode=OneWay}"
-                HydroPercent="{Binding Path=CurrentComposition[Hydro], Mode=OneWay}"
-                SolarPercent="{Binding Path=CurrentComposition[Solar], Mode=OneWay}"
-                WindPercent="{Binding Path=CurrentComposition[Wind], Mode=OneWay}" />
-                </Grid>
-            </Border>
+            <local:Left Grid.Row="0" />
+            <local:Right Grid.Row="1" />
         </Grid>
     </ScrollViewer>
 </Page>
