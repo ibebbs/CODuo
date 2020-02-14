@@ -23,7 +23,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:CountryByRegion Grid.RowSpan="2" Background="#FFEBF5F9" HorizontalAlignment="Center" SelectedRegion="{Binding Path=SelectedRegion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" MaxWidth="640"
+        <controls:CountryByRegion Grid.RowSpan="2" Background="#FFEBF5F9" HorizontalAlignment="Center" SelectedRegion="{Binding Path=SelectedRegion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" MaxWidth="800"
                 Region1Brush="{Binding Path=RegionIntensity[1], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region2Brush="{Binding Path=RegionIntensity[2], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region3Brush="{Binding Path=RegionIntensity[3], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
@@ -40,16 +40,5 @@
                 Region14Brush="{Binding Path=RegionIntensity[14], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region15Brush="{Binding Path=RegionIntensity[15], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}">
         </controls:CountryByRegion>
-        <Slider Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" Minimum="{Binding Path=SliderMinimum, Mode=OneWay}" Maximum="{Binding Path=SliderMaximum, Mode=OneWay}" Value="{Binding Path=SliderCurrent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*"/>
-                <ColumnDefinition Width="0.3*"/>
-                <ColumnDefinition Width="0.3*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Path=SliderMinimum, Mode=OneWay}" HorizontalAlignment="Left"/>
-            <TextBlock Grid.Column="1" Text="{Binding Path=SliderCurrent, Mode=OneWay}" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="2" Text="{Binding Path=SliderMaximum, Mode=OneWay}" HorizontalAlignment="Right"/>
-        </Grid>
     </Grid>
 </Page>

@@ -13,7 +13,7 @@ namespace CODuo.Controls
 {
     public sealed partial class CountryByRegion : ContentControl, INotifyPropertyChanged
     {
-        private static readonly Brush DefaultBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0xAA, 0xAA, 0xAA));
+        private static readonly Brush DefaultBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x44, 0x44, 0x44));
 
         public static readonly DependencyProperty Region1BrushProperty  = DependencyProperty.Register(nameof(Region1Brush), typeof(Brush), typeof(CountryByRegion), new PropertyMetadata(DefaultBrush));
         public static readonly DependencyProperty Region2BrushProperty  = DependencyProperty.Register(nameof(Region2Brush), typeof(Brush), typeof(CountryByRegion), new PropertyMetadata(DefaultBrush));
