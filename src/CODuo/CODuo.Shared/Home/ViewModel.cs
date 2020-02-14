@@ -26,6 +26,9 @@ namespace CODuo.Home
 
         private readonly MVx.Observable.Property<int> _selectedRegion;
         private readonly MVx.Observable.Property<Common.Container> _currentContainer;
+        private readonly MVx.Observable.Property<long> _sliderMinimum;
+        private readonly MVx.Observable.Property<long> _sliderMaximum;
+        private readonly MVx.Observable.Property<long> _sliderCurrent;
         private readonly MVx.Observable.Property<IReadOnlyDictionary<int, double?>> _regionIntensity;
         private readonly MVx.Observable.Property<IReadOnlyDictionary<string, double>> _currentComposition;
         private readonly MVx.Observable.Property<Common.Region> _currentRegion;
@@ -44,6 +47,9 @@ namespace CODuo.Home
             _schedulers = schedulers;
             
             _currentContainer = new MVx.Observable.Property<Common.Container>(nameof(CurrentContainer), args => PropertyChanged?.Invoke(this, args));
+            _sliderMinimum = new MVx.Observable.Property<long>(nameof(SliderMinimum), args => PropertyChanged?.Invoke(this, args));
+            _sliderMaximum = new MVx.Observable.Property<long>(nameof(SliderMaximum), args => PropertyChanged?.Invoke(this, args));
+            _sliderCurrent = new MVx.Observable.Property<long>(nameof(SliderCurrent), args => PropertyChanged?.Invoke(this, args));
             _selectedRegion = new MVx.Observable.Property<int>(0, nameof(SelectedRegion), args => PropertyChanged?.Invoke(this, args));
             _regionIntensity = new MVx.Observable.Property<IReadOnlyDictionary<int, double?>>(Enumerable.Range(0, 15).ToDictionary(i => i, _ => default(double?)), nameof(RegionIntensity), args => PropertyChanged?.Invoke(this, args));
             _currentComposition = new MVx.Observable.Property<IReadOnlyDictionary<string, double>>(Enum.GetNames(typeof(Common.FuelType)).ToDictionary(name => name, _ => 0.0), nameof(CurrentComposition), args => PropertyChanged?.Invoke(this, args));
@@ -69,6 +75,39 @@ namespace CODuo.Home
             return _dataProvider.Container
                 .ObserveOn(_schedulers.Dispatcher)
                 .Subscribe(_currentContainer);
+        }
+
+        private IDisposable ShouldRefreshSliderMinimumWhenCurrentContainerChanges()
+        {
+            return _currentContainer
+                .Where(container => !(container is null))
+                .Select(container => container.Periods
+                    .OrderBy(period => period.From)
+                    .Select(period => period.From.Ticks)
+                    .FirstOrDefault())
+                .Do(ticks => System.Diagnostics.Debug.WriteLine($"From: '{ticks}'"))
+                .Subscribe(_sliderMinimum);
+        }
+
+        private IDisposable ShouldRefreshSliderMaximumWhenCurrentContainerChanges()
+        {
+            return _currentContainer
+                .Where(container => !(container is null))
+                .Select(container => container.Periods
+                    .OrderByDescending(period => period.From)
+                    .Select(period => period.From.Ticks)
+                    .FirstOrDefault())
+                .Do(ticks => System.Diagnostics.Debug.WriteLine($"To: '{ticks}'"))
+                .Subscribe(_sliderMaximum);
+        }
+
+        private IDisposable ShouldRefreshSliderCurrentWhenCurrentPeriodChanges()
+        {
+            return _currentPeriod
+                .Where(period => !(period is null))
+                .Select(period => period.From.Ticks)
+                .Do(ticks => System.Diagnostics.Debug.WriteLine($"Current: '{ticks}'"))
+                .Subscribe(_sliderCurrent);
         }
 
         private IDisposable ShouldRefreshRegionIntensityWhenDataChanges()
@@ -176,6 +215,9 @@ namespace CODuo.Home
         {
             return new CompositeDisposable(
                 ShouldRefreshCurrentContainerWhenDataChanges(),
+                ShouldRefreshSliderMinimumWhenCurrentContainerChanges(),
+                ShouldRefreshSliderMaximumWhenCurrentContainerChanges(),
+                ShouldRefreshSliderCurrentWhenCurrentPeriodChanges(),
                 ShouldRefreshRegionIntensityWhenDataChanges(),
                 ShouldRefreshCompositionWhenDataOrSelectedRegionChanges(),
                 ShouldRefreshCurrentRegionWhenDataOrSelectedRegionChanges(),
@@ -254,6 +296,22 @@ namespace CODuo.Home
         public double DomesticCarbonOffsetCostPerPersonPerYear
         {
             get { return _domesticCarbonOffsetCostPerPersonPerYear.Get(); }
+        }
+
+        public long SliderMinimum
+        {
+            get { return _sliderMinimum.Get(); }
+        }
+
+        public long SliderMaximum
+        {
+            get { return _sliderMaximum.Get(); }
+        }
+
+        public long SliderCurrent
+        {
+            get { return _sliderCurrent.Get(); }
+            set { _sliderCurrent.Set(value); }
         }
     }
 }
