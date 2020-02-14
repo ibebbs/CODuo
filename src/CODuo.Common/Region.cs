@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CODuo.Common
 {
@@ -8,7 +9,10 @@ namespace CODuo.Common
         {
             Id = 0,
             Name = "United Kingdon",
-            Operator = "Various"
+            OperatorId = Guid.Parse("72240edd-7500-49bf-ad61-5645d42d0e81"),
+            PercentOfNationalEnergyConsumption = 1,
+            PercentOfNationalPopulation = 1,
+            PercentOfConsumptionBeingDomestic = 0.3732408609
         };
 
         public static readonly IEnumerable<Region> AdditionalRegions = new[] { UnitedKingdon };
@@ -17,9 +21,9 @@ namespace CODuo.Common
 
         public string Name { get; set; }
 
-        public string Operator { get; set; }
+        public Guid OperatorId { get; set; }
 
-        public string OperatorLogoUri { get; set; }
+        public string OperatorEmergencyNumber { get; set; }
 
         public double PercentOfNationalEnergyConsumption { get; set; }
 

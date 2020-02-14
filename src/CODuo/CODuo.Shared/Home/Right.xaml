@@ -38,32 +38,62 @@
                 <TextBlock Text="As of:" Style="{StaticResource CaptionTextBlockStyle}"  Foreground="White"/>
                 <TextBlock Text="{Binding Path=CurrentContainer.LastUpdated}" Margin="4,0,4,0" Style="{StaticResource CaptionTextBlockStyle}"  Foreground="White"/>
             </StackPanel>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Network Operator:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentRegion.Operator, Mode=OneWay}" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Supplying:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
-            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <Border Grid.Row="2" Grid.ColumnSpan="2" Margin="4" Padding="4" Background="White">
+                <Image Stretch="Uniform" Height="48" Source="{Binding Path=CurrentRegion, Converter={StaticResource RegionToLogoConverter}}" Margin="4" HorizontalAlignment="Center" />
+            </Border>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Operator:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=CurrentOperator.Name, Mode=OneWay}" Margin="4,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Contact:" Margin="4,8" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
+            <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                <controls:ContactButton ContactType="Phone" Foreground="#FFc82538" Height="48" Margin="0,4,8,4" />
+                <controls:ContactButton ContactType="EMail" ContactUri="{Binding Path=CurrentOperator.EMail}" Height="48" Margin="8,4" Foreground="White" />
+                <controls:ContactButton ContactType="Web" ContactUri="{Binding Path=CurrentOperator.Website}" Height="48" Margin="8,4" Foreground="White" />
+                <controls:ContactButton ContactType="Twitter" ContactUri="{Binding Path=CurrentOperator.Twitter}" Height="48" Margin="8,4" Foreground="White" />
+            </StackPanel>
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="Supplying:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+            <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
                 <TextBlock Text="~" Margin="4,0,0,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
                 <TextBlock Text="{Binding Path=CurrentRegionPopulation, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N0]}" Margin="2,0,0,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
                 <TextBlock Text="people" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
             </StackPanel>
-            <Path Grid.Row="4" Grid.ColumnSpan="2" Data="M0,0 L252,0" Fill="White" HorizontalAlignment="Left" Height="1" Margin="75,20" Stretch="Fill" Stroke="White" VerticalAlignment="Center" />
-            <TextBlock Grid.Row="5" Grid.Column="0" Text="Current Generation:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
-            <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.TotalMW, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N]}" Margin="4,0,0,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
-                <TextBlock Text="MWatts" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
-            </StackPanel>
-            <TextBlock Grid.Row="6" Grid.Column="0" Text="Carbon Intensity:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
-            <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.GramsOfCO2PerkWh, Mode=OneWay}" Margin="4,0,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="White"/>
-                <TextBlock Text="gCO₂/kWh" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
-            </StackPanel>
-            <TextBlock Grid.Row="7" Grid.Column="0" Text="Carbon Emitted:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
-            <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=TonnesOfCO2PerHour, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="4,0,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="White"/>
-                <TextBlock Text="tonnes per hour" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White" VerticalAlignment="Bottom"/>
-            </StackPanel>
-            <Pivot Grid.Row="8" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Margin="-8,10">
+            <Path Grid.Row="8" Grid.ColumnSpan="2" Data="M0,0 L252,0" Fill="White" HorizontalAlignment="Left" Height="1" Margin="75,20" Stretch="Fill" Stroke="White" VerticalAlignment="Center" Visibility="Collapsed" />
+            <Pivot Grid.Row="8" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Margin="-8,10" IsHeaderItemsCarouselEnabled="True">
+                <PivotItem Header="Generation">
+                    <!--<PivotItem.Header>
+                        <PathIcon Data="m 41.1 9.6 c 0.5 0.3 1.1 0.1 1.4 -0.4 L 44.6 5.6 C 44.9 5.1 44.7 4.5 44.2 4.2 43.7 3.9 43.1 4.1 42.8 4.6 l -2.1 3.6 c -0.3 0.5 -0.1 1.1 0.4 1.4 z m 9.4 9 3.6 -2.1 c 0.5 -0.3 0.6 -0.9 0.4 -1.4 -0.3 -0.5 -0.9 -0.6 -1.4 -0.4 l -3.6 2.1 c -0.5 0.3 -0.6 0.9 -0.4 1.4 0.3 0.5 0.9 0.7 1.4 0.4 z M 57 28.8 h -4.2 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 H 57 c 0.6 0 1 -0.4 1 -1 0 -0.6 -0.5 -1 -1 -1 z m -3.7 14 -3.6 -2.1 c -0.5 -0.3 -1.1 -0.1 -1.4 0.4 -0.3 0.5 -0.1 1.1 0.4 1.4 l 3.6 2.1 c 0.5 0.3 1.1 0.1 1.4 -0.4 0.3 -0.5 0.1 -1.1 -0.4 -1.4 z M 7.5 39.4 3.9 41.5 c -0.5 0.3 -0.6 0.9 -0.4 1.4 0.3 0.5 0.9 0.6 1.4 0.4 L 8.5 41.2 C 9 40.9 9.1 40.3 8.9 39.8 8.6 39.2 8 39.1 7.5 39.4 Z M 6.2 28.2 c 0 -0.6 -0.4 -1 -1 -1 H 1 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 h 4.2 c 0.5 0 1 -0.4 1 -1 z M 9.3 15.5 5.7 13.4 C 5.2 13.1 4.6 13.3 4.3 13.8 4 14.3 4.2 14.9 4.7 15.2 l 3.6 2.1 c 0.5 0.3 1.1 0.1 1.4 -0.4 0.2 -0.5 0 -1.1 -0.4 -1.4 z m 7.6 -7 C 17.2 9 17.8 9.1 18.3 8.9 18.8 8.6 18.9 8 18.7 7.5 L 16.6 3.9 C 16.3 3.4 15.7 3.3 15.2 3.5 14.7 3.8 14.6 4.4 14.8 4.9 Z M 29.8 6.2 c 0.6 0 1 -0.4 1 -1 V 1 c 0 -0.6 -0.4 -1 -1 -1 -0.6 0 -1 0.4 -1 1 v 4.2 c 0 0.5 0.4 1 1 1 z M 29 8.3 c -0.7 0 -1.5 0 -2.3 0.1 C 19.5 9.2 13.5 14 11.1 21 c -2.4 6.9 -0.7 14.4 4.4 19.6 1.9 1.9 3.1 4.6 3.6 7.2 H 28 v -8 h -0.7 c -0.5 0 -0.9 -0.4 -1 -0.9 L 26 36.6 C 25.5 36.4 25.1 36.3 24.6 36 l -1.9 1.4 c -0.4 0.3 -1 0.3 -1.3 -0.1 L 19 34.9 C 18.6 34.5 18.6 34 18.9 33.6 l 1.4 -1.9 C 20.1 31.3 19.9 30.8 19.7 30.3 L 17.4 30 c -0.5 -0.1 -0.9 -0.5 -0.9 -1 v -3.5 c 0 -0.5 0.4 -0.9 0.9 -1 l 2.3 -0.3 c 0.2 -0.5 0.3 -0.9 0.6 -1.4 l -1.4 -1.9 c -0.3 -0.4 -0.3 -1 0.1 -1.3 l 2.4 -2.4 c 0.4 -0.4 0.9 -0.4 1.3 -0.1 l 1.9 1.4 c 0.5 -0.2 0.9 -0.4 1.4 -0.6 l 0.3 -2.3 c 0.1 -0.5 0.5 -0.9 1 -0.9 h 3.5 c 0.5 0 0.9 0.4 1 0.9 l 0.3 2.3 c 0.5 0.2 0.9 0.3 1.4 0.6 l 1.9 -1.4 c 0.4 -0.3 1 -0.3 1.3 0.1 l 2.5 2.4 c 0.4 0.4 0.4 0.9 0.1 1.3 l -1.4 1.9 c 0.2 0.4 0.4 0.9 0.6 1.4 l 2.3 0.3 c 0.5 0.1 0.9 0.5 0.9 1 V 29 c 0 0.5 -0.4 0.9 -0.9 1 l -2.3 0.3 c -0.2 0.5 -0.3 0.9 -0.6 1.4 l 1.4 1.9 c 0.3 0.4 0.3 1 -0.1 1.3 l -2.5 2.4 c -0.4 0.4 -0.9 0.4 -1.3 0.1 L 33.5 36 c -0.5 0.2 -0.9 0.4 -1.4 0.6 l -0.3 2.3 c -0.1 0.5 -0.5 0.9 -1 0.9 H 30 v 8 h 8.9 c 0.5 -2.5 1.7 -5.3 3.8 -7.4 C 48.3 34.6 49.6 26.2 46 19 42.7 12.2 36.3 8.3 29 8.3 Z m 4.9 18.8 c 0 -2.7 -2.2 -5 -5 -5 -2.8 0 -5 2.2 -5 5 0 2.8 2.2 5 5 5 2.8 0 5 -2.2 5 -5 z M 26.4 64 h 5.1 c 2.4 0 4.3 -2.4 4.7 -4.6 H 21.7 c 0.4 2.2 2.4 4.6 4.7 4.6 z M 40.2 49.7 H 17.7 c -1.7 0 -3.1 1.4 -3.1 3.1 v 1.4 c 0 1.7 1.4 3.1 3.1 3.1 h 22.6 c 1.7 0 3.1 -1.4 3.1 -3.1 v -1.4 c -0.1 -1.7 -1.5 -3.1 -3.2 -3.1 z"/>
+                    </PivotItem.Header>-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Current Generation:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.TotalMW, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N]}" Margin="4,0,0,0" Style="{StaticResource BaseTextBlockStyle}"  Foreground="White"/>
+                            <TextBlock Text="MWatts" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+                        </StackPanel>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Carbon Intensity:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.GramsOfCO2PerkWh, Mode=OneWay}" Margin="4,0,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="White"/>
+                            <TextBlock Text="gCO₂/kWh" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White"/>
+                        </StackPanel>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Carbon Emitted:" Margin="4,0" Style="{StaticResource BodyTextBlockStyle}"  Foreground="White"/>
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=TonnesOfCO2PerHour, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N2]}" Margin="4,0,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="White"/>
+                            <TextBlock Text="tonnes per hour" Margin="2,0,4,0" Style="{StaticResource BodyTextBlockStyle}" Foreground="White" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </Grid>
+                </PivotItem>
                 <PivotItem Header="Composition">
+                    <!--<PivotItem.Header>
+                        <PathIcon Data="m 63.5492 41.918903 a 9.3339274 9.3339274 0 0 1 -1.103423 0.630561 L 41.235961 53.104266 a 20.033985 20.033985 0 0 1 -17.798999 0 L 2.2272039 42.549471 A 9.3281449 9.3281449 0 0 1 1.1237232 41.918911 7.3048414 7.3048414 0 0 0 4.1403814 52.215763 L 25.357384 62.770556 a 15.677644 15.677644 0 0 0 13.958313 0 L 60.532621 52.215763 A 7.3047769 7.3047769 0 0 0 63.5492 41.918903 Z m 0 -13.521299 a 11.896711 11.896711 0 0 1 -1.103423 0.63056 L 41.235961 39.582956 a 19.972836 19.972836 0 0 1 -17.798999 0 L 2.2272039 29.028164 A 11.88698 11.88698 0 0 1 1.1237232 28.397604 7.3086893 7.3086893 0 0 0 4.1403814 38.701619 L 25.357384 49.249176 a 15.631778 15.631778 0 0 0 13.958313 0 L 60.532621 38.701619 A 7.3086248 7.3086248 0 0 0 63.5492 28.397604 Z M 60.533309 12.113676 39.318277 1.5611116 a 15.676663 15.676663 0 0 0 -13.96363 0 L 4.1396148 12.113682 a 7.2979697 7.2979697 0 0 0 0 13.06848 l 21.2150322 10.55257 a 15.676663 15.676663 0 0 0 13.96363 0 l 21.215032 -10.55257 a 7.2979697 7.2979697 0 0 0 0 -13.068486 z"/>
+                    </PivotItem.Header>-->
                     <controls:CompositionGrid Grid.Row="14" Grid.ColumnSpan="2" SimpleMode="False"
                         CoalPercent="{Binding Path=CurrentComposition[Coal], Mode=OneWay}"
                         OilPercent="{Binding Path=CurrentComposition[Oil], Mode=OneWay}"
@@ -76,7 +106,10 @@
                         SolarPercent="{Binding Path=CurrentComposition[Solar], Mode=OneWay}"
                         WindPercent="{Binding Path=CurrentComposition[Wind], Mode=OneWay}" />
                 </PivotItem>
-                <PivotItem Header="Distribution" Foreground="White">
+                <PivotItem Header="Distribution">
+                    <!--<PivotItem.Header>
+                        <PathIcon Data="m 24.975115 40.062822 c -0.0458 0 -0.09187 -0.01232 -0.133314 -0.03762 -0.10773 -0.066 -0.151228 -0.201138 -0.102366 -0.317556 L 27.606645 32.898 h -2.631273 c -0.08879 0 -0.170936 -0.04606 -0.217769 -0.121536 -0.04657 -0.07549 -0.05091 -0.169651 -0.01129 -0.248717 l 3.838303 -7.676613 c 0.04349 -0.08674 0.132032 -0.141501 0.229009 -0.141501 h 4.094183 c 0.09315 0 0.179122 0.05065 0.224159 0.132545 0.04503 0.08163 0.04196 0.181432 -0.008 0.260238 L 30.13141 29.82736 h 3.032256 c 0.09954 0 0.189875 0.05782 0.231832 0.147891 0.04195 0.09033 0.02815 0.196777 -0.03608 0.273029 l -8.188369 9.723693 c -0.05017 0.05936 -0.122563 0.09085 -0.196008 0.09085 m 26.216932 -1.442089 c -1.765339 0 -3.394882 0.746875 -4.549142 1.901133 l -4.820734 -2.783802 c 0.746874 -1.697443 1.15426 -3.598576 1.15426 -5.567609 0 -1.96903 -0.407386 -3.870166 -1.15426 -5.567607 l 4.820734 -2.783803 c 1.15426 1.15426 2.783803 1.901135 4.549142 1.901135 3.530677 0 6.450276 -2.9196 6.450276 -6.450278 0 -3.530678 -2.919599 -6.450277 -6.450276 -6.450277 -3.530679 0 -6.450277 2.919599 -6.450277 6.450277 0 0.611079 0.135802 1.154259 0.271591 1.697442 l -4.888631 2.851701 c -2.240622 -3.055395 -5.703399 -5.092324 -9.641465 -5.567608 v -5.703402 c 2.783805 -0.746875 4.820734 -3.1911896 4.820734 -6.1786872 0 -3.5306763 -2.919598 -6.45027453 -6.450278 -6.45027453 -3.530677 0 -6.450274 2.91959823 -6.450274 6.45027453 0 2.9874976 2.036929 5.4997102 4.820731 6.1786872 v 5.635504 c -3.938063 0.475285 -7.400843 2.512214 -9.641465 5.567608 l -4.888583 -2.851703 c 0.135804 -0.543182 0.271593 -1.086363 0.271593 -1.697442 0 -3.530678 -2.919601 -6.450275 -6.4502775 -6.450275 -3.530677 0 -6.45027788 2.987495 -6.45027788 6.518173 0 3.530678 2.91960088 6.450279 6.45027788 6.450279 1.7653397 0 3.394883 -0.746876 4.5491405 -1.901136 l 4.820735 2.783803 c -0.746876 1.697441 -1.154261 3.598577 -1.154261 5.635506 0 1.96903 0.407385 3.870166 1.154261 5.567607 l -4.820735 2.783804 C 9.9102465 39.435496 8.2807032 38.688621 6.5153635 38.688621 c -3.530677 0 -6.45027788 2.919601 -6.45027788 6.450277 0 3.530678 2.91960088 6.450279 6.45027788 6.450279 3.5306765 0 6.4502775 -2.919601 6.4502775 -6.450279 0 -0.611078 -0.135804 -1.154261 -0.271593 -1.69744 l 4.888631 -2.851701 c 2.240623 3.055395 5.703402 5.092324 9.641465 5.567606 v 5.635503 c -2.783802 0.746876 -4.82073 3.191191 -4.82073 6.178685 0 3.530694 2.919596 6.450272 6.450274 6.450272 3.530679 0 6.450278 -2.919578 6.450278 -6.450272 0 -2.987494 -2.03693 -5.499707 -4.820735 -6.178685 v -5.703399 c 3.938066 -0.475286 7.400843 -2.512216 9.641465 -5.567609 l 4.888631 2.851701 c -0.135802 0.543182 -0.271591 1.086364 -0.271591 1.697443 0 3.530677 2.919599 6.450275 6.450277 6.450275 3.530678 0 6.450276 -2.919598 6.450276 -6.450275 0 -3.53068 -2.851701 -6.450277 -6.450276 -6.450277 z m 0 -22.54202 c 1.765339 0 3.191189 1.42585 3.191189 3.191189 0 1.765338 -1.42585 3.191188 -3.191189 3.191188 -1.765339 0 -3.19119 -1.42585 -3.19119 -3.191188 0 -1.765339 1.425851 -3.191189 3.19119 -3.191189 z M 6.5153635 22.461082 c -1.7653395 0 -3.1911902 -1.42585 -3.1911902 -3.191188 0 -1.765339 1.4258507 -3.191189 3.1911902 -3.191189 1.7653397 0 3.1911903 1.42585 3.1911903 3.191189 0 1.765338 -1.4258506 3.191188 -3.1911903 3.191188 z m 0 25.801108 c -1.7653395 0 -3.1911902 -1.425851 -3.1911902 -3.191188 0 -1.76534 1.4258507 -3.19119 3.1911902 -3.19119 1.7653397 0 3.1911903 1.42585 3.1911903 3.19119 0 1.765337 -1.4258506 3.191188 -3.1911903 3.191188 z M 25.6625 6.3693398 c 0 -1.7653368 1.425851 -3.1911874 3.191188 -3.1911874 1.765339 0 3.191191 1.4258506 3.191191 3.1911874 0 1.76534 -1.425852 3.1911906 -3.191191 3.1911906 -1.765337 0 -3.191188 -1.4258506 -3.191188 -3.1911906 z m 6.382379 51.6022112 c 0 1.765342 -1.425852 3.191186 -3.191191 3.191186 -1.765337 0 -3.191188 -1.425844 -3.191188 -3.191186 0 -1.765337 1.425851 -3.191187 3.191188 -3.191187 1.765339 0 3.191191 1.42585 3.191191 3.191187 z M 28.853685 43.034072 c -5.974992 0 -10.863623 -4.88863 -10.863623 -10.863625 0 -5.974993 4.888631 -10.863623 10.863623 -10.863623 5.974995 0 10.863625 4.88863 10.863625 10.863623 0 5.974995 -4.88863 10.863625 -10.863625 10.863625 z m 22.338328 5.228118 c -1.765338 0 -3.191189 -1.425851 -3.191189 -3.191188 0 -1.76534 1.425851 -3.19119 3.191189 -3.19119 1.765339 0 3.191189 1.42585 3.191189 3.19119 0 1.765337 -1.42585 3.191188 -3.191189 3.191188 z"/>
+                    </PivotItem.Header>-->
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>

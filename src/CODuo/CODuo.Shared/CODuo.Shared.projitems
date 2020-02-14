@@ -30,8 +30,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Hub.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquarePanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ElementWidthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NumberToGridLengthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RegionToLogoConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ValueToMinHeightConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Provider.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Platform\ILaunch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\ISchedulers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\ILayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\Instance.cs" />
@@ -90,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\DomesticToNonDomesticConsumption.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,6 +137,14 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\COduo.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LargeTile.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logos\ElectrictyNorthwest.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logos\NationalGrid.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logos\NorthernIrelandElectricity.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logos\NorthernPowergrid.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logos\ScottishAndSouthernEnergy.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logos\SPEnergyNetworks.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logos\UKPowerNetworks.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logos\WesternPowerDistribution.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SmallTile.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Square150x150Logo.scale-200.png" />

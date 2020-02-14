@@ -32,6 +32,7 @@ namespace CODuo.Home
         private readonly MVx.Observable.Property<IReadOnlyDictionary<int, double?>> _regionIntensity;
         private readonly MVx.Observable.Property<IReadOnlyDictionary<string, double>> _currentComposition;
         private readonly MVx.Observable.Property<Common.Region> _currentRegion;
+        private readonly MVx.Observable.Property<Common.Operator> _currentOperator;
         private readonly MVx.Observable.Property<int> _currentRegionPopulation;
         private readonly MVx.Observable.Property<Common.RegionGeneration> _currentRegionGeneration;
         private readonly MVx.Observable.Property<double> _tonnesOfCO2PerHour;
@@ -54,6 +55,7 @@ namespace CODuo.Home
             _regionIntensity = new MVx.Observable.Property<IReadOnlyDictionary<int, double?>>(Enumerable.Range(0, 15).ToDictionary(i => i, _ => default(double?)), nameof(RegionIntensity), args => PropertyChanged?.Invoke(this, args));
             _currentComposition = new MVx.Observable.Property<IReadOnlyDictionary<string, double>>(Enum.GetNames(typeof(Common.FuelType)).ToDictionary(name => name, _ => 0.0), nameof(CurrentComposition), args => PropertyChanged?.Invoke(this, args));
             _currentRegion = new MVx.Observable.Property<Common.Region>(nameof(CurrentRegion), args => PropertyChanged?.Invoke(this, args));
+            _currentOperator = new MVx.Observable.Property<Common.Operator>(nameof(CurrentOperator), args => PropertyChanged?.Invoke(this, args));
             _currentRegionPopulation = new MVx.Observable.Property<int>(nameof(CurrentRegionPopulation), args => PropertyChanged?.Invoke(this, args));
             _currentRegionGeneration = new MVx.Observable.Property<Common.RegionGeneration>(nameof(CurrentRegionGeneration), args => PropertyChanged?.Invoke(this, args));
             _tonnesOfCO2PerHour = new MVx.Observable.Property<double>(nameof(TonnesOfCO2PerHour), args => PropertyChanged?.Invoke(this, args));
@@ -148,6 +150,15 @@ namespace CODuo.Home
                 .Subscribe(_currentRegion);
         }
 
+        private IDisposable ShouldRefreshCurrentOperatorWhenDataOrCurrentRegionChanges()
+        {
+            return Observable
+                .CombineLatest(_currentContainer, _currentRegion, (container, region) => container?.Operators?.Where(op => op.Id.Equals(region?.OperatorId)).FirstOrDefault())
+                .Where(op => !(op is null))
+                .ObserveOn(_schedulers.Dispatcher)
+                .Subscribe(_currentOperator);
+        }
+
         private IDisposable ShouldRefreshRegionPopulationWhenDataOrSelectedRegionChanges()
         {
             return _currentRegion
@@ -221,6 +232,7 @@ namespace CODuo.Home
                 ShouldRefreshRegionIntensityWhenDataChanges(),
                 ShouldRefreshCompositionWhenDataOrSelectedRegionChanges(),
                 ShouldRefreshCurrentRegionWhenDataOrSelectedRegionChanges(),
+                ShouldRefreshCurrentOperatorWhenDataOrCurrentRegionChanges(),
                 ShouldRefreshRegionPopulationWhenDataOrSelectedRegionChanges(),
                 ShouldRefreshRegionGenerationWhenDataOrSelectedRegionChanges(),
                 ShouldRefreshTonnesOfCO2PerHourWhenPeriodOrSelectedRegionChanges(),
@@ -260,6 +272,11 @@ namespace CODuo.Home
         public Common.Region CurrentRegion
         {
             get { return _currentRegion.Get(); }
+        }
+
+        public Common.Operator CurrentOperator
+        {
+            get { return _currentOperator.Get(); }
         }
 
         public int CurrentRegionPopulation
