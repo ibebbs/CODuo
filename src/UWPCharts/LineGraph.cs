@@ -80,20 +80,10 @@ namespace Ailon.QuickCharts
             }
             else
             {
-                _lineGraph.Points = Empty.Value;
+                _lineGraph.Points = null;
                 _lineGraph.Visibility = Visibility.Collapsed;
             }
         }
-
-        private static readonly Lazy<PointCollection> Empty = new Lazy<PointCollection>(
-            () =>
-            {
-                var pointCollection = new PointCollection();
-                pointCollection.Add(new Point(0, 0));
-                return pointCollection;
-            }
-        );
-
 
         /// <summary>
         /// Identifies <see cref="StrokeThickness"/> dependency property.
