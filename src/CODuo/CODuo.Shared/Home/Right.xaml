@@ -93,13 +93,13 @@
                         <charts:SerialChart Grid.Row="3" Grid.ColumnSpan="2" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" PlotAreaBackground="White" DataSource="{Binding GenerationData}" CategoryValueMemberPath="At">
                             <charts:SerialChart.Graphs>
                                 <charts:LineGraph Title="Estimated" ValueMemberPath="EstimatedGeneration"/>
-                                <charts:LineGraph Title="Actual" ValueMemberPath="ActualGeneration"/>
+                                <charts:LineGraph Title="Actual" ValueMemberPath="ActualGeneration" StrokeDashArray="4 1 1 1 1 1"/>
                             </charts:SerialChart.Graphs>
                         </charts:SerialChart>
                         <charts:SerialChart Grid.Row="4" Grid.ColumnSpan="2" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" PlotAreaBackground="White" DataSource="{Binding GenerationData}" CategoryValueMemberPath="At">
                             <charts:SerialChart.Graphs>
                                 <charts:LineGraph Title="Estimated" ValueMemberPath="EstimatedGramsOfCO2PerkWh"/>
-                                <charts:LineGraph Title="Actual" ValueMemberPath="ActualGramsOfCO2PerkWh"/>
+                                <charts:LineGraph Title="Actual" ValueMemberPath="ActualGramsOfCO2PerkWh" StrokeDashArray="4 1 1 1 1 1"/>
                             </charts:SerialChart.Graphs>
                         </charts:SerialChart>
                     </Grid>

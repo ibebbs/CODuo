@@ -9,6 +9,8 @@ using Windows.Media;
 using Windows.Data;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
+using Windows.Foundation;
 
 namespace Ailon.QuickCharts
 {
@@ -27,6 +29,7 @@ namespace Ailon.QuickCharts
 
             BindBrush();
             BindStrokeThickness();
+            BindStrokeDashArray();
         }
 
         private void BindBrush()
@@ -43,6 +46,14 @@ namespace Ailon.QuickCharts
             thicknessBinding.Path = new PropertyPath("StrokeThickness");
             thicknessBinding.Source = this;
             _lineGraph.SetBinding(Polyline.StrokeThicknessProperty, thicknessBinding);
+        }
+
+        private void BindStrokeDashArray()
+        {
+            Binding strokeDashArrayBinding = new Binding();
+            strokeDashArrayBinding.Path = new PropertyPath("StrokeDashArray");
+            strokeDashArrayBinding.Source = this;
+            _lineGraph.SetBinding(Polyline.StrokeDashArrayProperty, strokeDashArrayBinding);
         }
 
         private Canvas _graphCanvas;
@@ -62,8 +73,26 @@ namespace Ailon.QuickCharts
         /// </summary>
         public override void Render()
         {
-            _lineGraph.Points = Locations;
+            if (Locations?.Any() ?? false)
+            {
+                _lineGraph.Points = Locations;
+                _lineGraph.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                _lineGraph.Points = Empty.Value;
+                _lineGraph.Visibility = Visibility.Collapsed;
+            }
         }
+
+        private static readonly Lazy<PointCollection> Empty = new Lazy<PointCollection>(
+            () =>
+            {
+                var pointCollection = new PointCollection();
+                pointCollection.Add(new Point(0, 0));
+                return pointCollection;
+            }
+        );
 
 
         /// <summary>
@@ -85,6 +114,13 @@ namespace Ailon.QuickCharts
             set { SetValue(LineGraph.StrokeThicknessProperty, value); }
         }
 
+        public static readonly DependencyProperty StrokeDashArrayProperty =
+            DependencyProperty.Register("StrokeDashArray", typeof(DoubleCollection), typeof(LineGraph), new PropertyMetadata(null));
 
+        public DoubleCollection StrokeDashArray
+        {
+            get { return (DoubleCollection)GetValue(StrokeDashArrayProperty); }
+            set { SetValue(StrokeDashArrayProperty, value); }
+        }
     }
 }

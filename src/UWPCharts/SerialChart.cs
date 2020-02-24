@@ -283,8 +283,15 @@ namespace Ailon.QuickCharts
             {
                 for (int i = 0; i < _graphs.Count; i++)
                 {
-                    string tooltipContent = _graphs[i].Title + ": " + _categoryValues[index] + " | "
-                        + (string.IsNullOrEmpty(ValueFormatString) ? _values[_graphs[i].ValueMemberPath][index].ToString() : _values[_graphs[i].ValueMemberPath][index].ToString(ValueFormatString));
+                    var tooltip = _values[_graphs[i].ValueMemberPath][index] switch
+                    {
+                        null => string.Empty,
+                        double value when string.IsNullOrEmpty(ValueFormatString) => value.ToString(),
+                        double value => value.ToString(ValueFormatString)
+                    };
+
+                    string tooltipContent = _graphs[i].Title + ": " + _categoryValues[index] + " | " + tooltip;
+
                     //ToolTipService.SetToolTip(_indicators[_graphs[i]], tooltipContent);
                     //ToolTipService.SetToolTip(_graphs[i], tooltipContent);
                     _indicators[_graphs[i]].Text = tooltipContent;
@@ -452,7 +459,7 @@ namespace Ailon.QuickCharts
             set { SetValue(CategoryValueMemberPathProperty, value); }
         }
 
-        private Dictionary<string, List<double>> _values = new Dictionary<string, List<double>>();
+        private Dictionary<string, List<double?>> _values = new Dictionary<string, List<double?>>();
         private Dictionary<string, PointCollection> _locations = new Dictionary<string, PointCollection>();
         private List<string> _categoryValues = new List<string>();
         private List<double> _categoryLocations = new List<double>();
@@ -511,7 +518,16 @@ namespace Ailon.QuickCharts
         {
             foreach (string path in paths)
             {
-                _values[path].Add(Convert.ToDouble(bindingEvaluators[path].Eval(dataItem)));
+                var value = bindingEvaluators[path].Eval(dataItem);
+
+                if (value is null)
+                {
+                    _values[path].Add(null);
+                }
+                else
+                {
+                    _values[path].Add(Convert.ToDouble(value));
+                }
             }
         }
 
@@ -538,7 +554,7 @@ namespace Ailon.QuickCharts
             this._values.Clear();
             foreach (string path in paths)
             {
-                _values.Add(path, new List<double>());
+                _values.Add(path, new List<double?>());
             }
         }
 
@@ -546,14 +562,12 @@ namespace Ailon.QuickCharts
         {
             if (_values.Count > 0)
             {
-                var minimumValues = from vs in _values.Values
-                                    where vs.Count > 0
-                                    select vs.Min();
-                _minimumValue = minimumValues.Count() > 0 ? minimumValues.Min() : 0;
-                var maximumValues = from vs in _values.Values
-                                    where vs.Count > 0
-                                    select vs.Max();
-                _maximumValue = maximumValues.Count() > 0 ? maximumValues.Max() : 9;
+                (var min, var max) = _values.Values
+                    .SelectMany(source => source.Where(value => value.HasValue).Select(value => value.Value))
+                    .Aggregate((Min: 0.0, Max: 9.0), (seed, value) => (Min: Math.Min(seed.Min, value), Max: Math.Max(seed.Max, value)));
+
+                _minimumValue = min;
+                _maximumValue = max;
 
                 AdjustMinMax(_desiredValueGridCount);
 
@@ -769,7 +783,12 @@ namespace Ailon.QuickCharts
                     _locations.Add(path, new PointCollection());
                     for (int i = 0; i < _values[path].Count; i++)
                     {
-                        _locations[path].Add(GetPointCoordinates(i, _values[path][i]));
+                        var value = _values[path][i];
+
+                        if (value.HasValue)
+                        {
+                            _locations[path].Add(GetPointCoordinates(i, value.Value));
+                        }
                     }
                 }
 
