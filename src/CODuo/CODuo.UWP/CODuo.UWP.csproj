@@ -26,10 +26,10 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="1.29.0" />
     <PackageReference Include="Uno.UI">
-      <Version>2.1.0-dev.1181</Version>
+      <Version>2.1.0-dev.1312</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl">
-      <Version>2.1.0-dev.1181</Version>
+      <Version>2.1.0-dev.1312</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
@@ -124,6 +124,10 @@
     <ProjectReference Include="..\..\CODuo.Common\CODuo.Common.csproj">
       <Project>{b6085c3b-2368-4b61-b933-a1b70848438b}</Project>
       <Name>CODuo.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UWPCharts\UWPCharts.csproj">
+      <Project>{709c8958-2e88-42f9-a491-0c2884c00761}</Project>
+      <Name>UWPCharts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

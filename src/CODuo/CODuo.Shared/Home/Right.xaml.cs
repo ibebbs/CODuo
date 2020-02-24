@@ -25,6 +25,13 @@ namespace CODuo.Home
         public Right()
         {
             this.InitializeComponent();
+
+            RootBorder.SizeChanged += RootBorder_SizeChanged;
+        }
+
+        private void RootBorder_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine($"Size changed: {e.NewSize}");
         }
     }
 }
