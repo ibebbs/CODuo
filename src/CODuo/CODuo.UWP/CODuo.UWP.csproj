@@ -26,10 +26,10 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="1.29.0" />
     <PackageReference Include="Uno.UI">
-      <Version>2.1.0-dev.1312</Version>
+      <Version>2.1.0-dev.1373</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl">
-      <Version>2.1.0-dev.1312</Version>
+      <Version>2.1.0-dev.1373</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
@@ -140,7 +140,14 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="..\..\Fonts\impact.ttf">
+      <Link>Assets\Fonts\impact.ttf</Link>
+    </Content>
+    <None Include="..\..\Fonts\msgothic.ttc">
+      <Link>Assets\Fonts\msgothic.ttc</Link>
+    </None>
     <None Include="CODuo.UWP_TemporaryKey.pfx" />
+    <None Include="Design\projectGuides.guides" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />

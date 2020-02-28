@@ -24,7 +24,7 @@ namespace CODuo.Home
             viewModel.DetachViews();
 
             var left = new Left();
-            var right = new Right();
+            var right = new Infographic(); // Right();
 
             viewModel.AttachView(left);
             viewModel.AttachView(right);

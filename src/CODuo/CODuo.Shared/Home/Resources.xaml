@@ -10,6 +10,7 @@
     <SolidColorBrush x:Key="High" Color="#FF8D472B"/>
     <SolidColorBrush x:Key="VeryHigh" Color="#FFB13433"/>
     <converters:StringFormatConverter x:Key="StringFormatConverter"/>
+    <converters:StringCaseConverter x:Key="StringCaseConverter"/>
     <converters:IntensityToBrushConverter x:Key="IntensityToBrushConverter" 
                                         Default="{StaticResource Default}" 
                                         VeryLow="{StaticResource VeryLow}" 

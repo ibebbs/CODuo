@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="CODuo.Home.Infographic"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CODuo.Home"
+    xmlns:info="using:CODuo.Home.InfoPanels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#FFEBF5F9">
+
+    <Grid Background="{ThemeResource SystemAccentColor}" Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Viewbox VerticalAlignment="Top" Margin="4">
+            <Grid Width="2496">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="448"/>
+                    <RowDefinition Height="1792"/>
+                    <RowDefinition Height="448"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <info:Region Grid.ColumnSpan="4"/>
+                <info:CurrentGeneration Grid.ColumnSpan="4" Grid.Row="1"/>
+                <info:CompanyFundamentals Grid.ColumnSpan="4" Grid.Row="3"/>
+            </Grid>
+        </Viewbox>
+        <TextBlock Text="Copyright" Grid.Row="1" HorizontalAlignment="Right"/>
+    </Grid>
+</Page>

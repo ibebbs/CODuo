@@ -12,10 +12,10 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="{x:Bind Path=GetHeight()}"/>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="800" />
             </Grid.RowDefinitions>
             <local:Left Grid.Row="0" />
-            <local:Right Grid.Row="1" />
+            <local:Infographic Grid.Row="1" VerticalAlignment="Stretch" />
         </Grid>
     </ScrollViewer>
 </Page>
