@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="25*"/>
                 </Grid.ColumnDefinitions>
                 <info:Region Grid.ColumnSpan="4"/>
-                <info:CurrentGeneration Grid.ColumnSpan="4" Grid.Row="1"/>
+                <info:CurrentGeneration Grid.ColumnSpan="4" Grid.Row="1" Composition="{Binding Path=CurrentComposition, Mode=OneWay}"/>
                 <info:CompanyFundamentals Grid.ColumnSpan="4" Grid.Row="3"/>
             </Grid>
         </Viewbox>
