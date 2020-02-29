@@ -5,12 +5,12 @@
         Coal,
         Oil,
         Gas,
-        Nuclear,
-        Wind,
-        Hydro,
-        Biomass,
-        Solar,
+        Import,
         Other,
-        Import
+        Biomass,
+        Nuclear,
+        Solar,
+        Hydro,
+        Wind
     }
 }

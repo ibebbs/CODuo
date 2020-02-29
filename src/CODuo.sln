@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CODuo.iOS", "CODuo\CODuo.iO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CODuo.UWP", "CODuo\CODuo.UWP\CODuo.UWP.csproj", "{5548F22E-6B3C-4B29-BD57-C5BAE5022DB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CODuo.Wasm", "CODuo\CODuo.Wasm\CODuo.Wasm.csproj", "{D3B3B6E8-3265-42F6-9EF8-CB77856BB996}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CODuo.Wasm", "CODuo\CODuo.Wasm\CODuo.Wasm.csproj", "{D3B3B6E8-3265-42F6-9EF8-CB77856BB996}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{2DDD1D44-0B31-4DD9-8D9E-ABEEBF585220}"
 EndProject
@@ -30,6 +30,7 @@ Global
 		CODuo\CODuo.Shared\CODuo.Shared.projitems*{5548f22e-6b3c-4b29-bd57-c5bae5022db7}*SharedItemsImports = 4
 		CODuo\CODuo.Shared\CODuo.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
 		CODuo\CODuo.Shared\CODuo.Shared.projitems*{d821d0de-eae6-4dbf-a13f-4133fb602be5}*SharedItemsImports = 4
+		CODuo\CODuo.Shared\CODuo.Shared.projitems*{e084a055-4918-45f2-8c1e-ebc177891769}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
