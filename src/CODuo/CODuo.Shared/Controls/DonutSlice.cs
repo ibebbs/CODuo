@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -10,10 +8,18 @@ namespace CODuo.Controls
 {
     public partial class DonutSlice : Path
     {
-        public static readonly DependencyProperty StartAngleProperty = DependencyProperty.Register("StartAngle", typeof(double), typeof(DonutSlice), new PropertyMetadata(default(double), (s, e) => { Changed(s as DonutSlice); }));
-        public static readonly DependencyProperty AngleProperty = DependencyProperty.Register("Angle", typeof(double), typeof(DonutSlice), new PropertyMetadata(DependencyProperty.UnsetValue, (s, e) => { Changed(s as DonutSlice); }));
-        public static readonly DependencyProperty RadiusProperty = DependencyProperty.Register("Radius", typeof(double), typeof(DonutSlice), new PropertyMetadata(DependencyProperty.UnsetValue, (s, e) => { Changed(s as DonutSlice); }));
-        public static readonly DependencyProperty InnerRadiusProperty = DependencyProperty.Register("InnerRadius", typeof(double), typeof(DonutSlice), new PropertyMetadata(DependencyProperty.UnsetValue, (s, e) => { Changed(s as DonutSlice); }));
+        public static readonly DependencyProperty StartAngleProperty = DependencyProperty.Register("StartAngle", typeof(double), typeof(DonutSlice), new PropertyMetadata(default(double), PropertyChanged));
+        public static readonly DependencyProperty AngleProperty = DependencyProperty.Register("Angle", typeof(double), typeof(DonutSlice), new PropertyMetadata(default(double), PropertyChanged));
+        public static readonly DependencyProperty RadiusProperty = DependencyProperty.Register("Radius", typeof(double), typeof(DonutSlice), new PropertyMetadata(default(double), PropertyChanged));
+        public static readonly DependencyProperty InnerRadiusProperty = DependencyProperty.Register("InnerRadius", typeof(double), typeof(DonutSlice), new PropertyMetadata(default(double), PropertyChanged));
+
+        private static void PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is DonutSlice ds)
+            {
+                ds.Changed();
+            }
+        }
 
         private bool _isLoaded;
 
@@ -24,6 +30,14 @@ namespace CODuo.Controls
                 _isLoaded = true;
                 Redraw();
             };
+        }
+
+        private void Changed()
+        {
+            if (_isLoaded)
+            {
+                Redraw();
+            }
         }
 
         private void Redraw()
@@ -101,14 +115,6 @@ namespace CODuo.Controls
         {
             get { return (double)GetValue(InnerRadiusProperty); }
             set { SetValue(InnerRadiusProperty, value); }
-        }
-
-        private static void Changed(DonutSlice donutSlice)
-        {
-            if (donutSlice._isLoaded)
-            {
-                donutSlice.Redraw();
-            }
         }
     }
 }

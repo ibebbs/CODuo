@@ -37,8 +37,7 @@
                 Region11Brush="{Binding Path=RegionIntensity[11], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region12Brush="{Binding Path=RegionIntensity[12], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region13Brush="{Binding Path=RegionIntensity[13], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region14Brush="{Binding Path=RegionIntensity[14], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
-                Region15Brush="{Binding Path=RegionIntensity[15], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}">
+                Region14Brush="{Binding Path=RegionIntensity[14], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}">
         </controls:CountryByRegion>
     </Grid>
 </Page>

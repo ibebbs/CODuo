@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using CODuo.Common;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -20,7 +11,7 @@ namespace CODuo.Home.InfoPanels
 {
     public sealed partial class CurrentGeneration : UserControl
     {
-        public static readonly DependencyProperty CompositionProperty = DependencyProperty.Register("MyProperty", typeof(int), typeof(CurrentGeneration), new PropertyMetadata(null, CompositionPropertyChanged));
+        public static readonly DependencyProperty CompositionProperty = DependencyProperty.Register("Composition", typeof(IDictionary<string, double>), typeof(CurrentGeneration), new PropertyMetadata(new Dictionary<string, double>(), CompositionPropertyChanged));
 
         private static void CompositionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -31,33 +22,33 @@ namespace CODuo.Home.InfoPanels
         }
 
         public static readonly DependencyProperty CoalStartAngleProperty = DependencyProperty.Register(nameof(CoalStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty OilStartAngleProperty = DependencyProperty.Register(nameof(OilStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty GasStartAngleProperty = DependencyProperty.Register(nameof(GasStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty ImportsStartAngleProperty = DependencyProperty.Register(nameof(ImportsStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty OtherStartAngleProperty = DependencyProperty.Register(nameof(OtherStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty BioMassStartAngleProperty = DependencyProperty.Register(nameof(BioMassStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty NuclearStartAngleProperty = DependencyProperty.Register(nameof(NuclearStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty HydroStartAngleProperty = DependencyProperty.Register(nameof(HydroStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty SolarStartAngleProperty = DependencyProperty.Register(nameof(SolarStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty WindStartAngleProperty = DependencyProperty.Register(nameof(WindStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty OilStartAngleProperty = DependencyProperty.Register(nameof(OilStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty GasStartAngleProperty = DependencyProperty.Register(nameof(GasStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(20.0));
+        public static readonly DependencyProperty ImportsStartAngleProperty = DependencyProperty.Register(nameof(ImportsStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(30.0));
+        public static readonly DependencyProperty OtherStartAngleProperty = DependencyProperty.Register(nameof(OtherStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(40.0));
+        public static readonly DependencyProperty BioMassStartAngleProperty = DependencyProperty.Register(nameof(BioMassStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(50.0));
+        public static readonly DependencyProperty NuclearStartAngleProperty = DependencyProperty.Register(nameof(NuclearStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(60.0));
+        public static readonly DependencyProperty HydroStartAngleProperty = DependencyProperty.Register(nameof(HydroStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(70.0));
+        public static readonly DependencyProperty SolarStartAngleProperty = DependencyProperty.Register(nameof(SolarStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(80.0));
+        public static readonly DependencyProperty WindStartAngleProperty = DependencyProperty.Register(nameof(WindStartAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(90.0));
 
-        public static readonly DependencyProperty CoalAngleProperty = DependencyProperty.Register(nameof(CoalAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty OilAngleProperty = DependencyProperty.Register(nameof(OilAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty GasAngleProperty = DependencyProperty.Register(nameof(GasAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty ImportsAngleProperty = DependencyProperty.Register(nameof(ImportsAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty OtherAngleProperty = DependencyProperty.Register(nameof(OtherAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty BioMassAngleProperty = DependencyProperty.Register(nameof(BioMassAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty NuclearAngleProperty = DependencyProperty.Register(nameof(NuclearAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty HydroAngleProperty = DependencyProperty.Register(nameof(HydroAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty SolarAngleProperty = DependencyProperty.Register(nameof(SolarAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
-        public static readonly DependencyProperty WindAngleProperty = DependencyProperty.Register(nameof(WindAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty CoalAngleProperty = DependencyProperty.Register(nameof(CoalAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty OilAngleProperty = DependencyProperty.Register(nameof(OilAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty GasAngleProperty = DependencyProperty.Register(nameof(GasAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty ImportsAngleProperty = DependencyProperty.Register(nameof(ImportsAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty OtherAngleProperty = DependencyProperty.Register(nameof(OtherAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty BioMassAngleProperty = DependencyProperty.Register(nameof(BioMassAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty NuclearAngleProperty = DependencyProperty.Register(nameof(NuclearAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty HydroAngleProperty = DependencyProperty.Register(nameof(HydroAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty SolarAngleProperty = DependencyProperty.Register(nameof(SolarAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(10.0));
+        public static readonly DependencyProperty WindAngleProperty = DependencyProperty.Register(nameof(WindAngle), typeof(double), typeof(CurrentGeneration), new PropertyMetadata(270.0));
 
         public CurrentGeneration()
         {
             this.InitializeComponent();
         }
 
-        private void SetFuelAngle(FuelType fuelType, double startAngle, double angle)
+        private void SetFuelAngle(Common.FuelType fuelType, double startAngle, double angle)
         {
             switch (fuelType)
             {
@@ -99,32 +90,41 @@ namespace CODuo.Home.InfoPanels
                     break;
                 case Common.FuelType.Wind:
                     WindStartAngle = startAngle;
-                    WindAngle = angle;
+                    WindAngle = 360 - startAngle;
                     break;
             }
         }
 
-        private double SetCompsition(Common.FuelType fuelType, double startAngle, double percent)
-        {
-            var angle = 360 * percent;
-
-            SetFuelAngle(fuelType, startAngle, angle);
-
-            return startAngle + angle;
-        }
-
         private void CompositionChanged()
         {
-            Enum
+            var positions = Enum
                 .GetValues(typeof(Common.FuelType))
                 .OfType<Common.FuelType>()
-                .Join(Composition, fuelType => fuelType.ToString(), kvp => kvp.Key, (fuelType, kvp) => (FuelType: fuelType, Percent: kvp.Value))
-                .Aggregate(0.0, (seed, tuple) => SetCompsition(tuple.FuelType, seed, tuple.Percent));
+                .Join(Composition, fuelType => fuelType.ToString(), kvp => kvp.Key, (fuelType, kvp) => (FuelType: fuelType, Angle: kvp.Value * 360))
+                .Aggregate(
+                    (Positions: Enumerable.Empty<(Common.FuelType, double, double)>(), StartAngle: 0.0),
+                    (seed, tuple) => (Positions: seed.Positions.Concat(new[] { (tuple.FuelType, seed.StartAngle, tuple.Angle) }).ToArray(), StartAngle: seed.StartAngle + tuple.Angle))
+                .Positions;
+
+            foreach (var item in positions)
+            {
+                SetFuelAngle(item.Item1, item.Item2, item.Item3);
+            }
+
+            //_ = this.Dispatcher.RunAsync(
+            //    CoreDispatcherPriority.Normal,
+            //    () =>
+            //    {
+            //        foreach (var item in positions)
+            //        {
+            //            SetFuelAngle(item.Item1, item.Item2, item.Item3);
+            //        }
+            //    });
         }
 
-        public IReadOnlyDictionary<string, double> Composition
+        public IDictionary<string, double> Composition
         {
-            get { return (IReadOnlyDictionary<string, double>)GetValue(CompositionProperty); }
+            get { return (IDictionary<string, double>)GetValue(CompositionProperty); }
             set { SetValue(CompositionProperty, value); }
         }
 

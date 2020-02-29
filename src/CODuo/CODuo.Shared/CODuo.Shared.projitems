@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\RefreshData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\GenerationData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\Infographic.xaml.cs">
       <DependentUpon>$fileinputname$.xaml</DependentUpon>
