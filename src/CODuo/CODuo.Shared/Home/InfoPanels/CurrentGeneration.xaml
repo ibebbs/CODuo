@@ -28,7 +28,7 @@
         <TextBlock Text="CARBON" FontFamily="Arial" FontSize="64" Canvas.Left="1538" Canvas.Top="54" Foreground="#FF24221C" FontWeight="Black"/>
         <TextBlock Text="tonnes per hour" FontFamily="Arial" FontSize="64" Canvas.Left="1984" Canvas.Top="54" Foreground="#FF24221C" FontWeight="Light"/>
         <Path Data="M0,0 L448,0" Fill="#FFF4F4F5" Stroke="#FF24221C" StrokeThickness="4" Height="4" Canvas.Left="1538" Canvas.Top="128" Width="895" Stretch="Fill"/>
-        <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.GramsOfCO2PerkWh, Mode=OneWay, FallbackValue=9\,311}" FontFamily="ms-appx:///Assets/Fonts/impact.ttf#Impact" FontSize="266.667" Foreground="#FFB8312A" Canvas.Left="1538" Canvas.Top="107"/>
+        <TextBlock Text="{Binding Path=TonnesOfCO2PerHour, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N0], Mode=OneWay, FallbackValue=9\,311}" FontFamily="ms-appx:///Assets/Fonts/impact.ttf#Impact" FontSize="266.667" Foreground="#FFB8312A" Canvas.Left="1538" Canvas.Top="107"/>
         <Path Stretch="Uniform" Width="192" Height="320" Fill="#000000" StrokeThickness="0.26458332" Data="m 6.9767479 7.987587 c -0.758537 0 -1.375766 -0.617233 -1.375766 -1.375766 0 -0.758536 0.617229 -1.376631 1.375766 -1.376631 0.758533 0 1.376631 0.61723 1.376631 1.376631 0 0.759402 -0.618098 1.375766 -1.376631 1.375766 z m 0 -1.625432 c -0.137841 0 -0.249666 0.111826 -0.249666 0.249666 0 0.137841 0.111825 0.248815 0.249666 0.248815 0.137841 0 0.249666 -0.111826 0.249666 -0.249667 0 -0.13784 -0.111825 -0.248814 -0.249666 -0.248814 z m 0.640636 4.63183 h -1.280408 c -0.311198 0 -0.563482 -0.252255 -0.563482 -0.563486 V 9.660695 c -0.03467 -0.01376 -0.06763 -0.02785 -0.101439 -0.04246 l -0.54441 0.54441 c -0.210644 0.211529 -0.586025 0.211529 -0.796681 0 L 3.4259229 9.257605 C 3.3201589 9.151841 3.2612159 9.008823 3.2612159 8.859699 c 0 -0.149112 0.05894 -0.293014 0.164707 -0.397903 l 0.544414 -0.544414 c -0.01573 -0.03466 -0.02949 -0.06763 -0.04335 -0.102291 h -0.768939 c -0.311198 0 -0.563482 -0.252255 -0.563482 -0.563486 V 5.971198 c 0 -0.311231 0.252254 -0.563482 0.563482 -0.563482 h 0.769804 c 0.01376 -0.03466 0.02785 -0.06763 0.04246 -0.10144 l -0.545278 -0.54441 c -0.220178 -0.220178 -0.220178 -0.576486 0 -0.796678 l 0.905905 -0.90504 c 0.105764 -0.105764 0.248814 -0.164707 0.397906 -0.164707 v 0 c 0.149112 0 0.293014 0.05894 0.398775 0.164707 l 0.543542 0.54441 c 0.03381 -0.01474 0.06763 -0.0285 0.101439 -0.04246 V 2.792294 c 0 -0.311231 0.252255 -0.563482 0.563482 -0.563482 h 1.280405 c 0.311231 0 0.563482 0.252254 0.563482 0.563482 v 0.769804 c 0.03381 0.01311 0.06763 0.02785 0.10144 0.04161 l 0.54441 -0.544413 c 0.210643 -0.211528 0.586021 -0.211528 0.796677 0 l 0.9050411 0.90504 c 0.105764 0.105764 0.164707 0.248815 0.164707 0.397907 0 0.149111 -0.05894 0.293014 -0.164707 0.398771 L 9.9831279 5.304558 c 0.01474 0.03381 0.0285 0.06763 0.04246 0.101439 h 0.769804 c 0.311231 0 0.563482 0.252255 0.563482 0.563486 v 1.280405 c 0 0.311231 -0.252254 0.563482 -0.563482 0.563482 h -0.769804 c -0.01376 0.03381 -0.02785 0.06763 -0.04161 0.101439 l 0.5444131 0.543542 c 0.105764 0.105764 0.164707 0.249666 0.164707 0.398775 0 0.149111 -0.05894 0.293013 -0.164707 0.397903 l -0.9050401 0.90504 c -0.220178 0.220211 -0.576487 0.219326 -0.796678 0 l -0.54438 -0.544451 c -0.03381 0.01474 -0.06763 0.0285 -0.10144 0.0425 v 0.769805 c 0 0.313819 -0.252254 0.566083 -0.563482 0.566083 z M 6.9004589 9.867017 h 0.153436 V 9.250656 c 0 -0.260085 0.178567 -0.487197 0.430848 -0.54788 0.21238 -0.05115 0.417844 -0.136956 0.611162 -0.253991 0.220178 -0.136104 0.506268 -0.101439 0.691782 0.08234 L 9.2254709 8.96891 9.3338229 8.860557 8.8969069 8.423641 C 8.7131309 8.239864 8.6784329 7.953784 8.8145369 7.731859 8.9315719 7.5394 9.0173829 7.333953 9.0694129 7.11983 9.1309829 6.86669 9.3572169 6.688982 9.6172929 6.688982 H 10.233654 V 6.534657 H 9.6172929 c -0.260085 0 -0.486332 -0.177715 -0.54788 -0.430848 -0.052 -0.214116 -0.137841 -0.419577 -0.254876 -0.611161 -0.136104 -0.221915 -0.101439 -0.50887 0.08237 -0.69265 L 9.3338229 4.363082 9.2254709 4.254729 8.7876869 4.691645 C 8.6039099 4.875422 8.3169639 4.909235 8.0950359 4.774015 7.9034619 4.65698 7.6979979 4.57117 7.4847429 4.51914 7.2316039 4.45757 7.0538949 4.231335 7.0538949 3.97126 V 3.355764 h -0.153436 v 0.616364 c 0 0.260053 -0.177715 0.486328 -0.430845 0.547877 -0.214117 0.052 -0.41958 0.13784 -0.611165 0.254875 -0.222799 0.13522 -0.508867 0.10144 -0.69265 -0.08237 l -0.436916 -0.436916 -0.108352 0.108353 0.436916 0.436916 c 0.184661 0.183776 0.218474 0.469857 0.08237 0.691785 -0.117035 0.192459 -0.202846 0.397906 -0.253991 0.611161 -0.06068 0.25314 -0.287805 0.430848 -0.54788 0.430848 h -0.616397 v 0.153437 h 0.616364 c 0.260053 0 0.487197 0.178567 0.54788 0.430848 0.05114 0.213265 0.136956 0.417844 0.253991 0.611161 0.135252 0.221915 0.101439 0.508002 -0.08237 0.691785 l -0.436916 0.437781 0.108352 0.108353 0.436916 -0.436916 c 0.182925 -0.184661 0.469858 -0.218474 0.691786 -0.08234 0.193311 0.117035 0.397903 0.202845 0.611161 0.253991 0.253139 0.06068 0.430848 0.287804 0.430848 0.54788 v 0.616361 z m 0.076289 10.713111 c -0.0036 0 -0.0062 0 -0.0095 0 -0.248782 -0.0043 -0.464654 -0.170769 -0.532274 -0.410043 -0.01474 -0.05114 -1.465921 -5.124226 -2.90237 -6.734921 C 1.1885159 10.804134 0 8.630822 0 6.975918 0 3.129498 3.1303659 0 6.9767859 0 c 3.8464201 0 6.9767831 3.129498 6.9767831 6.976783 0 1.550011 -1.047209 3.560346 -3.111291 5.977256 -1.5838211 1.852556 -3.3115441 7.182236 -3.3288831 7.235987 -0.07542 0.232334 -0.29213 0.390102 -0.536609 0.390102 z m 0 -19.453163 c -3.225724 0 -5.849822 2.624097 -5.849822 5.849818 0 1.351494 1.122634 3.325417 3.247398 5.708517 1.054146 1.183314 2.051942 3.809144 2.631031 5.536867 0.665776 -1.808343 1.825686 -4.650034 2.980389 -6.001524 C 11.84524 10.045597 12.827434 8.23205 12.827434 6.975918 12.826566 3.751062 10.202469 1.126965 6.9767479 1.126965 Z" Canvas.Left="64" Canvas.Top="582" UseLayoutRounding="False"/>
         <Viewbox Height="1024" Canvas.Left="320" Canvas.Top="704" Width="1024" Stretch="Fill">
             <Grid Height="692" Width="692" x:DefaultBindMode="OneWay">
@@ -43,21 +43,21 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind CoalStartAngle, FallbackValue=90, Mode=OneWay}" Angle="{x:Bind CoalAngle, FallbackValue=68, Mode=OneWay}" InnerRadius="240" Fill="#FFC22B24" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind OilStartAngle, FallbackValue=158, Mode=OneWay}" Angle="{x:Bind OilAngle, FallbackValue=34, Mode=OneWay}" InnerRadius="240" Fill="#FFBC4223" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind GasStartAngle, FallbackValue=158, Mode=OneWay}" Angle="{x:Bind GasAngle, FallbackValue=34, Mode=OneWay}" InnerRadius="240" Fill="#FFBC4223" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind ImportsStartAngle, FallbackValue=192, Mode=OneWay}" Angle="{x:Bind ImportsAngle, FallbackValue=15, Mode=OneWay}" InnerRadius="240" Fill="#FFB65722" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind OtherStartAngle, FallbackValue=192, Mode=OneWay}" Angle="{x:Bind OtherAngle, FallbackValue=15, Mode=OneWay}" InnerRadius="240" Fill="#FFB65722" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind BioMassStartAngle, FallbackValue=207, Mode=OneWay}" Angle="{x:Bind BioMassAngle, FallbackValue=36, Mode=OneWay}" InnerRadius="240" Fill="#FFAA7D20" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind NuclearStartAngle, FallbackValue=243, Mode=OneWay}" Angle="{x:Bind NuclearAngle, FallbackValue=59, Mode=OneWay}" InnerRadius="240" Fill="#FF9D9D1D" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind SolarStartAngle, FallbackValue=302, Mode=OneWay}" Angle="{x:Bind SolarAngle, FallbackValue=22, Mode=OneWay}" InnerRadius="240" Fill="#FF85971C" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind HydroStartAngle, FallbackValue=324, Mode=OneWay}" Angle="{x:Bind HydroAngle, FallbackValue=57, Mode=OneWay}" InnerRadius="240" Fill="#FF6D911B" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                <controls:DonutSlice Radius="342" StartAngle="{x:Bind WindStartAngle, FallbackValue=21, Mode=OneWay}" Angle="{x:Bind WindAngle, FallbackValue=90, Mode=OneWay}" InnerRadius="240" Fill="#FF2E7F18" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind CoalStartAngle, FallbackValue=90, Mode=OneWay}" Angle="{x:Bind CoalAngle, FallbackValue=68, Mode=OneWay}" InnerRadius="240" Fill="#FFC82538" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind OilStartAngle, FallbackValue=158, Mode=OneWay}" Angle="{x:Bind OilAngle, FallbackValue=34, Mode=OneWay}" InnerRadius="240" Fill="#FFc22b24" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind GasStartAngle, FallbackValue=158, Mode=OneWay}" Angle="{x:Bind GasAngle, FallbackValue=34, Mode=OneWay}" InnerRadius="240" Fill="#FFbc4223" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind ImportsStartAngle, FallbackValue=192, Mode=OneWay}" Angle="{x:Bind ImportsAngle, FallbackValue=15, Mode=OneWay}" InnerRadius="240" Fill="#FFb65722" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind OtherStartAngle, FallbackValue=192, Mode=OneWay}" Angle="{x:Bind OtherAngle, FallbackValue=15, Mode=OneWay}" InnerRadius="240" Fill="#FFaa7d20" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind BioMassStartAngle, FallbackValue=207, Mode=OneWay}" Angle="{x:Bind BioMassAngle, FallbackValue=36, Mode=OneWay}" InnerRadius="240" Fill="#FF9d9d1d" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind NuclearStartAngle, FallbackValue=243, Mode=OneWay}" Angle="{x:Bind NuclearAngle, FallbackValue=59, Mode=OneWay}" InnerRadius="240" Fill="#FF85971c" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind SolarStartAngle, FallbackValue=302, Mode=OneWay}" Angle="{x:Bind SolarAngle, FallbackValue=22, Mode=OneWay}" InnerRadius="240" Fill="#FF6d911b" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind HydroStartAngle, FallbackValue=324, Mode=OneWay}" Angle="{x:Bind HydroAngle, FallbackValue=57, Mode=OneWay}" InnerRadius="240" Fill="#FF418519" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                <controls:DonutSlice Radius="342" StartAngle="{x:Bind WindStartAngle, FallbackValue=21, Mode=OneWay}" Angle="{x:Bind WindAngle, FallbackValue=90, Mode=OneWay}" InnerRadius="240" Fill="#FF2e7f18" UseLayoutRounding="False" StrokeThickness="4" Stroke="#FFF9F9D4" Grid.RowSpan="4" Grid.ColumnSpan="3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
                 <TextBlock Text="{Binding Path=CurrentRegionGeneration.Estimated.GramsOfCO2PerkWh, Mode=OneWay, FallbackValue=000, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N0]}" FontFamily="ms-appx:///Assets/Fonts/impact.ttf#Impact" FontSize="160" Foreground="#FF9D9D1D" Grid.Column="1" Grid.Row="1" d:LayoutOverrides="Width, LeftPosition, RightPosition" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text="gCO₂/kWh" FontFamily="ms-appx:///Assets/Fonts/impact.ttf#Impact" FontSize="85.333" Foreground="#FF9D9D1D" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-16,0,0"/>
             </Grid>
         </Viewbox>
-        <Grid Height="128" Canvas.Left="1409" Canvas.Top="703" Width="1024" Background="#FF2E7F18">
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="704" Width="1024" Background="#FF2E7F18">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -67,7 +67,7 @@
             <TextBlock Text="@ 0.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
             <TextBlock Text="{x:Bind Path=Composition['Wind'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
-        <Grid Height="128" Canvas.Left="1409" Canvas.Top="831" Width="1024" Background="#FF6D911B">
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="802" Width="1024" Background="#FF418519">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -77,7 +77,7 @@
             <TextBlock Text="@ 0.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
             <TextBlock Text="{x:Bind Path=Composition['Hydro'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
-        <Grid Height="128" Canvas.Left="1409" Canvas.Top="959" Width="1024" Background="#FF85971C">
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="900" Width="1024" Background="#FF6D911B">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -87,7 +87,7 @@
             <TextBlock Text="@ 0.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
             <TextBlock Text="{x:Bind Path=Composition['Solar'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
-        <Grid Height="128" Canvas.Left="1409" Canvas.Top="1087" Width="1024" Background="#FF9D9D1D">
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="998" Width="1024" Background="#FF85971C">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -97,7 +97,7 @@
             <TextBlock Text="@ 0.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
             <TextBlock Text="{x:Bind Path=Composition['Nuclear'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
-        <Grid Height="128" Canvas.Left="1409" Canvas.Top="1215" Width="1024" Background="#FFAA7D20">
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="1096" Width="1024" Background="#FF9D9D1D">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -107,7 +107,17 @@
             <TextBlock Text="@ 120.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
             <TextBlock Text="{x:Bind Path=Composition['Biomass'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
-        <Grid Height="128" Canvas.Left="1409" Canvas.Top="1343" Width="1024" Background="#FFAD5829">
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="1194" Width="1024" Background="#FFAA7D20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="OTHER" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0"/>
+            <TextBlock Text="@ 300.00 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
+            <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0], Mode=OneWay, Path=Composition[\'Import\']}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
+        </Grid>
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="1292" Width="1024" Background="#FFB65722">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -117,7 +127,7 @@
             <TextBlock Text="@ 328.33 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
             <TextBlock Text="{x:Bind Path=Composition['Import'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
-        <Grid Height="128" Canvas.Left="1409" Canvas.Top="1471" Width="1024" Background="#FFB34529">
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="1390" Width="1024" Background="#FFBC4223">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -127,7 +137,17 @@
             <TextBlock Text="@ 522.5 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
             <TextBlock Text="{x:Bind Path=Composition['Gas'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
-        <Grid Height="128" Canvas.Left="1409" Canvas.Top="1599" Width="1024" Background="#FFB8312A">
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="1488" Width="1024" Background="#FFC22B24">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="OIL" FontFamily="Arial" FontSize="56" Foreground="White" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0" TextLineBounds="TrimToBaseline" FontWeight="Black"/>
+            <TextBlock Text="@ 935.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="16,0,0,0" TextLineBounds="TrimToBaseline" Grid.Column="1"/>
+            <TextBlock Text="{x:Bind Path=Composition['Coal'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" TextLineBounds="TrimToBaseline"/>
+        </Grid>
+        <Grid Height="98" Canvas.Left="1408" Canvas.Top="1586" Width="1024" Background="#FFC82538">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -135,7 +155,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="COAL" FontFamily="Arial" FontSize="56" Foreground="White" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0" TextLineBounds="TrimToBaseline" FontWeight="Black"/>
             <TextBlock Text="@ 937.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="16,0,0,0" TextLineBounds="TrimToBaseline" Grid.Column="1"/>
-            <TextBlock Text="{x:Bind Path=Composition['Coal'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" TextLineBounds="TrimToBaseline"/>
+            <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0], Mode=OneWay, Path=Composition[\'Coal\']}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" TextLineBounds="TrimToBaseline"/>
         </Grid>
     </Canvas>
 </UserControl>
