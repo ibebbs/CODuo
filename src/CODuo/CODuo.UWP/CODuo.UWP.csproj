@@ -125,10 +125,6 @@
       <Project>{b6085c3b-2368-4b61-b933-a1b70848438b}</Project>
       <Name>CODuo.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UWPCharts\UWPCharts.csproj">
-      <Project>{709c8958-2e88-42f9-a491-0c2884c00761}</Project>
-      <Name>UWPCharts</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Platform\Layout\Provider.cs" />
