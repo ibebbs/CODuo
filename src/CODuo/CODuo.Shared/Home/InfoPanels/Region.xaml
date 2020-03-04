@@ -13,8 +13,22 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="..\Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converters:LevelToBrushConverter x:Key="PopulationLevelToBrushConverter" Filled="#FF2E7F18" Empty="#FFE0E0E0"/>
-            <converters:LevelToBrushConverter x:Key="BusinessLevelToBrushConverter" Filled="#FFAF3630" Empty="#FFE0E0E0"/>
+            <converters:LevelToBrushConverter x:Key="PopulationLevelToBrushConverter">
+                <converters:LevelToBrushConverter.Filled>
+                    <SolidColorBrush Color="#FF2E7F18"/>
+                </converters:LevelToBrushConverter.Filled>
+                <converters:LevelToBrushConverter.Empty>
+                    <SolidColorBrush Color="#FFE0E0E0"/>
+                </converters:LevelToBrushConverter.Empty>
+            </converters:LevelToBrushConverter>
+            <converters:LevelToBrushConverter x:Key="BusinessLevelToBrushConverter">
+                <converters:LevelToBrushConverter.Filled>
+                    <SolidColorBrush Color="#FFAF3630"/>
+                </converters:LevelToBrushConverter.Filled>
+                <converters:LevelToBrushConverter.Empty>
+                    <SolidColorBrush Color="#FFE0E0E0"/>
+                </converters:LevelToBrushConverter.Empty>
+            </converters:LevelToBrushConverter>
         </ResourceDictionary>
     </UserControl.Resources>
 
