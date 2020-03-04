@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="#FFEBF5F9">
+    Background="#FFF7FBFD">
 
     <NavigationView x:Name="NavigationBar" PaneDisplayMode="Top">
         <NavigationView.PaneHeader>
@@ -29,7 +29,7 @@
             </NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
-            <Grid Background="#FFEBF5F9">
+            <Grid>
                 <TwoPaneView x:Name="TwoPaneView" TallModeConfiguration="SinglePane" MinWideModeWidth="1024"/>
             </Grid>
         </NavigationView.Content>

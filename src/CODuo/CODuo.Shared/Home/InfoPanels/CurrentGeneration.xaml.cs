@@ -11,7 +11,9 @@ namespace CODuo.Home.InfoPanels
 {
     public sealed partial class CurrentGeneration : UserControl
     {
-        public static readonly DependencyProperty CompositionProperty = DependencyProperty.Register("Composition", typeof(IDictionary<string, double>), typeof(CurrentGeneration), new PropertyMetadata(new Dictionary<string, double>(), CompositionPropertyChanged));
+        private static readonly IDictionary<string, double> DefaultComposition = Enum.GetValues(typeof(Common.FuelType)).OfType<Common.FuelType>().ToDictionary(fuelType => fuelType.ToString(), _ => 0.0);
+
+        public static readonly DependencyProperty CompositionProperty = DependencyProperty.Register("Composition", typeof(IDictionary<string, double>), typeof(CurrentGeneration), new PropertyMetadata(DefaultComposition, CompositionPropertyChanged));
 
         private static void CompositionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

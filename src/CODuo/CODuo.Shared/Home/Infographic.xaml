@@ -6,18 +6,17 @@
     xmlns:info="using:CODuo.Home.InfoPanels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="#FFEBF5F9">
+    mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource SystemAccentColor}" Margin="4">
+    <Grid Margin="4">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Viewbox VerticalAlignment="Top" Margin="4">
-            <Grid Width="2496">
+        <Viewbox VerticalAlignment="Top" Margin="1">
+            <Grid Width="2496" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="448"/>
+                    <RowDefinition Height="1120"/>
                     <RowDefinition Height="1792"/>
                     <RowDefinition Height="448"/>
                 </Grid.RowDefinitions>
@@ -27,11 +26,19 @@
                     <ColumnDefinition Width="25*"/>
                     <ColumnDefinition Width="25*"/>
                 </Grid.ColumnDefinitions>
-                <info:Region Grid.ColumnSpan="4"/>
-                <info:CurrentGeneration Grid.ColumnSpan="4" Grid.Row="1" Composition="{Binding Path=CurrentComposition, Mode=OneWay}"/>
-                <info:CompanyFundamentals Grid.ColumnSpan="4" Grid.Row="3"/>
+
+                <Border Grid.ColumnSpan="4" BorderBrush="#FFEBF5F9" BorderThickness="8">
+                    <info:Region  />
+                </Border>
+
+                <Border Grid.ColumnSpan="4" Grid.Row="1" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,0">
+                    <info:CurrentGeneration Composition="{Binding Path=CurrentComposition, Mode=OneWay}"/>
+                </Border>
+
+                <Border Grid.ColumnSpan="4" Grid.Row="2" BorderBrush="#FFEBF5F9" BorderThickness="8">
+                    <info:CompanyFundamentals />
+                </Border>
             </Grid>
         </Viewbox>
-        <TextBlock Text="Copyright" Grid.Row="1" HorizontalAlignment="Right"/>
     </Grid>
 </Page>
