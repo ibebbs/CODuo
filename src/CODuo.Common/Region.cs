@@ -12,6 +12,7 @@ namespace CODuo.Common
             OperatorId = Guid.Parse("72240edd-7500-49bf-ad61-5645d42d0e81"),
             PercentOfNationalEnergyConsumption = 1,
             PercentOfNationalPopulation = 1,
+            PercentOfNationalBusinesses = 1,
             PercentOfConsumptionBeingDomestic = 0.3732408609
         };
 
@@ -28,6 +29,8 @@ namespace CODuo.Common
         public double PercentOfNationalEnergyConsumption { get; set; }
 
         public double PercentOfNationalPopulation { get; set; }
+
+        public double PercentOfNationalBusinesses { get; set; }
 
         public double PercentOfConsumptionBeingDomestic { get; set; }
     }

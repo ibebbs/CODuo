@@ -9,6 +9,8 @@ namespace CODuo.Common
 
         public string Version { get; set; }
 
+        public Static Static { get; set; }
+
         public IEnumerable<Operator> Operators { get; set; }
 
         public IEnumerable<Region> Regions { get; set; }

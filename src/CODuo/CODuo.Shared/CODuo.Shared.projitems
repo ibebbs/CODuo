@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquarePanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ElementWidthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\LevelToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NumberToGridLengthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RegionToLogoConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringCaseConverter.cs" />
@@ -50,17 +51,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Home\Infographic.xaml.cs">
       <DependentUpon>$fileinputname$.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Businesses.xaml.cs">
-      <DependentUpon>Businesses.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CompanyFundamentals.xaml.cs">
       <DependentUpon>CompanyFundamentals.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CurrentGeneration.xaml.cs">
       <DependentUpon>CurrentGeneration.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Population.xaml.cs">
-      <DependentUpon>Population.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Region.xaml.cs">
       <DependentUpon>Region.xaml</DependentUpon>
@@ -126,19 +121,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Businesses.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CompanyFundamentals.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CurrentGeneration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Population.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

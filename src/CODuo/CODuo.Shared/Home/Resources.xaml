@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="VeryHigh" Color="#FFB13433"/>
     <converters:StringFormatConverter x:Key="StringFormatConverter"/>
     <converters:StringCaseConverter x:Key="StringCaseConverter"/>
+    <converters:NumberToGridLengthConverter x:Key="NumberToGridLengthConverter"/>
     <converters:IntensityToBrushConverter x:Key="IntensityToBrushConverter" 
                                         Default="{StaticResource Default}" 
                                         VeryLow="{StaticResource VeryLow}" 

@@ -28,7 +28,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.ColumnSpan="4" BorderBrush="#FFEBF5F9" BorderThickness="8">
-                    <info:Region  />
+                    <info:Region Current="{Binding Path=CurrentRegion, Mode=OneWay}" Container="{Binding Path=CurrentContainer, Mode=OneWay}"  />
                 </Border>
 
                 <Border Grid.ColumnSpan="4" Grid.Row="1" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,0">
