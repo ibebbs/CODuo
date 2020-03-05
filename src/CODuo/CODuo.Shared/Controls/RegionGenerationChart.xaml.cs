@@ -14,9 +14,9 @@ namespace CODuo.Controls
 {
     public sealed partial class RegionGenerationChart : UserControl
     {
-        public double ChartWidth => 960;
+        public double ChartWidth => 1120;
         public double ChartHeight => 320;
-        private double XSteps => ChartWidth / 96.0;
+        private double XSteps => ChartWidth / 110.0;
 
         public static readonly DependencyProperty RegionGenerationProperty = DependencyProperty.Register("RegionGeneration", typeof(IEnumerable<Common.RegionGeneration>), typeof(RegionGenerationChart), new PropertyMetadata(null, DataPropertyChanged));
 
@@ -33,19 +33,36 @@ namespace CODuo.Controls
         public RegionGenerationChart()
         {
             this.InitializeComponent();
+
+            _fuelTypePaths = new Dictionary<Common.FuelType, Path>
+            {
+                { Common.FuelType.Coal, Coal },
+                { Common.FuelType.Oil, Oil },
+                { Common.FuelType.Gas, Gas },
+                { Common.FuelType.Import, Import },
+                { Common.FuelType.Other, Other },
+                { Common.FuelType.Biomass, Biomass },
+                { Common.FuelType.Nuclear, Nuclear },
+                { Common.FuelType.Solar, Solar },
+                { Common.FuelType.Hydro, Hydro },
+                { Common.FuelType.Wind, Wind },
+            };
         }
 
         private IEnumerable<(Common.FuelType, double, double)> CreateDataPoints(Common.RegionGeneration regionGeneration, int xIndex)
         {
-            var generation = regionGeneration.Actual.ByFuelType.Any()
+            var generation = (regionGeneration.Actual?.ByFuelType?.Any() ?? false)
                 ? regionGeneration.Actual.ByFuelType
                 : regionGeneration.Estimated.ByFuelType;
+
+            //var generation = regionGeneration.Estimated.ByFuelType;
 
             var x = xIndex * XSteps;
 
             return Enum
                 .GetValues(typeof(Common.FuelType))
                 .OfType<Common.FuelType>()
+                //.Where(fuelType => fuelType == Common.FuelType.Coal)
                 .GroupJoin(
                     generation,
                     fuelType => fuelType,
@@ -55,7 +72,9 @@ namespace CODuo.Controls
                     (Y: 0.0, DataPoints: Enumerable.Empty<(Common.FuelType, double, double)>()),
                     (seed, tuple) =>
                     {
-                        var y = ChartHeight * tuple.Percent + seed.Y;
+                        var y = tuple.FuelType == Common.FuelType.Wind
+                            ? ChartHeight
+                            : ChartHeight * tuple.Percent + seed.Y;
 
                         return (Y: y, DataPoints: seed.DataPoints.Concat(new[] { (tuple.FuelType, x, y) }).ToArray());
                     })
@@ -66,12 +85,12 @@ namespace CODuo.Controls
         {
             var figure = source
                 .OrderBy(tuple => tuple.Item1)
-                .Select(tuple => new LineSegment { Point = new Point(tuple.Item1, tuple.Item2) })
-                .Concat(new [] { new LineSegment { Point = new Point(ChartWidth, 0.0) }, new LineSegment { Point = new Point(0.0, 0.0) } })
+                .Select(tuple => new LineSegment { Point = new Point(tuple.Item1, ChartHeight - tuple.Item2) })
+                .Concat(new [] { new LineSegment { Point = new Point(ChartWidth, ChartHeight) }, new LineSegment { Point = new Point(0.0, ChartHeight) } })
                 .Aggregate(
                      new PathFigure
                      {
-                         StartPoint = new Point(0, 0),
+                         StartPoint = new Point(0.0, ChartHeight),
                          IsClosed = true
                      },
                      (path, segment) =>
@@ -96,25 +115,6 @@ namespace CODuo.Controls
             {
                 tuple.Path.Data = new PathGeometry { Figures = { tuple.Figure } };
             }
-        }
-
-        protected override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            _fuelTypePaths = new Dictionary<Common.FuelType, Path>
-            {
-                { Common.FuelType.Coal, Coal },
-                { Common.FuelType.Oil, Oil },
-                { Common.FuelType.Gas, Gas },
-                { Common.FuelType.Import, Import },
-                { Common.FuelType.Other, Other },
-                { Common.FuelType.Biomass, Biomass },
-                { Common.FuelType.Nuclear, Nuclear },
-                { Common.FuelType.Solar, Solar },
-                { Common.FuelType.Hydro, Hydro },
-                { Common.FuelType.Wind, Wind },
-            };
         }
 
         public IEnumerable<Common.RegionGeneration> RegionGeneration

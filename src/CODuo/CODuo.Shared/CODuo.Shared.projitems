@@ -60,6 +60,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CurrentGeneration.xaml.cs">
       <DependentUpon>CurrentGeneration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\ForecastGeneration.xaml.cs">
+      <DependentUpon>ForecastGeneration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Region.xaml.cs">
       <DependentUpon>Region.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\WindowHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\CompositionGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CurrentGeneration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\ForecastGeneration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

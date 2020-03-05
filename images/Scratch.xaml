@@ -8,6 +8,6 @@
   <!--Unknown tag: sodipodi:namedview-->
   <!--Unknown tag: metadata-->
   <Canvas Name="layer1">
-    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="rect9872" Fill="#FFFF5005" StrokeThickness="0.26499999" StrokeMiterLimit="4" Data="M 0 0 H 31.203716 V 14.566189 H 0 L 3.7417734 7.3499117 Z"/>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="polygon9879" Fill="#FF000000" StrokeThickness="0.26458332" Data="M 18.888604 16.639381 10.080889 7.8697666 15.132844 4.6540208 16.740452 7.3255187 20.743068 0 12.39811 0.1947333 13.69986 2.7249437 0 11.542977 v 2.66012 l 8.0682041 -5.1612263 9.2104099 9.0688583 -2.148945 2.22197 8.090958 2.160323 L 21.07565 14.43011 Z M 15.08125 26.204597 V 21.446595 L 13.146352 20.890706 15.051087 18.704718 8.7312499 12.490185 V 26.204597 Z M 0.26458333 16.220545 6.8791666 12.056004 V 26.204597 H 0.26458333 Z"/>
   </Canvas>
 </Canvas>

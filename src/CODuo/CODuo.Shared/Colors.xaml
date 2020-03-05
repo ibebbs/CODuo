@@ -1,0 +1,16 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CODuo">
+
+    <SolidColorBrush x:Key="WindBrush" Color="#FF2E7F18"/>
+    <SolidColorBrush x:Key="HydroBrush" Color="#FF418519"/>
+    <SolidColorBrush x:Key="SolarBrush" Color="#FF6D911B"/>
+    <SolidColorBrush x:Key="NuclearBrush" Color="#FF85971C"/>
+    <SolidColorBrush x:Key="BiomassBrush" Color="#FF9D9D1D"/>
+    <SolidColorBrush x:Key="OtherBrush" Color="#FFAA7D20"/>
+    <SolidColorBrush x:Key="ImportBrush" Color="#FFB65722"/>
+    <SolidColorBrush x:Key="GasBrush" Color="#FFBC4223"/>
+    <SolidColorBrush x:Key="OilBrush" Color="#FFC22B24"/>
+    <SolidColorBrush x:Key="CoalBrush" Color="#FFC82538"/>
+</ResourceDictionary>

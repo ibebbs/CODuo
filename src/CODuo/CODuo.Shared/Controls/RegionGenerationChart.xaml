@@ -9,20 +9,42 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Colors.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
-        <Viewbox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Viewbox Grid.Row="1" Grid.Column="1" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2">
             <Canvas Width="{x:Bind Path=ChartWidth}" Height="{x:Bind Path=ChartHeight}">
-                <Path x:Name="Coal" />
-                <Path x:Name="Oil" />
-                <Path x:Name="Gas" />
-                <Path x:Name="Import" />
-                <Path x:Name="Other" />
-                <Path x:Name="Biomass" />
-                <Path x:Name="Nuclear" />
-                <Path x:Name="Solar" />
-                <Path x:Name="Hydro" />
-                <Path x:Name="Wind" />
+                <Path x:Name="Wind" Fill="{StaticResource WindBrush}" Stroke="White" StrokeThickness="1" />
+                <Path x:Name="Hydro" Fill="{StaticResource HydroBrush}" Stroke="White" StrokeThickness="1"/>
+                <Path x:Name="Solar" Fill="{StaticResource SolarBrush}" Stroke="White" StrokeThickness="1"/>
+                <Path x:Name="Nuclear" Fill="{StaticResource NuclearBrush}" Stroke="White" StrokeThickness="1"/>
+                <Path x:Name="Biomass" Fill="{StaticResource BiomassBrush}" Stroke="White" StrokeThickness="1"/>
+                <Path x:Name="Other" Fill="{StaticResource OtherBrush}" Stroke="White" StrokeThickness="1"/>
+                <Path x:Name="Import" Fill="{StaticResource ImportBrush}" Stroke="White" StrokeThickness="1"/>
+                <Path x:Name="Gas" Fill="{StaticResource GasBrush}" Stroke="White" StrokeThickness="1"/>
+                <Path x:Name="Oil" Fill="{StaticResource OilBrush}" Stroke="White" StrokeThickness="1"/>
+                <Path x:Name="Coal" Fill="{StaticResource CoalBrush}" Stroke="White" StrokeThickness="1"/>
+                <Rectangle Fill="#00FFFFFF" Canvas.Left="0" Canvas.Top="0" Width="560" Height="{x:Bind Path=ChartHeight}" />
+                <Rectangle Fill="#55FFFFFF" Canvas.Left="560" Canvas.Top="0" Width="560" Height="{x:Bind Path=ChartHeight}" />
             </Canvas>
         </Viewbox>
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1" Padding="4">
+        </Border>
     </Grid>
 </UserControl>
