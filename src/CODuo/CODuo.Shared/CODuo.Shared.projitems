@@ -30,9 +30,13 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DonutSlice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Hub.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\RegionCompositionChart.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\RegionCompositionChart.xaml.cs">
+      <DependentUpon>RegionCompositionChart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquarePanel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml.cs">
+      <DependentUpon>ContactButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ElementWidthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LevelToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NumberToGridLengthConverter.cs" />
@@ -50,7 +54,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\GenerationData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\Infographic.xaml.cs">
-      <DependentUpon>$fileinputname$.xaml</DependentUpon>
+      <DependentUpon>Infographic.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CompanyFundamentals.xaml.cs">
       <DependentUpon>CompanyFundamentals.xaml</DependentUpon>
@@ -65,10 +69,10 @@
       <DependentUpon>Region.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\Left.xaml.cs">
-      <DependentUpon>$fileinputname$.xaml</DependentUpon>
+      <DependentUpon>Left.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\Right.xaml.cs">
-      <DependentUpon>$fileinputname$.xaml</DependentUpon>
+      <DependentUpon>Right.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\Tall.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\ViewModel.cs" />
