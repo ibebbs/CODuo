@@ -22,7 +22,7 @@ namespace CODuo.Home.InfoPanels
         public static readonly DependencyProperty ContainerProperty = DependencyProperty.Register("Container", typeof(Common.Container), typeof(ForecastGeneration), new PropertyMetadata(null, DataPropertyChanged));
         public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register("SelectedRegion", typeof(int), typeof(ForecastGeneration), new PropertyMetadata(0, DataPropertyChanged));
 
-        public static readonly DependencyProperty RegionGenerationProperty = DependencyProperty.Register("RegionGeneration", typeof(IEnumerable<Common.RegionGeneration>), typeof(ForecastGeneration), new PropertyMetadata(Enumerable.Empty<Common.RegionGeneration>()));
+        public static readonly DependencyProperty PeriodsProperty = DependencyProperty.Register(nameof(Periods), typeof(IEnumerable<Common.Period>), typeof(ForecastGeneration), new PropertyMetadata(Enumerable.Empty<Common.Period>()));
 
         private static void DataPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -42,9 +42,7 @@ namespace CODuo.Home.InfoPanels
         {
             if (Container != null)
             {
-                RegionGeneration = Container.Periods
-                    .SelectMany(period => period.Regions.Where(region => region.RegionId == SelectedRegion))
-                    .ToArray();
+                Periods = Container.Periods;
             }
         }
 
@@ -60,10 +58,10 @@ namespace CODuo.Home.InfoPanels
             set { SetValue(SelectedRegionProperty, value); }
         }
 
-        public IEnumerable<Common.RegionGeneration> RegionGeneration
+        public IEnumerable<Common.Period> Periods
         {
-            get { return (IEnumerable<Common.RegionGeneration>)GetValue(RegionGenerationProperty); }
-            set { SetValue(RegionGenerationProperty, value); }
+            get { return (IEnumerable<Common.Period>)GetValue(PeriodsProperty); }
+            set { SetValue(PeriodsProperty, value); }
         }
     }
 }

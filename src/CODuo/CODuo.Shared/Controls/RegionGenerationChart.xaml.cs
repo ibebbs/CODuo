@@ -16,9 +16,9 @@ namespace CODuo.Controls
     {
         public double ChartWidth => 1120;
         public double ChartHeight => 320;
-        private double XSteps => ChartWidth / 110.0;
 
-        public static readonly DependencyProperty RegionGenerationProperty = DependencyProperty.Register("RegionGeneration", typeof(IEnumerable<Common.RegionGeneration>), typeof(RegionGenerationChart), new PropertyMetadata(null, DataPropertyChanged));
+        public static readonly DependencyProperty PeriodsProperty = DependencyProperty.Register(nameof(Periods), typeof(IEnumerable<Common.Period>), typeof(RegionGenerationChart), new PropertyMetadata(Enumerable.Empty<Common.Period>(), DataPropertyChanged));
+        public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register("SelectedRegion", typeof(int), typeof(RegionGenerationChart), new PropertyMetadata(0));
 
         private static void DataPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -49,15 +49,9 @@ namespace CODuo.Controls
             };
         }
 
-        private IEnumerable<(Common.FuelType, double, double)> CreateDataPoints(Common.RegionGeneration regionGeneration, int xIndex)
+        private IEnumerable<(Common.FuelType, int, double)> CreateDataPoints(Common.RegionGeneration regionGeneration, int x)
         {
-            var generation = (regionGeneration.Actual?.ByFuelType?.Any() ?? false)
-                ? regionGeneration.Actual.ByFuelType
-                : regionGeneration.Estimated.ByFuelType;
-
-            //var generation = regionGeneration.Estimated.ByFuelType;
-
-            var x = xIndex * XSteps;
+            var generation = regionGeneration.Estimated.ByFuelType;
 
             return Enum
                 .GetValues(typeof(Common.FuelType))
@@ -69,7 +63,7 @@ namespace CODuo.Controls
                     generationByFuelType => generationByFuelType.FuelType,
                     (fuelType, generationByFuelTypes) => (FuelType: fuelType, Percent: generationByFuelTypes.Select(gft => gft.Percent).FirstOrDefault() ?? 0.0))
                 .Aggregate(
-                    (Y: 0.0, DataPoints: Enumerable.Empty<(Common.FuelType, double, double)>()),
+                    (Y: 0.0, DataPoints: Enumerable.Empty<(Common.FuelType, int, double)>()),
                     (seed, tuple) =>
                     {
                         var y = tuple.FuelType == Common.FuelType.Wind
@@ -81,11 +75,13 @@ namespace CODuo.Controls
                 .DataPoints;
         }
 
-        private (Common.FuelType, PathFigure) AsPath(Common.FuelType fuelType, IEnumerable<(double, double)> source)
+        private (Common.FuelType, PathFigure) AsPath(Common.FuelType fuelType, (int, double)[] source)
         {
+            var xStep = ChartWidth / (source.Length - 1);
+
             var figure = source
                 .OrderBy(tuple => tuple.Item1)
-                .Select(tuple => new LineSegment { Point = new Point(tuple.Item1, ChartHeight - tuple.Item2) })
+                .Select(tuple => new LineSegment { Point = new Point(tuple.Item1 * xStep, ChartHeight - tuple.Item2) })
                 .Concat(new [] { new LineSegment { Point = new Point(ChartWidth, ChartHeight) }, new LineSegment { Point = new Point(0.0, ChartHeight) } })
                 .Aggregate(
                      new PathFigure
@@ -105,10 +101,11 @@ namespace CODuo.Controls
 
         private void DataChanged()
         {
-            var pathPoints = RegionGeneration
+            var pathPoints = Periods
+                .SelectMany(period => period.Regions.Where(region => region.RegionId == SelectedRegion))
                 .SelectMany(CreateDataPoints)
                 .GroupBy(tuple => tuple.Item1)
-                .Select(group => AsPath(group.Key, group.Select(tuple => (tuple.Item2, tuple.Item3))))
+                .Select(group => AsPath(group.Key, group.Select(tuple => (tuple.Item2, tuple.Item3)).ToArray()))
                 .Join(_fuelTypePaths, tuple => tuple.Item1, fuelTypePath => fuelTypePath.Key, (tuple, fuelTypePath) => (Path: fuelTypePath.Value, Figure: tuple.Item2));
 
             foreach (var tuple in pathPoints)
@@ -117,10 +114,16 @@ namespace CODuo.Controls
             }
         }
 
-        public IEnumerable<Common.RegionGeneration> RegionGeneration
+        public IEnumerable<Common.Period> Periods
         {
-            get { return (IEnumerable<Common.RegionGeneration>)GetValue(RegionGenerationProperty); }
-            set { SetValue(RegionGenerationProperty, value); }
+            get { return (IEnumerable<Common.Period>)GetValue(PeriodsProperty); }
+            set { SetValue(PeriodsProperty, value); }
+        }
+
+        public int SelectedRegion
+        {
+            get { return (int)GetValue(SelectedRegionProperty); }
+            set { SetValue(SelectedRegionProperty, value); }
         }
     }
 }
