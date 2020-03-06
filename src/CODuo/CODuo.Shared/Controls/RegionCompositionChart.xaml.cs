@@ -12,17 +12,17 @@ using Windows.UI.Xaml.Shapes;
 
 namespace CODuo.Controls
 {
-    public sealed partial class RegionGenerationChart : UserControl
+    public sealed partial class RegionCompositionChart : UserControl
     {
         public double ChartWidth => 1120;
         public double ChartHeight => 320;
 
-        public static readonly DependencyProperty PeriodsProperty = DependencyProperty.Register(nameof(Periods), typeof(IEnumerable<Common.Period>), typeof(RegionGenerationChart), new PropertyMetadata(Enumerable.Empty<Common.Period>(), DataPropertyChanged));
-        public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register("SelectedRegion", typeof(int), typeof(RegionGenerationChart), new PropertyMetadata(0));
+        public static readonly DependencyProperty PeriodsProperty = DependencyProperty.Register(nameof(Periods), typeof(IEnumerable<Common.Period>), typeof(RegionCompositionChart), new PropertyMetadata(Enumerable.Empty<Common.Period>(), DataPropertyChanged));
+        public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register("SelectedRegion", typeof(int), typeof(RegionCompositionChart), new PropertyMetadata(0));
 
         private static void DataPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is RegionGenerationChart chart)
+            if (d is RegionCompositionChart chart)
             {
                 chart.DataChanged();
             }
@@ -30,7 +30,7 @@ namespace CODuo.Controls
 
         private IReadOnlyDictionary<Common.FuelType, Path> _fuelTypePaths;
 
-        public RegionGenerationChart()
+        public RegionCompositionChart()
         {
             this.InitializeComponent();
 

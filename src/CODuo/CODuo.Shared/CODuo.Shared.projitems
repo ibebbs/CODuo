@@ -30,9 +30,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DonutSlice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Hub.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\RegionGenerationChart.xaml.cs">
-      <DependentUpon>RegionGenerationChart.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\RegionCompositionChart.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquarePanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ElementWidthConverter.cs" />
@@ -127,7 +125,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\RegionGenerationChart.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Controls\RegionCompositionChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

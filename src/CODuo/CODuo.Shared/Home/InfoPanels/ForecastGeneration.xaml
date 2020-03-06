@@ -20,6 +20,6 @@
         <Path Stretch="Uniform" Fill="#FF000000" Data="M 18.888604 16.639381 10.080889 7.8697666 15.132844 4.6540208 16.740452 7.3255187 20.743068 0 12.39811 0.1947333 13.69986 2.7249437 0 11.542977 v 2.66012 l 8.0682041 -5.1612263 9.2104099 9.0688583 -2.148945 2.22197 8.090958 2.160323 L 21.07565 14.43011 Z M 15.08125 26.204597 V 21.446595 L 13.146352 20.890706 15.051087 18.704718 8.7312499 12.490185 V 26.204597 Z M 0.26458333 16.220545 6.8791666 12.056004 V 26.204597 H 0.26458333 Z" Canvas.Left="64" Canvas.Top="64" UseLayoutRounding="False" Width="192" Height="216"/>
         <TextBlock Text="HISTORICAL &amp; FORECAST GENERATION" FontFamily="Arial" FontSize="64" Canvas.Left="320" Canvas.Top="52" Foreground="#FF24221C" FontWeight="Black"/>
         <Path Data="M0,0 L448,0" Fill="#FFF4F4F5" Stroke="#FF24221C" StrokeThickness="4" Height="4" Canvas.Left="320" Canvas.Top="128" Width="2112" Stretch="Fill" UseLayoutRounding="False"/>
-        <controls:RegionGenerationChart Height="640" Canvas.Left="320" Canvas.Top="192" Width="2112" Periods="{x:Bind Periods, Mode=OneWay}" SelectedRegion="{x:Bind SelectedRegion, Mode=OneWay}"/>
+        <controls:RegionCompositionChart Height="640" Canvas.Left="320" Canvas.Top="192" Width="2112" Periods="{x:Bind Periods, Mode=OneWay}" SelectedRegion="{x:Bind SelectedRegion, Mode=OneWay}"/>
     </Canvas>
 </UserControl>
