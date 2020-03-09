@@ -18,22 +18,22 @@
                     <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Top" Margin="0" Foreground="#FF2E7F18" />
                 </StackPanel>
             </NavigationView.PaneHeader>
-            <controls:CustomTwoPaneView PanePriority="Pane1" WideModeConfiguration="LeftRight" TallModeConfiguration="TopBottom" Pane1Length="Auto" Pane2Length="Auto">
-                <controls:CustomTwoPaneView.Pane1>
+            <controls:DualPaneView PanePriority="Pane1" WideModeConfiguration="LeftRight" TallModeConfiguration="TopBottom" Pane1Length="Auto" Pane2Length="Auto">
+                <controls:DualPaneView.Pane1>
                     <controls:SquarePanel MaxLength="641.0">
                         <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <controls:CountryByRegion HorizontalAlignment="Center" />
                         </Border>
                     </controls:SquarePanel>
-                </controls:CustomTwoPaneView.Pane1>
-                <controls:CustomTwoPaneView.Pane2>
+                </controls:DualPaneView.Pane1>
+                <controls:DualPaneView.Pane2>
                     <controls:SquarePanel>
                         <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <controls:CompositionGrid HorizontalAlignment="Stretch" Margin="10"/>
                         </Border>
                     </controls:SquarePanel>
-                </controls:CustomTwoPaneView.Pane2>
-            </controls:CustomTwoPaneView>
+                </controls:DualPaneView.Pane2>
+            </controls:DualPaneView>
         </NavigationView>
     </Grid>
 </Page>

@@ -4,42 +4,7 @@
     xmlns:local="using:CODuo"
     xmlns:controls="using:CODuo.Controls">
 
-    <Style TargetType="controls:Hub" >
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="controls:Hub">
-                    <StackPanel x:Name="HubSections" Orientation="Horizontal" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style TargetType="controls:HubSection" >
-        <Setter Property="HeaderTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" Style="{StaticResource SubheaderTextBlockStyle}"/>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="controls:HubSection">
-                    <Border Width="{TemplateBinding Width}">
-                        <Grid Margin="20,5,20,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <ContentPresenter x:Name="HubSectionHeader" Grid.Row="0" Margin="0,0,0,10" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-                            <ContentPresenter x:Name="HubSectionContent" Grid.Row="1" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-                        </Grid>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style TargetType="controls:CustomTwoPaneView">
+    <Style TargetType="controls:DualPaneView">
 
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -47,7 +12,7 @@
         <Setter Property="MinTallModeHeight" Value="641"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:CustomTwoPaneView">
+                <ControlTemplate TargetType="controls:DualPaneView">
                     <Grid x:Name="RootGrid" Background="{TemplateBinding Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ModeStates">

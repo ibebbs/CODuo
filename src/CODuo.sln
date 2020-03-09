@@ -26,7 +26,6 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CODuo\CODuo.Shared\CODuo.Shared.projitems*{5548f22e-6b3c-4b29-bd57-c5bae5022db7}*SharedItemsImports = 4
-		CODuo\CODuo.Shared\CODuo.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
 		CODuo\CODuo.Shared\CODuo.Shared.projitems*{d821d0de-eae6-4dbf-a13f-4133fb602be5}*SharedItemsImports = 4
 		CODuo\CODuo.Shared\CODuo.Shared.projitems*{e084a055-4918-45f2-8c1e-ebc177891769}*SharedItemsImports = 4
 	EndGlobalSection

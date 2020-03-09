@@ -24,12 +24,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CountryByRegion.xaml.cs">
       <DependentUpon>CountryByRegion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomTwoPaneView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DualPaneView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DomesticToNonDomesticConsumption.xaml.cs">
       <DependentUpon>DomesticToNonDomesticConsumption.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DonutSlice.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Hub.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\RegionCompositionChart.xaml.cs">
       <DependentUpon>RegionCompositionChart.xaml</DependentUpon>
     </Compile>

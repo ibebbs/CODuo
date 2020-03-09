@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Reactive;
 using Windows.UI.Xaml.Input;
+using CODuo.Controls;
 #if NETFX_CORE
 using TwoPaneView = Windows.UI.Xaml.Controls.TwoPaneView;
 using NavigationView = Windows.UI.Xaml.Controls.NavigationView;
@@ -27,12 +28,12 @@ namespace CODuo.Root
             this.InitializeComponent();
 
             CurrentMode = Observable
-                .FromEvent<TypedEventHandler<TwoPaneView, object>, TwoPaneView>(
-                    handler => (s, e) => handler(s),
-                    handler => TwoPaneView.ModeChanged += handler,
-                    handler => TwoPaneView.ModeChanged -= handler)
+                .FromEvent<TypedEventHandler<DualPaneView, object>, DualPaneView>(
+                    action => (s, e) => action(s),
+                    handler => dualPaneView.ModeChanged += handler,
+                    handler => dualPaneView.ModeChanged -= handler)
                 .Select(twoPaneView => twoPaneView.Mode)
-                .StartWith(TwoPaneView.Mode)
+                .StartWith(dualPaneView.Mode)
                 .Select(mode => Helpers.MapMode(mode));
 
             RefreshData = Observable
@@ -45,8 +46,8 @@ namespace CODuo.Root
 
         public void PerformLayout(Layout layout)
         {
-            TwoPaneView.Pane1 = layout.Pane1Content as UIElement;
-            TwoPaneView.Pane2 = layout.Pane2Content as UIElement;
+            dualPaneView.Pane1 = layout.Pane1Content as UIElement;
+            dualPaneView.Pane2 = layout.Pane2Content as UIElement;
         }
 
         public IObservable<Platform.Layout.Mode> CurrentMode { get; }
