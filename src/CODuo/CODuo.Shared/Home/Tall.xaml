@@ -11,11 +11,15 @@
     <ScrollViewer HorizontalScrollMode="Disabled">
         <Grid Background="#FFF7FBFD">
             <Grid.RowDefinitions>
-                <RowDefinition Height="{x:Bind Path=GetHeight()}"/>
-                <RowDefinition Height="800" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <local:Left Grid.Row="0" />
-            <local:Infographic Grid.Row="1" VerticalAlignment="Stretch" />
+            <Border Grid.Row="0"  Padding="20">
+                <local:Left />
+            </Border>
+            <Border Grid.Row="1" Padding="20">
+                <local:Infographic />
+            </Border>
         </Grid>
     </ScrollViewer>
 </Page>

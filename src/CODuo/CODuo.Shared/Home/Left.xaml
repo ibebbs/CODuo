@@ -17,8 +17,8 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
-        <controls:CountryByRegion Background="#FFF7FBFD" Grid.RowSpan="2" HorizontalAlignment="Center" SelectedRegion="{Binding Path=SelectedRegion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"
+    <Border Padding="20">
+        <controls:CountryByRegion Background="#FFF7FBFD" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedRegion="{Binding Path=SelectedRegion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Region1Brush="{Binding Path=RegionIntensity[1], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region2Brush="{Binding Path=RegionIntensity[2], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region3Brush="{Binding Path=RegionIntensity[3], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
@@ -34,5 +34,5 @@
                 Region13Brush="{Binding Path=RegionIntensity[13], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region14Brush="{Binding Path=RegionIntensity[14], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}">
         </controls:CountryByRegion>
-    </Grid>
+    </Border>
 </Page>
