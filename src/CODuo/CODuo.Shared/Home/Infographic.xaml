@@ -14,7 +14,6 @@
                 <RowDefinition Height="1120"/>
                 <RowDefinition Height="1792"/>
                 <RowDefinition Height="896"/>
-                <RowDefinition Height="448"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25*"/>
@@ -35,9 +34,11 @@
                 <info:ForecastGeneration Container="{Binding Path=CurrentContainer, Mode=OneWay}" SelectedRegion="{Binding Path=SelectedRegion, Mode=OneWay}"/>
             </Border>
 
+            <!--
             <Border Grid.ColumnSpan="4" Grid.Row="3" BorderBrush="#FFEBF5F9" BorderThickness="8">
                 <info:CompanyFundamentals />
             </Border>
+            -->
         </Grid>
     </Viewbox>
 </Page>
