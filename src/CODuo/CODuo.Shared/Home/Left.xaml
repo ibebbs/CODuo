@@ -18,12 +18,7 @@
     </Page.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <controls:CountryByRegion Background="#FFF7FBFD" Grid.RowSpan="2" HorizontalAlignment="Center" SelectedRegion="{Binding Path=SelectedRegion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" MaxWidth="800"
+        <controls:CountryByRegion Background="#FFF7FBFD" Grid.RowSpan="2" HorizontalAlignment="Center" SelectedRegion="{Binding Path=SelectedRegion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"
                 Region1Brush="{Binding Path=RegionIntensity[1], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region2Brush="{Binding Path=RegionIntensity[2], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"
                 Region3Brush="{Binding Path=RegionIntensity[3], Converter={StaticResource IntensityToBrushConverter}, FallbackValue={StaticResource Default}, Mode=OneWay}"

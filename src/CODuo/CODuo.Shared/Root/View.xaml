@@ -12,8 +12,8 @@
         <NavigationView.PaneHeader>
             <StackPanel Orientation="Horizontal" Margin="4">
                 <Image Source="/Assets/Square44x44Logo.scale-200.png"/>
-                <TextBlock Text="CO" FontSize="24" FontFamily="Impact" VerticalAlignment="Bottom" Margin="4,0,0,0"/>
-                <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Top" Margin="0" Foreground="#FF2E7F18" />
+                <TextBlock Text="CO" FontSize="24" FontFamily="Impact" VerticalAlignment="Top" Margin="4,0,0,0"/>
+                <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Bottom" Margin="0" Foreground="#FF2E7F18" />
             </StackPanel>
         </NavigationView.PaneHeader>
         <NavigationView.MenuItems>
@@ -31,7 +31,7 @@
         </NavigationView.MenuItems>
         <NavigationView.Content>
             <Grid>
-                <TwoPaneView x:Name="TwoPaneView" TallModeConfiguration="SinglePane" MinWideModeWidth="1024"/>
+                <controls:DualPaneView x:Name="dualPaneView" Background="#FFF7FBFD" TallModeConfiguration="SinglePane" MinWideModeWidth="1024" Pane1Length="0.6*" Pane2Length="0.4*"/>
             </Grid>
         </NavigationView.Content>
         <NavigationView.PaneFooter>
