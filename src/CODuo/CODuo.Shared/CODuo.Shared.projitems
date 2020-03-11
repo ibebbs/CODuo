@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\RegionCompositionChart.xaml.cs">
       <DependentUpon>RegionCompositionChart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RegionSelectionToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquarePanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml.cs">
       <DependentUpon>ContactButton.xaml</DependentUpon>

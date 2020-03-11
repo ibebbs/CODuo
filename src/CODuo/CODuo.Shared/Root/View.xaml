@@ -31,7 +31,7 @@
         </NavigationView.MenuItems>
         <NavigationView.Content>
             <Grid>
-                <controls:DualPaneView x:Name="dualPaneView" Background="#FFF7FBFD" TallModeConfiguration="SinglePane" MinWideModeWidth="1024" Pane1Length="0.6*" Pane2Length="0.4*"/>
+                <controls:DualPaneView x:Name="dualPaneView" Background="#FFF7FBFD" TallModeConfiguration="SinglePane" MinWideModeWidth="1024" Pane1Length="0.5*" Pane2Length="0.5*"/>
             </Grid>
         </NavigationView.Content>
         <NavigationView.PaneFooter>

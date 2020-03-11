@@ -21,6 +21,7 @@
                                         High="{StaticResource High}"
                                         VeryHigh="{StaticResource VeryHigh}"/>
     <converters:RegionToLogoConverter x:Key="RegionToLogoConverter"/>
+    <converters:RegionSelectionToOpacityConverter x:Key="RegionSelectionToOpacityConverter"/>
 
     <ControlTemplate x:Name="ScrollViewerScrollBarlessTemplate" TargetType="ScrollViewer">
         <Grid Background="{TemplateBinding Background}">

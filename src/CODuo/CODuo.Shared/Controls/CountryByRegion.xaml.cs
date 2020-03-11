@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Shapes;
 
 namespace CODuo.Controls
 {
-    public sealed partial class CountryByRegion : ContentControl, INotifyPropertyChanged
+    public sealed partial class CountryByRegion : ContentControl
     {
         private static readonly Brush DefaultBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x44, 0x44, 0x44));
 
@@ -47,19 +47,7 @@ namespace CODuo.Controls
         public static readonly DependencyProperty Region14DescriptionProperty = DependencyProperty.Register(nameof(Region14Description), typeof(string), typeof(CountryByRegion), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty Region15DescriptionProperty = DependencyProperty.Register(nameof(Region15Description), typeof(string), typeof(CountryByRegion), new PropertyMetadata(string.Empty));
 
-        public static readonly DependencyProperty NonSelectedOpactiyProperty = DependencyProperty.Register("NonSelectedOpactiy", typeof(double), typeof(CountryByRegion), new PropertyMetadata(0.5, NonSelectedOpactiyPropertyChanged));
-
-        private static void NonSelectedOpactiyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is CountryByRegion control)
-            {
-                control.OpacityChanged();
-            }
-        }
-
         public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register("SelectedRegion", typeof(int?), typeof(CountryByRegion), new PropertyMetadata(null));
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public CountryByRegion()
         {
@@ -88,32 +76,11 @@ namespace CODuo.Controls
             }
         }
 
-        private void OpacityChanged()
-        {
-            PropertyChanged!.Invoke(this, new PropertyChangedEventArgs(nameof(GetOpacity)));
-        }
-
         private void Region_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var selectedRegion = GetRegionForSender(sender);
 
             SetValue(SelectedRegionProperty, selectedRegion);
-
-            OpacityChanged();
-        }
-
-        public double GetOpacity(int region)
-        {
-            int selectedRegion = SelectedRegion ?? 0;
-
-            if (selectedRegion == 0 || selectedRegion == region)
-            {
-                return 1.0;
-            }
-            else
-            {
-                return NonSelectedOpactiy;
-            }
         }
 
         public Brush Region1Brush
@@ -300,12 +267,6 @@ namespace CODuo.Controls
         {
             get { return (int?)GetValue(SelectedRegionProperty); }
             set { SetValue(SelectedRegionProperty, value); }
-        }
-
-        public double NonSelectedOpactiy
-        {
-            get { return (double)GetValue(NonSelectedOpactiyProperty); }
-            set { SetValue(NonSelectedOpactiyProperty, value); }
         }
     }
 }
