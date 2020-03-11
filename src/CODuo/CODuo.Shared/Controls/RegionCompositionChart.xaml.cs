@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -98,15 +99,28 @@ namespace CODuo.Controls
 
             return (fuelType, figure);
         }
-
-        private void DataChanged()
+        private IEnumerable<(Common.FuelType, PathFigure)> CreateFuelTypePaths(IEnumerable<Common.Period> periods)
         {
-            var pathPoints = Periods
+            return periods
+                .Where((period, index) => index % 2 == 0)
                 .SelectMany(period => period.Regions.Where(region => region.RegionId == SelectedRegion))
                 .SelectMany(CreateDataPoints)
                 .GroupBy(tuple => tuple.Item1)
-                .Select(group => AsPath(group.Key, group.Select(tuple => (tuple.Item2, tuple.Item3)).ToArray()))
-                .Join(_fuelTypePaths, tuple => tuple.Item1, fuelTypePath => fuelTypePath.Key, (tuple, fuelTypePath) => (Path: fuelTypePath.Value, Figure: tuple.Item2));
+                .Select(group => AsPath(group.Key, group.Select(tuple => (tuple.Item2, tuple.Item3)).ToArray()));
+        }
+
+        private async Task DataChanged()
+        {
+            var periods = Periods;
+
+            var paths = await Task.Run(() => CreateFuelTypePaths(periods));
+
+            var pathPoints = paths
+                .Join(
+                    _fuelTypePaths,
+                    tuple => tuple.Item1,
+                    fuelTypePath => fuelTypePath.Key,
+                    (tuple, fuelTypePath) => (Path: fuelTypePath.Value, Figure: tuple.Item2));
 
             foreach (var tuple in pathPoints)
             {
