@@ -12,7 +12,7 @@
         <Grid Width="2496" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="1120"/>
-                <RowDefinition Height="1792"/>
+                <RowDefinition Height="1728"/>
                 <RowDefinition Height="896"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -30,7 +30,7 @@
                 <info:CurrentGeneration Composition="{Binding Path=CurrentComposition, Mode=OneWay}"/>
             </Border>
 
-            <Border Grid.ColumnSpan="4" Grid.Row="2" BorderBrush="#FFEBF5F9" BorderThickness="8,8,8,0">
+            <Border Grid.ColumnSpan="4" Grid.Row="2" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,8">
                 <info:ForecastGeneration Container="{Binding Path=CurrentContainer, Mode=OneWay}" SelectedRegion="{Binding Path=SelectedRegion, Mode=OneWay}"/>
             </Border>
 
