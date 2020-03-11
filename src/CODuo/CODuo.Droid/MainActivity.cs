@@ -9,7 +9,8 @@ namespace CODuo.Droid
     [Activity(
             MainLauncher = true,
             ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize,
-            WindowSoftInputMode = SoftInput.AdjustPan | SoftInput.StateHidden
+            WindowSoftInputMode = SoftInput.AdjustPan | SoftInput.StateHidden,
+            Icon = "@drawable/icon"
         )]
     public class MainActivity : Windows.UI.Xaml.ApplicationActivity
     {
