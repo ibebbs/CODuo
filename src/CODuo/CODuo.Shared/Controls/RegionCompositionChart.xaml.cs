@@ -18,7 +18,7 @@ namespace CODuo.Controls
         public double ChartHeight => 320;
 
         public static readonly DependencyProperty PeriodsProperty = DependencyProperty.Register(nameof(Periods), typeof(IEnumerable<Common.Period>), typeof(RegionCompositionChart), new PropertyMetadata(Enumerable.Empty<Common.Period>(), DataPropertyChanged));
-        public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register("SelectedRegion", typeof(int), typeof(RegionCompositionChart), new PropertyMetadata(0));
+        public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register("SelectedRegion", typeof(int), typeof(RegionCompositionChart), new PropertyMetadata(0, DataPropertyChanged));
 
         private static void DataPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
