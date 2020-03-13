@@ -25,7 +25,7 @@ namespace CODuo.Controls
         {
             if (d is RegionCompositionChart chart)
             {
-                chart.DataChanged();
+                _ = chart.DataChanged();
             }
         }
 

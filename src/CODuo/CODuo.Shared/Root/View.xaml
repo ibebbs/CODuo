@@ -8,16 +8,17 @@
     mc:Ignorable="d"
     Background="#FFF7FBFD">
 
-    <NavigationView x:Name="NavigationBar" PaneDisplayMode="Top">
+    <NavigationView x:Name="NavigationBar" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed">
         <NavigationView.PaneHeader>
             <StackPanel Orientation="Horizontal" Margin="4">
-                <Image Source="/Assets/Square44x44Logo.scale-200.png"/>
+                <Image Source="ms-appx:///Assets/Icon.png"/>
                 <TextBlock Text="CO" FontSize="24" FontFamily="Impact" VerticalAlignment="Top" Margin="4,0,0,0"/>
-                <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Bottom" Margin="0" Foreground="#FF2E7F18" />
+                <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Bottom" Margin="0" Foreground="#FF2E7F18" FontStyle="Italic" />
             </StackPanel>
         </NavigationView.PaneHeader>
         <NavigationView.MenuItems>
             <NavigationViewItemSeparator />
+            <!--
             <NavigationViewItem Content="Generation" IsSelected="True">
                 <NavigationViewItem.Icon>
                     <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="D" Foreground="#FF2E7F18" />
@@ -28,6 +29,7 @@
                     <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="F" Foreground="#FF2E7F18" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+            -->
         </NavigationView.MenuItems>
         <NavigationView.Content>
             <Grid>
