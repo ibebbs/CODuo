@@ -9,7 +9,7 @@
   <Identity
     Name="49008onecog.solutions.COduo"
     Publisher="CN=2DCD2049-9987-4D31-9392-705A158C5A7A"
-    Version="1.0.0.0" />
+    Version="0.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="a146eb74-9cc8-41b2-89ea-575653d9f393" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
