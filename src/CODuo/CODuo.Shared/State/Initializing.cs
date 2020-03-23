@@ -19,6 +19,11 @@ namespace CODuo.State
                 {
                     _dataProvider.Activate();
 
+#if NETFX_CORE
+                    Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().SetDesiredBoundsMode(Windows.UI.ViewManagement.ApplicationViewBoundsMode.UseVisible);
+                    bool result = Windows.UI.ViewManagement.ApplicationViewScaling.TrySetDisableLayoutScaling(true);
+#endif
+
                     return Observable
                         .Return(new Transition.ToHome())
                         .Subscribe(observer);
