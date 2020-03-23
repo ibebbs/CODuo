@@ -18,3 +18,9 @@ CO<sub>_duo_</sub> can be found in the following stores:
 ## Dual-screen devices
 
 CO<sub>_duo_</sub> has been designed to capitalize on the opportunities presented by dual-screen devices such as the upcoming Surface Neo & Surface Duo.
+
+## Shared-Source
+
+CO<sub>_duo_</sub> is "GNU GENERAL PUBLIC LICENSE v3" licensed with the Common Clause. Essentially you are free to examine the source code and use elements of it in your own projects but don't clone the source and release an app which is "substantially" the same. Please refer to the [license](https://github.com/ibebbs/CODuo/blob/master/LICENSE) for full terms.
+
+Feature requests are welcomed but please raise an issue for discussion before submitting a pull request.
