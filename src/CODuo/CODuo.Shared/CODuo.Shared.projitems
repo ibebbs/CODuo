@@ -52,7 +52,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\RefreshData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Home\GenerationData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\Infographic.xaml.cs">
       <DependentUpon>Infographic.xaml</DependentUpon>
     </Compile>
@@ -64,6 +63,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\ForecastGeneration.xaml.cs">
       <DependentUpon>ForecastGeneration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Planning.xaml.cs">
+      <DependentUpon>Planning.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Region.xaml.cs">
       <DependentUpon>Region.xaml</DependentUpon>
@@ -146,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\ForecastGeneration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Planning.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

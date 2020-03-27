@@ -39,7 +39,6 @@ namespace CODuo.Home
         private readonly MVx.Observable.Property<double> _domesticConsumption;
         private readonly MVx.Observable.Property<double> _domesticCarbonOffsetCostPerHour;
         private readonly MVx.Observable.Property<double> _domesticCarbonOffsetCostPerPersonPerYear;
-        private readonly MVx.Observable.Property<IEnumerable<GenerationData>> _generationData;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -63,7 +62,6 @@ namespace CODuo.Home
             _domesticConsumption = new MVx.Observable.Property<double>(nameof(DomesticConsumption), args => PropertyChanged?.Invoke(this, args));
             _domesticCarbonOffsetCostPerHour = new MVx.Observable.Property<double>(nameof(DomesticCarbonOffsetCostPerHour), args => PropertyChanged?.Invoke(this, args));
             _domesticCarbonOffsetCostPerPersonPerYear = new MVx.Observable.Property<double>(nameof(DomesticCarbonOffsetCostPerPersonPerYear), args => PropertyChanged?.Invoke(this, args));
-            _generationData = new MVx.Observable.Property<IEnumerable<GenerationData>>(nameof(GenerationData), args => PropertyChanged?.Invoke(this, args));
 
             _currentPeriod = _currentContainer
                 .Where(container => !(container is null))
@@ -179,29 +177,6 @@ namespace CODuo.Home
                 .Subscribe(_currentRegionGeneration);
         }
 
-        private IDisposable ShouldRefreshGenerationDataWhenDataOrSelectedRegionChanges()
-        {
-            return Observable
-                .CombineLatest(_currentContainer, _selectedRegion, (container, regionId) => container?.Periods
-                    .Select(period => (At: period.From, Region: period.Regions.Where(region => region.RegionId == regionId).FirstOrDefault()))
-                    .OrderBy(period => period.At))
-                .Where(source => !(source is null))
-                .Select(source => source
-                    .Select(
-                        tuple =>
-                            new GenerationData
-                            { 
-                                At = tuple.At, 
-                                EstimatedGeneration = tuple.Region?.Estimated?.TotalMW,
-                                ActualGeneration = tuple.Region?.Actual?.TotalMW,
-                                EstimatedGramsOfCO2PerkWh = tuple.Region?.Estimated?.GramsOfCO2PerkWh,
-                                ActualGramsOfCO2PerkWh = tuple.Region?.Actual?.GramsOfCO2PerkWh
-                            })
-                    .ToArray())
-                .ObserveOn(_schedulers.Dispatcher)
-                .Subscribe(_generationData);
-        }
-
         private IDisposable ShouldRefreshTonnesOfCO2PerHourWhenPeriodOrSelectedRegionChanges()
         {
             return Observable
@@ -263,8 +238,7 @@ namespace CODuo.Home
                 ShouldRefreshTonnesOfCO2PerHourWhenPeriodOrSelectedRegionChanges(),
                 ShouldRefreshDomesticConsumptionWhenCurrentPeriodOrRegionChanges(),
                 ShouldRefreshCarbonOffsetCostPerHourWhenTonnesOfCO2PerHourChanges(),
-                ShouldRefreshCarbonOffsetCostPerPersonPerYearWhenCarbonOffsetCostPerPersonPerHourChanges(),
-                ShouldRefreshGenerationDataWhenDataOrSelectedRegionChanges()
+                ShouldRefreshCarbonOffsetCostPerPersonPerYearWhenCarbonOffsetCostPerPersonPerHourChanges()
             );
         }
 
@@ -355,11 +329,6 @@ namespace CODuo.Home
         {
             get { return _sliderCurrent.Get(); }
             set { _sliderCurrent.Set(value); }
-        }
-
-        public IEnumerable<GenerationData> GenerationData
-        {
-            get { return _generationData.Get(); }
         }
     }
 }
