@@ -14,6 +14,7 @@ namespace CODuo.Data
 
     public class Provider : IProvider
     {
+        //private const string Uri = "http://127.0.0.1:10000/devstoreaccount1/ukenergy/CurrentV1.json";
         private const string Uri = "https://coduo.blob.core.windows.net/ukenergy/CurrentV1.json";
 
         private readonly IConnectableObservable<Common.Container> _observable;
