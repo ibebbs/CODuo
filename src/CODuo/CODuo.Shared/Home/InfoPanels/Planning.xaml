@@ -21,69 +21,65 @@
         <TextBlock Text="PLANNING" FontFamily="Arial" FontSize="64" Foreground="#FF24221C" FontWeight="Black" Canvas.Left="320" Canvas.Top="52"/>
         <Path Data="M0,0 L448,0" Fill="#FFF4F4F5" Stroke="#FF24221C" StrokeThickness="4" Height="4" Stretch="Fill" Canvas.Left="320" Canvas.Top="128" Width="2104" d:LayoutOverrides="Height" UseLayoutRounding="False"/>
         <TextBlock Text="best and worst times to use electricity" FontFamily="Arial" FontSize="64" Canvas.Left="1372" Canvas.Top="62" Foreground="#FF24221C" FontWeight="Light"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="320" Canvas.Top="160">
-            <TextBlock Text="14:00" FontFamily="Impact" FontSize="96" Foreground="{StaticResource WindBrush}" FontWeight="Black"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="96" Foreground="{StaticResource WindBrush}" FontWeight="Black"/>
-            <TextBlock Text="14:30" FontFamily="Impact" FontSize="96" Foreground="{StaticResource WindBrush}" FontWeight="Black"/>
-            <TextBlock Text=" @" FontFamily="Arial" FontSize="48" Foreground="{StaticResource WindBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,16" />
-            <TextBlock Text=" 98" FontFamily="Arial" FontSize="48" Foreground="{StaticResource WindBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,16" />
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="48" Foreground="{StaticResource WindBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,16"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="322" Canvas.Top="192" Background="#FF2E7F18" Width="430" Height="96" Padding="20,0,0,0">
+            <TextBlock Text="14:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="14:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="320" Canvas.Top="266">
-            <TextBlock Text="14:30" FontFamily="Impact" FontSize="96" Foreground="{StaticResource SolarBrush}" FontWeight="Black"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="96" Foreground="{StaticResource SolarBrush}" FontWeight="Black"/>
-            <TextBlock Text="15:00" FontFamily="Impact" FontSize="96" Foreground="{StaticResource SolarBrush}" FontWeight="Black"/>
-            <TextBlock Text=" @" FontFamily="Arial" FontSize="48" Foreground="{StaticResource SolarBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" 121" FontFamily="Arial" FontSize="48" Foreground="{StaticResource SolarBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="48" Foreground="{StaticResource SolarBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12"/>
+        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="192" Width="464" Fill="#FF2E7F18"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="920" Canvas.Top="209">
+            <TextBlock Text="98" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
+            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="320" Canvas.Top="384">
-            <TextBlock Text="16:30" FontFamily="Impact" FontSize="96" Foreground="{StaticResource NuclearBrush}" FontWeight="Black"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="96" Foreground="{StaticResource NuclearBrush}" FontWeight="Black"/>
-            <TextBlock Text="17:00" FontFamily="Impact" FontSize="96" Foreground="{StaticResource NuclearBrush}" FontWeight="Black"/>
-            <TextBlock Text=" @" FontFamily="Arial" FontSize="48" Foreground="{StaticResource NuclearBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" 136" FontFamily="Arial" FontSize="48" Foreground="{StaticResource NuclearBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="48" Foreground="{StaticResource NuclearBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="322" Canvas.Top="304" Background="#FF6D911B" Height="96" Width="430" Padding="20,0,0,0">
+            <TextBlock Text="14:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="15:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="316" Canvas.Top="502">
-            <TextBlock Text="19:00" FontFamily="Impact" FontSize="96" Foreground="{StaticResource BiomassBrush}" FontWeight="Black"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="96" Foreground="{StaticResource BiomassBrush}" FontWeight="Black"/>
-            <TextBlock Text="19:30" FontFamily="Impact" FontSize="96" Foreground="{StaticResource BiomassBrush}" FontWeight="Black"/>
-            <TextBlock Text=" @" FontFamily="Arial" FontSize="48" Foreground="{StaticResource BiomassBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" 198" FontFamily="Arial" FontSize="48" Foreground="{StaticResource BiomassBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="48" Foreground="{StaticResource BiomassBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12"/>
+        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="304" Width="558" Fill="#FF6D911B" FocusVisualPrimaryBrush="#FF6D911B"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="1016" Canvas.Top="320">
+            <TextBlock Text="98" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
+            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1408" Canvas.Top="160">
-            <TextBlock Text="14:00" FontFamily="Impact" FontSize="96" Foreground="{StaticResource CoalBrush}" FontWeight="Black"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="96" Foreground="{StaticResource CoalBrush}" FontWeight="Black"/>
-            <TextBlock Text="14:30" FontFamily="Impact" FontSize="96" Foreground="{StaticResource CoalBrush}" FontWeight="Black"/>
-            <TextBlock Text=" @" FontFamily="Arial" FontSize="48" Foreground="{StaticResource CoalBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,16" />
-            <TextBlock Text=" 486" FontFamily="Arial" FontSize="48" Foreground="{StaticResource CoalBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,16" />
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="48" Foreground="{StaticResource CoalBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,16"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="322" Canvas.Top="416" Background="#FF85971C" Height="96" Width="430" Padding="20,0,0,0">
+            <TextBlock Text="16:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="17:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1408" Canvas.Top="258">
-            <TextBlock Text="14:30" FontFamily="Impact" FontSize="64" Foreground="{StaticResource GasBrush}" FontWeight="Black"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="64" Foreground="{StaticResource GasBrush}" FontWeight="Black"/>
-            <TextBlock Text="15:00" FontFamily="Impact" FontSize="64" Foreground="{StaticResource GasBrush}" FontWeight="Black"/>
-            <TextBlock Text=" @" FontFamily="Arial" FontSize="32" Foreground="{StaticResource GasBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" 484" FontFamily="Arial" FontSize="32" Foreground="{StaticResource GasBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="32" Foreground="{StaticResource GasBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12"/>
+        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="416" Width="608" Fill="#FF85971C"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="1028" Canvas.Top="432">
+            <TextBlock Text="108" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
+            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1408" Canvas.Top="317">
-            <TextBlock Text="16:30" FontFamily="Impact" FontSize="64" Foreground="{StaticResource ImportBrush}" FontWeight="Black"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="64" Foreground="{StaticResource ImportBrush}" FontWeight="Black"/>
-            <TextBlock Text="17:00" FontFamily="Impact" FontSize="64" Foreground="{StaticResource ImportBrush}" FontWeight="Black"/>
-            <TextBlock Text=" @" FontFamily="Arial" FontSize="32" Foreground="{StaticResource ImportBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" 377" FontFamily="Arial" FontSize="32" Foreground="{StaticResource ImportBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="32" Foreground="{StaticResource ImportBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="320" Canvas.Top="528" Background="#FFB65722" Height="96" Width="432" Padding="20,0,0,0">
+            <TextBlock Text="16:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="17:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1408" Canvas.Top="376">
-            <TextBlock Text="19:00" FontFamily="Impact" FontSize="64" Foreground="{StaticResource OtherBrush}" FontWeight="Black"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="64" Foreground="{StaticResource OtherBrush}" FontWeight="Black"/>
-            <TextBlock Text="19:30" FontFamily="Impact" FontSize="64" Foreground="{StaticResource OtherBrush}" FontWeight="Black"/>
-            <TextBlock Text=" @" FontFamily="Arial" FontSize="32" Foreground="{StaticResource OtherBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" 369" FontFamily="Arial" FontSize="32" Foreground="{StaticResource OtherBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12" />
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="32" Foreground="{StaticResource OtherBrush}" FontWeight="Black" VerticalAlignment="Bottom" Margin="0,0,0,12"/>
+        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="528" Width="1216" Fill="#FFB65722"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="1642" Canvas.Top="544">
+            <TextBlock Text="305" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
+            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Canvas.Left="322" Canvas.Top="640" Background="#FFBC4223" Height="96" Width="430" Padding="20,0,0,0">
+            <TextBlock Text="14:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="15:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
+        </StackPanel>
+        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="640" Width="1360" Fill="#FFBC4223"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="1776" Canvas.Top="656">
+            <TextBlock Text="374" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
+            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Canvas.Left="320" Canvas.Top="752" Background="#FFC82538" Height="96" Width="432" Padding="20,0,0,0">
+            <TextBlock Text="14:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
+            <TextBlock Text="14:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
+        </StackPanel>
+        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="752" Width="1656" Fill="#FFC82538"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="2074" Canvas.Top="768">
+            <TextBlock Text="408" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
+            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
 
     </Canvas>
