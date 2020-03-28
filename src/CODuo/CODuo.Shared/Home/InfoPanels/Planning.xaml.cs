@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,6 +25,10 @@ namespace CODuo.Home.InfoPanels
         public DateTime To { get; set; }
 
         public double GramsOfCO2PerkWh { get; set; }
+
+        public double PercentOfMaxGramsOfCO2PerkWh { get; set; }
+
+        public double RemainingPercentOfMaxGramsOfCO2PerkWh { get; set; }
     }
 
     public sealed partial class Planning : UserControl
@@ -35,6 +40,9 @@ namespace CODuo.Home.InfoPanels
         public static readonly DependencyProperty GoodPeriodsProperty = DependencyProperty.Register(nameof(GoodPeriods), typeof(IEnumerable<PeriodIntensity>), typeof(Planning), new PropertyMetadata(Enumerable.Empty<PeriodIntensity>()));
         public static readonly DependencyProperty BadPeriodsProperty = DependencyProperty.Register(nameof(BadPeriods), typeof(IEnumerable<PeriodIntensity>), typeof(Planning), new PropertyMetadata(Enumerable.Empty<PeriodIntensity>()));
 
+        public static readonly DependencyProperty BestPeriodProperty = DependencyProperty.Register("BestPeriod", typeof(PeriodIntensity), typeof(Planning), new PropertyMetadata(null));
+        public static readonly DependencyProperty WorstPeriodProperty = DependencyProperty.Register("WorstPeriod", typeof(PeriodIntensity), typeof(Planning), new PropertyMetadata(null));
+        
         private static void DataPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is Planning p)
@@ -52,17 +60,34 @@ namespace CODuo.Home.InfoPanels
         {
             if (Container != null && CurrentPeriod != null)
             {
-                var periodIntensity = Container.Periods
+                var periods = Container.Periods
                     .Where(period => period.From >= CurrentPeriod.From)
                     .SelectMany(period => period.Regions
                         .Where(region => region.RegionId == SelectedRegion)
                         .Where(region => region.Estimated?.GramsOfCO2PerkWh.HasValue ?? false)
-                        .Select(region => new PeriodIntensity { From = period.From, To = period.To, GramsOfCO2PerkWh = region.Estimated.GramsOfCO2PerkWh.Value }))
-                    .OrderByDescending(periodIntensity => periodIntensity.GramsOfCO2PerkWh)
+                        .Select(region => (Period: period, GramsOfCO2PerkWh: region.Estimated.GramsOfCO2PerkWh.Value)))
                     .ToArray();
 
-                GoodPeriods = periodIntensity.Take(3).ToArray();
-                BadPeriods = periodIntensity.Reverse().Take(3).ToArray();
+                var maxGramsOfCO2PerkWh = periods.Max(tuple => tuple.GramsOfCO2PerkWh);
+
+                var periodIntensities = periods
+                    .Select(
+                        tuple => new PeriodIntensity
+                        {
+                            From = tuple.Period.From,
+                            To = tuple.Period.To,
+                            GramsOfCO2PerkWh = tuple.GramsOfCO2PerkWh,
+                            PercentOfMaxGramsOfCO2PerkWh = tuple.GramsOfCO2PerkWh / maxGramsOfCO2PerkWh,
+                            RemainingPercentOfMaxGramsOfCO2PerkWh = 1 - (tuple.GramsOfCO2PerkWh / maxGramsOfCO2PerkWh)
+                        })
+                    .OrderBy(periodIntensity => periodIntensity.GramsOfCO2PerkWh)
+                    .ToArray();
+
+                GoodPeriods = periodIntensities.Take(3).ToArray();
+                BadPeriods = periodIntensities.Reverse().Take(3).Reverse().ToArray();
+
+                BestPeriod = GoodPeriods.First();
+                WorstPeriod = BadPeriods.Last();
             }
         }
 
@@ -94,6 +119,18 @@ namespace CODuo.Home.InfoPanels
         {
             get { return (IEnumerable<PeriodIntensity>)GetValue(BadPeriodsProperty); }
             set { SetValue(BadPeriodsProperty, value); }
+        }
+
+        public PeriodIntensity BestPeriod
+        {
+            get { return (PeriodIntensity)GetValue(BestPeriodProperty); }
+            set { SetValue(BestPeriodProperty, value); }
+        }
+
+        public PeriodIntensity WorstPeriod
+        {
+            get { return (PeriodIntensity)GetValue(WorstPeriodProperty); }
+            set { SetValue(WorstPeriodProperty, value); }
         }
     }
 }

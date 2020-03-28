@@ -21,9 +21,7 @@ namespace CODuo.Home
 
         private readonly Data.IProvider _dataProvider;
         private readonly Platform.ISchedulers _schedulers;
-
-        private readonly IObservable<Common.Period> _currentPeriod;
-
+        
         private readonly MVx.Observable.Property<int> _selectedRegion;
         private readonly MVx.Observable.Property<Common.Container> _currentContainer;
         private readonly MVx.Observable.Property<long> _sliderMinimum;
@@ -31,6 +29,7 @@ namespace CODuo.Home
         private readonly MVx.Observable.Property<long> _sliderCurrent;
         private readonly MVx.Observable.Property<IReadOnlyDictionary<int, double?>> _regionIntensity;
         private readonly MVx.Observable.Property<IReadOnlyDictionary<string, double>> _currentComposition;
+        private readonly MVx.Observable.Property<Common.Period> _currentPeriod;
         private readonly MVx.Observable.Property<Common.Region> _currentRegion;
         private readonly MVx.Observable.Property<Common.Operator> _currentOperator;
         private readonly MVx.Observable.Property<int> _currentRegionPopulation;
@@ -54,6 +53,7 @@ namespace CODuo.Home
             _selectedRegion = new MVx.Observable.Property<int>(0, nameof(SelectedRegion), args => PropertyChanged?.Invoke(this, args));
             _regionIntensity = new MVx.Observable.Property<IReadOnlyDictionary<int, double?>>(Enumerable.Range(0, 15).ToDictionary(i => i, _ => default(double?)), nameof(RegionIntensity), args => PropertyChanged?.Invoke(this, args));
             _currentComposition = new MVx.Observable.Property<IReadOnlyDictionary<string, double>>(Enum.GetNames(typeof(Common.FuelType)).ToDictionary(name => name, _ => 0.0), nameof(CurrentComposition), args => PropertyChanged?.Invoke(this, args));
+            _currentPeriod = new MVx.Observable.Property<Common.Period>(nameof(CurrentPeriod), args => PropertyChanged?.Invoke(this, args));
             _currentRegion = new MVx.Observable.Property<Common.Region>(nameof(CurrentRegion), args => PropertyChanged?.Invoke(this, args));
             _currentOperator = new MVx.Observable.Property<Common.Operator>(nameof(CurrentOperator), args => PropertyChanged?.Invoke(this, args));
             _currentRegionPopulation = new MVx.Observable.Property<int>(nameof(CurrentRegionPopulation), args => PropertyChanged?.Invoke(this, args));
@@ -62,14 +62,6 @@ namespace CODuo.Home
             _domesticConsumption = new MVx.Observable.Property<double>(nameof(DomesticConsumption), args => PropertyChanged?.Invoke(this, args));
             _domesticCarbonOffsetCostPerHour = new MVx.Observable.Property<double>(nameof(DomesticCarbonOffsetCostPerHour), args => PropertyChanged?.Invoke(this, args));
             _domesticCarbonOffsetCostPerPersonPerYear = new MVx.Observable.Property<double>(nameof(DomesticCarbonOffsetCostPerPersonPerYear), args => PropertyChanged?.Invoke(this, args));
-
-            _currentPeriod = _currentContainer
-                .Where(container => !(container is null))
-                .Select(container => container.Periods
-                    .Where(period => period.From <= _schedulers.Default.Now && period.To >= _schedulers.Default.Now)
-                    .FirstOrDefault())
-                .Publish()
-                .RefCount();
         }
 
         public IDisposable ShouldRefreshCurrentContainerWhenDataChanges()
@@ -126,10 +118,10 @@ namespace CODuo.Home
             return Observable
                 .CombineLatest(
                     _currentContainer, _currentPeriod, _selectedRegion, 
-                    (container, period, regionId) => period.Regions
+                    (container, period, regionId) => period?.Regions
                         .Where(region => region.RegionId == regionId)
                         .Select(region => (container?.Factors, Region: region))
-                        .FirstOrDefault())
+                        .FirstOrDefault() ?? (null, null))
                 .Where(tuple => !(tuple.Region is null || tuple.Factors is null))
                 .Select(tuple => tuple.Factors
                     .GroupJoin(
@@ -172,7 +164,7 @@ namespace CODuo.Home
         private IDisposable ShouldRefreshRegionGenerationWhenDataOrSelectedRegionChanges()
         {
             return Observable
-                .CombineLatest(_currentPeriod, _selectedRegion, (period, regionId) => period.Regions.Where(region => region.RegionId == regionId).FirstOrDefault())
+                .CombineLatest(_currentPeriod, _selectedRegion, (period, regionId) => period?.Regions.Where(region => region.RegionId == regionId).FirstOrDefault() ?? null)
                 .Where(region => !(region is null))
                 .ObserveOn(_schedulers.Dispatcher)
                 .Subscribe(_currentRegionGeneration);
@@ -181,10 +173,10 @@ namespace CODuo.Home
         private IDisposable ShouldRefreshTonnesOfCO2PerHourWhenPeriodOrSelectedRegionChanges()
         {
             return Observable
-                .CombineLatest(_currentPeriod, _selectedRegion, (period, regionId) => period.Regions
+                .CombineLatest(_currentPeriod, _selectedRegion, (period, regionId) => period?.Regions
                     .Where(region => region.RegionId == regionId)
                     .Select(region => (region.Estimated.TotalMW * region.Estimated.GramsOfCO2PerkWh) / 1000.0 ?? 0.0)
-                    .FirstOrDefault())
+                    .FirstOrDefault() ?? 0.0)
                 .ObserveOn(_schedulers.Dispatcher)
                 .Subscribe(_tonnesOfCO2PerHour);
         }
@@ -193,7 +185,7 @@ namespace CODuo.Home
         {
             return Observable
                 .CombineLatest(_currentPeriod, _currentRegion, (period, currentRegion) => (Period: period, Region: currentRegion))
-                .Where(tuple => !(tuple.Region is null))
+                .Where(tuple => !(tuple.Period is null || tuple.Region is null))
                 .Select(tuple => tuple.Period.Regions
                     .Where(region => region.RegionId == tuple.Region.Id)
                     .Select(region => region.Estimated.TotalMW * tuple.Region.PercentOfConsumptionBeingDomestic ?? 0.0)
@@ -206,7 +198,7 @@ namespace CODuo.Home
         {
             return Observable
                 .CombineLatest(_currentPeriod, _currentRegion, (period, currentRegion) => (Period: period, Region: currentRegion))
-                .Where(tuple => !(tuple.Region is null))
+                .Where(tuple => !(tuple.Period is null || tuple.Region is null))
                 .Select(tuple => tuple.Period.Regions
                     .Where(region => region.RegionId == tuple.Region.Id)
                     .Select(region => (region.Estimated.TotalMW * tuple.Region.PercentOfConsumptionBeingDomestic * region.Estimated.GramsOfCO2PerkWh / 1000.0 * CarbonOffsetCostPerTonne) ?? 0.0)
@@ -227,6 +219,7 @@ namespace CODuo.Home
         {
             return new CompositeDisposable(
                 ShouldRefreshCurrentContainerWhenDataChanges(),
+                ShouldRefreshCurrentPeriodWhenCurrentContainerChanges(),
                 ShouldRefreshSliderMinimumWhenCurrentContainerChanges(),
                 ShouldRefreshSliderMaximumWhenCurrentContainerChanges(),
                 ShouldRefreshSliderCurrentWhenCurrentPeriodChanges(),
@@ -241,6 +234,16 @@ namespace CODuo.Home
                 ShouldRefreshCarbonOffsetCostPerHourWhenTonnesOfCO2PerHourChanges(),
                 ShouldRefreshCarbonOffsetCostPerPersonPerYearWhenCarbonOffsetCostPerPersonPerHourChanges()
             );
+        }
+
+        private IDisposable ShouldRefreshCurrentPeriodWhenCurrentContainerChanges()
+        {
+            return _currentContainer
+                .Where(container => !(container is null))
+                .Select(container => container.Periods
+                    .Where(period => period.From <= _schedulers.Default.Now && period.To >= _schedulers.Default.Now)
+                    .FirstOrDefault())
+                .Subscribe(_currentPeriod);
         }
 
         public void AttachView(object view)
@@ -268,6 +271,11 @@ namespace CODuo.Home
         public IReadOnlyDictionary<string, double> CurrentComposition
         {
             get { return _currentComposition.Get(); }
+        }
+
+        public Common.Period CurrentPeriod
+        {
+            get { return _currentPeriod.Get(); }
         }
 
         public Common.Region CurrentRegion

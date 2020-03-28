@@ -13,6 +13,29 @@
                 <ResourceDictionary Source="..\..\Colors.xaml" />
                 <ResourceDictionary Source="..\Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="PeriodTemplate" x:DataType="local:PeriodIntensity">
+                <Grid Height="80" Margin="0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="430" />
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="{x:Bind Path=PercentOfMaxGramsOfCO2PerkWh, Converter={StaticResource NumberToGridLengthConverter}, ConverterParameter=Star}" MinWidth="450"/>
+                        <ColumnDefinition Width="{x:Bind Path=RemainingPercentOfMaxGramsOfCO2PerkWh, Converter={StaticResource NumberToGridLengthConverter}, ConverterParameter=Star}"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="{x:Bind Path=GramsOfCO2PerkWh, Converter={StaticResource IntensityToBrushConverter}}" Grid.Column="0">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" FontSize="68" Foreground="White" FontWeight="Light">
+                                <Run Text="{x:Bind Path=From, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:HH:mm]}"/>
+                                <Run Text="-"/>
+                                <Run Text="{x:Bind Path=To, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:HH:mm]}"/>
+                        </TextBlock>
+                    </Border>
+                    <Border Background="{x:Bind Path=GramsOfCO2PerkWh, Converter={StaticResource IntensityToBrushConverter}}" Grid.Column="2">
+                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="16,4" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black">
+                                <Run Text="{x:Bind Path=GramsOfCO2PerkWh, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:N0]}"/>
+                                <Run Text="gCO₂/kWh" FontWeight="Light"/>
+                        </TextBlock>
+                    </Border>
+                </Grid>
+            </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -21,77 +44,11 @@
         <TextBlock Text="PLANNING" FontFamily="Arial" FontSize="64" Foreground="#FF24221C" FontWeight="Black" Canvas.Left="320" Canvas.Top="52"/>
         <Path Data="M0,0 L448,0" Fill="#FFF4F4F5" Stroke="#FF24221C" StrokeThickness="4" Height="4" Stretch="Fill" Canvas.Left="320" Canvas.Top="128" Width="2104" d:LayoutOverrides="Height" UseLayoutRounding="False"/>
         <TextBlock Text="best and worst times to use electricity" FontFamily="Arial" FontSize="64" Canvas.Left="1372" Canvas.Top="62" Foreground="#FF24221C" FontWeight="Light"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="438" Canvas.Top="195" Background="#FF2E7F18" Width="430" Height="80" Padding="20,0,0,0">
-            <TextBlock Text="14:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="14:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-        </StackPanel>
-        <Rectangle Height="80" Canvas.Left="884" Canvas.Top="195" Width="464" Fill="#FF2E7F18"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1044" Canvas.Top="203">
-            <TextBlock Text="98" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="438" Canvas.Top="291" Background="#FF6D911B" Height="80" Width="430" Padding="20,0,0,0">
-            <TextBlock Text="14:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="15:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-        </StackPanel>
-        <Rectangle Height="80" Canvas.Left="884" Canvas.Top="291" Width="558" Fill="#FF6D911B" FocusVisualPrimaryBrush="#FF6D911B"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1132" Canvas.Top="307">
-            <TextBlock Text="98" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="438" Canvas.Top="388" Background="#FF85971C" Height="80" Width="430" Padding="20,0,0,0">
-            <TextBlock Text="16:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="17:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-        </StackPanel>
-        <Rectangle Height="80" Canvas.Left="884" Canvas.Top="388" Width="608" Fill="#FF85971C"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1144" Canvas.Top="404">
-            <TextBlock Text="108" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="439" Canvas.Top="563" Background="#FFB65722" Height="80" Width="432" Padding="20,0,0,0">
-            <TextBlock Text="16:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="17:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-        </StackPanel>
-        <Rectangle Height="80" Canvas.Left="887" Canvas.Top="563" Width="1216" Fill="#FFB65722"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1761" Canvas.Top="579">
-            <TextBlock Text="305" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="441" Canvas.Top="658" Background="#FFBC4223" Height="80" Width="430" Padding="20,0,0,0">
-            <TextBlock Text="14:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="15:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-        </StackPanel>
-        <Rectangle Height="80" Canvas.Left="887" Canvas.Top="658" Width="1360" Fill="#FFBC4223"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1895" Canvas.Top="674">
-            <TextBlock Text="374" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="439" Canvas.Top="755" Background="#FFC82538" Height="80" Width="432" Padding="20,8,0,0">
-            <TextBlock Text="14:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-            <TextBlock Text="14:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
-        </StackPanel>
-        <Rectangle Height="80" Canvas.Left="887" Canvas.Top="755" Width="1513" Fill="#FFC82538"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="2058" Canvas.Top="763">
-            <TextBlock Text="408" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
-            <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
-        </StackPanel>
-        <Path Data="M0,0 L2096,0" Fill="#FFF4F4F5" Height="4" Canvas.Left="326" Stretch="Fill" Stroke="Black" StrokeDashArray="2 2" Canvas.Top="510" UseLayoutRounding="False" Width="2114" StrokeThickness="4"/>
-        <TextBlock Text="BEST" FontFamily="Arial" FontSize="64" Foreground="#FF2E7F18" FontWeight="Black" Canvas.Left="263.219" Canvas.Top="286" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-            <TextBlock.RenderTransform>
-                <CompositeTransform Rotation="-90"/>
-            </TextBlock.RenderTransform>
-        </TextBlock>
-        <TextBlock Text="WORST" FontFamily="Arial" FontSize="64" Foreground="#FFC82538" FontWeight="Black" Canvas.Left="227.876" Canvas.Top="654" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-            <TextBlock.RenderTransform>
-                <CompositeTransform Rotation="-90"/>
-            </TextBlock.RenderTransform>
-        </TextBlock>
 
+        <ItemsControl Height="273" Width="1991" Canvas.Left="441" Canvas.Top="195" ItemsSource="{x:Bind Path=GoodPeriods, Mode=OneWay}" ItemTemplate="{StaticResource PeriodTemplate}" HorizontalContentAlignment="Stretch" Background="DarkBlue"/>
+        <ItemsControl Height="273" Width="1991" Canvas.Left="441" Canvas.Top="563" ItemsSource="{x:Bind Mode=OneWay, Path=BadPeriods}" ItemTemplate="{StaticResource PeriodTemplate}" HorizontalContentAlignment="Stretch" Background="DarkBlue"/>
+        <Path Data="M0,0 L2096,0" Fill="#FFF4F4F5" Height="4" Canvas.Left="326" Stretch="Fill" Stroke="Black" StrokeDashArray="2 2" Canvas.Top="510" UseLayoutRounding="False" Width="2114" StrokeThickness="4"/>
+        <Path Stretch="Uniform" Fill="{x:Bind Path=BestPeriod.GramsOfCO2PerkWh, Mode=OneWay, Converter={StaticResource IntensityToBrushConverter}}" StrokeThickness="0.12922613" Data="M 13.682839 29.47073 H 3.1575782 C 1.4136741 29.47073 0 30.884404 0 32.628308 V 64.20409 c 0 1.743904 1.4136741 3.157578 3.1575782 3.157578 H 13.682839 c 1.743904 0 3.157578 -1.413674 3.157578 -3.157578 V 32.628308 c 0 -1.743904 -1.413674 -3.157578 -3.157578 -3.157578 z M 8.4202086 62.099038 c -1.7439042 0 -3.1575783 -1.413674 -3.1575783 -3.157578 0 -1.743904 1.4136741 -3.157578 3.1575783 -3.157578 1.7439044 0 3.1575784 1.413674 3.1575784 3.157578 0 1.743904 -1.413674 3.157578 -3.1575784 3.157578 z M 50.521251 10.716294 c 0 5.580493 -3.416762 8.710706 -4.378113 12.43928 h 13.383263 c 4.393902 0 7.814612 3.650423 7.835136 7.643707 0.01105 2.360027 -0.992795 4.900693 -2.557507 6.472641 l -0.01447 0.01447 c 1.294081 3.07035 1.083707 7.37255 -1.224614 10.455399 1.142122 3.406895 -0.0091 7.591871 -2.15531 9.835462 0.565469 2.315294 0.295233 4.285754 -0.808867 5.872042 -2.685257 3.858035 -9.340642 3.912371 -14.968631 3.912371 l -0.374304 -1.31e-4 c -6.352916 -0.0022 -11.552263 -2.315294 -15.730003 -4.173924 -2.099394 -0.933985 -4.844382 -2.090185 -6.927068 -2.128471 -0.86044 -0.01579 -1.55024 -0.717954 -1.55024 -1.578526 v -28.12481 c 0 -0.42101 0.168668 -0.825049 0.468111 -1.121072 5.211846 -5.15001 7.452937 -10.602489 11.724746 -14.881534 1.9477 -1.951384 2.65605 -4.898983 3.340849 -7.7494865 C 37.1693 5.1696134 38.393125 0 41.048517 0 c 3.157578 0 9.472734 1.0525261 9.472734 10.716294 z" Canvas.Left="288" Canvas.Top="284" UseLayoutRounding="False" Width="96" Height="96"/>
+        <Path Stretch="Uniform" Fill="{x:Bind Path=WorstPeriod.GramsOfCO2PerkWh, Mode=OneWay, Converter={StaticResource IntensityToBrushConverter}}" StrokeThickness="0.12922613" Data="m 0 7.23666 v 31.01428 c 0 1.71289 1.38854 3.10142 3.10143 3.10142 h 10.33809 c 1.71289 0 3.10143 -1.38853 3.10143 -3.10142 V 7.23666 c 0 -1.71289 -1.38854 -3.10142 -3.10143 -3.10142 H 3.10143 C 1.38854 4.13524 0 5.52377 0 7.23666 Z m 5.16904 25.84523 c 0 -1.71289 1.38854 -3.10143 3.10143 -3.10143 1.7129 0 3.10143 1.38854 3.10143 3.10143 0 1.71289 -1.38853 3.10143 -3.10143 3.10143 -1.71289 0 -3.10143 -1.38854 -3.10143 -3.10143 z m 35.14951 33.08189 c -2.60817 0 -3.81023 -5.07768 -4.38477 -7.46862 -0.67275 -2.79982 -1.36837 -5.695 -3.28144 -7.61168 C 28.4565 46.88053 26.25526 41.52501 21.1361 36.46658 A 1.5481291 1.5481291 0 0 1 20.67631 35.36545 V 7.74078 c 0 -0.84527 0.67753 -1.53495 1.52267 -1.55046 C 24.24476 6.15282 26.94081 5.01708 29.00287 4.0997 33.10631 2.27412 38.21333 0.0022 44.45315 0 h 0.36751 c 5.52791 0 12.06494 0.0534 14.70258 3.8428 1.08446 1.55808 1.34989 3.4935 0.79448 5.76762 2.10794 2.20369 3.2388 6.31438 2.11698 9.66056 2.26715 3.02802 2.47378 7.25372 1.20284 10.26947 l 0.0142 0.0142 c 1.53689 1.54412 2.52289 4.03948 2.51203 6.35754 -0.0202 3.92227 -3.38017 7.50778 -7.6958 7.50778 h -13.1454 c 0.94425 3.66227 4.30026 6.73681 4.30026 12.21807 0 9.49192 -6.20286 10.52573 -9.30429 10.52573 z" Canvas.Left="288" Canvas.Top="652" UseLayoutRounding="False" Width="96" Height="96"/>
     </Canvas>
 </UserControl>
