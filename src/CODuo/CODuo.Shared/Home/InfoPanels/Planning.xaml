@@ -21,66 +21,77 @@
         <TextBlock Text="PLANNING" FontFamily="Arial" FontSize="64" Foreground="#FF24221C" FontWeight="Black" Canvas.Left="320" Canvas.Top="52"/>
         <Path Data="M0,0 L448,0" Fill="#FFF4F4F5" Stroke="#FF24221C" StrokeThickness="4" Height="4" Stretch="Fill" Canvas.Left="320" Canvas.Top="128" Width="2104" d:LayoutOverrides="Height" UseLayoutRounding="False"/>
         <TextBlock Text="best and worst times to use electricity" FontFamily="Arial" FontSize="64" Canvas.Left="1372" Canvas.Top="62" Foreground="#FF24221C" FontWeight="Light"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="322" Canvas.Top="192" Background="#FF2E7F18" Width="430" Height="96" Padding="20,0,0,0">
-            <TextBlock Text="14:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="14:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="438" Canvas.Top="195" Background="#FF2E7F18" Width="430" Height="80" Padding="20,0,0,0">
+            <TextBlock Text="14:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="14:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
         </StackPanel>
-        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="192" Width="464" Fill="#FF2E7F18"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="920" Canvas.Top="209">
+        <Rectangle Height="80" Canvas.Left="884" Canvas.Top="195" Width="464" Fill="#FF2E7F18"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="1044" Canvas.Top="203">
             <TextBlock Text="98" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
             <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="322" Canvas.Top="304" Background="#FF6D911B" Height="96" Width="430" Padding="20,0,0,0">
-            <TextBlock Text="14:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="15:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="438" Canvas.Top="291" Background="#FF6D911B" Height="80" Width="430" Padding="20,0,0,0">
+            <TextBlock Text="14:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="15:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
         </StackPanel>
-        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="304" Width="558" Fill="#FF6D911B" FocusVisualPrimaryBrush="#FF6D911B"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1016" Canvas.Top="320">
+        <Rectangle Height="80" Canvas.Left="884" Canvas.Top="291" Width="558" Fill="#FF6D911B" FocusVisualPrimaryBrush="#FF6D911B"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="1132" Canvas.Top="307">
             <TextBlock Text="98" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
             <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="322" Canvas.Top="416" Background="#FF85971C" Height="96" Width="430" Padding="20,0,0,0">
-            <TextBlock Text="16:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="17:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="438" Canvas.Top="388" Background="#FF85971C" Height="80" Width="430" Padding="20,0,0,0">
+            <TextBlock Text="16:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="17:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
         </StackPanel>
-        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="416" Width="608" Fill="#FF85971C"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1028" Canvas.Top="432">
+        <Rectangle Height="80" Canvas.Left="884" Canvas.Top="388" Width="608" Fill="#FF85971C"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="1144" Canvas.Top="404">
             <TextBlock Text="108" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
             <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="320" Canvas.Top="528" Background="#FFB65722" Height="96" Width="432" Padding="20,0,0,0">
-            <TextBlock Text="16:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="17:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="439" Canvas.Top="563" Background="#FFB65722" Height="80" Width="432" Padding="20,0,0,0">
+            <TextBlock Text="16:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="17:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
         </StackPanel>
-        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="528" Width="1216" Fill="#FFB65722"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1642" Canvas.Top="544">
+        <Rectangle Height="80" Canvas.Left="887" Canvas.Top="563" Width="1216" Fill="#FFB65722"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="1761" Canvas.Top="579">
             <TextBlock Text="305" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
             <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="322" Canvas.Top="640" Background="#FFBC4223" Height="96" Width="430" Padding="20,0,0,0">
-            <TextBlock Text="14:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="15:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="441" Canvas.Top="658" Background="#FFBC4223" Height="80" Width="430" Padding="20,0,0,0">
+            <TextBlock Text="14:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="15:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
         </StackPanel>
-        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="640" Width="1360" Fill="#FFBC4223"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="1776" Canvas.Top="656">
+        <Rectangle Height="80" Canvas.Left="887" Canvas.Top="658" Width="1360" Fill="#FFBC4223"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="1895" Canvas.Top="674">
             <TextBlock Text="374" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
             <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Canvas.Left="320" Canvas.Top="752" Background="#FFC82538" Height="96" Width="432" Padding="20,0,0,0">
-            <TextBlock Text="14:00" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="-" FontFamily="Impact" FontSize="80" Foreground="White"/>
-            <TextBlock Text="14:30" FontFamily="Impact" FontSize="80" Foreground="White"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="439" Canvas.Top="755" Background="#FFC82538" Height="80" Width="432" Padding="20,8,0,0">
+            <TextBlock Text="14:00" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="-" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
+            <TextBlock Text="14:30" FontFamily="Arial" FontSize="72" Foreground="White" FontWeight="Light"/>
         </StackPanel>
-        <Rectangle Height="96" Canvas.Left="768" Canvas.Top="752" Width="1656" Fill="#FFC82538"/>
-        <StackPanel Orientation="Horizontal" Canvas.Left="2074" Canvas.Top="768">
+        <Rectangle Height="80" Canvas.Left="887" Canvas.Top="755" Width="1513" Fill="#FFC82538"/>
+        <StackPanel Orientation="Horizontal" Canvas.Left="2058" Canvas.Top="763">
             <TextBlock Text="408" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black"/>
             <TextBlock Text=" gCO₂/kWh" FontFamily="Arial" FontSize="42.667" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
+        <Path Data="M0,0 L2096,0" Fill="#FFF4F4F5" Height="4" Canvas.Left="326" Stretch="Fill" Stroke="Black" StrokeDashArray="2 2" Canvas.Top="510" UseLayoutRounding="False" Width="2114" StrokeThickness="4"/>
+        <TextBlock Text="BEST" FontFamily="Arial" FontSize="64" Foreground="#FF2E7F18" FontWeight="Black" Canvas.Left="263.219" Canvas.Top="286" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="-90"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Text="WORST" FontFamily="Arial" FontSize="64" Foreground="#FFC82538" FontWeight="Black" Canvas.Left="227.876" Canvas.Top="654" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="-90"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
 
     </Canvas>
 </UserControl>

@@ -32,10 +32,8 @@ namespace CODuo.Home.InfoPanels
         public static readonly DependencyProperty CurrentPeriodProperty = DependencyProperty.Register(nameof(CurrentPeriod), typeof(Common.Period), typeof(Planning), new PropertyMetadata(null, DataPropertyChanged));
         public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register(nameof(SelectedRegion), typeof(int), typeof(Planning), new PropertyMetadata(0, DataPropertyChanged));
 
-        public static readonly DependencyProperty BestPeriodProperty = DependencyProperty.Register("BestPeriod", typeof(PeriodIntensity), typeof(Planning), new PropertyMetadata(null));
-        public static readonly DependencyProperty WorstPeriodProperty = DependencyProperty.Register("WorstPeriod", typeof(PeriodIntensity), typeof(Planning), new PropertyMetadata(null));
-        public static readonly DependencyProperty GoodPeriodsProperty = DependencyProperty.Register("GoodPeriods", typeof(IEnumerable<PeriodIntensity>), typeof(Planning), new PropertyMetadata(Enumerable.Empty<PeriodIntensity>()));
-        public static readonly DependencyProperty BadPeriodsProperty = DependencyProperty.Register("BadPeriods", typeof(IEnumerable<PeriodIntensity>), typeof(Planning), new PropertyMetadata(Enumerable.Empty<PeriodIntensity>()));
+        public static readonly DependencyProperty GoodPeriodsProperty = DependencyProperty.Register(nameof(GoodPeriods), typeof(IEnumerable<PeriodIntensity>), typeof(Planning), new PropertyMetadata(Enumerable.Empty<PeriodIntensity>()));
+        public static readonly DependencyProperty BadPeriodsProperty = DependencyProperty.Register(nameof(BadPeriods), typeof(IEnumerable<PeriodIntensity>), typeof(Planning), new PropertyMetadata(Enumerable.Empty<PeriodIntensity>()));
 
         private static void DataPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -63,20 +61,8 @@ namespace CODuo.Home.InfoPanels
                     .OrderByDescending(periodIntensity => periodIntensity.GramsOfCO2PerkWh)
                     .ToArray();
 
-                BestPeriod = periodIntensity.First();
-
-                GoodPeriods = periodIntensity
-                    .Skip(1)
-                    .Take(4)
-                    .ToArray();
-
-                WorstPeriod = periodIntensity.Reverse().First();
-
-                BadPeriods = periodIntensity
-                    .Reverse()
-                    .Skip(1)
-                    .Take(4)
-                    .ToArray();
+                GoodPeriods = periodIntensity.Take(3).ToArray();
+                BadPeriods = periodIntensity.Reverse().Take(3).ToArray();
             }
         }
 
@@ -96,18 +82,6 @@ namespace CODuo.Home.InfoPanels
         {
             get { return (int)GetValue(SelectedRegionProperty); }
             set { SetValue(SelectedRegionProperty, value); }
-        }
-
-        public PeriodIntensity BestPeriod
-        {
-            get { return (PeriodIntensity)GetValue(BestPeriodProperty); }
-            set { SetValue(BestPeriodProperty, value); }
-        }
-
-        public PeriodIntensity WorstPeriod
-        {
-            get { return (PeriodIntensity)GetValue(WorstPeriodProperty); }
-            set { SetValue(WorstPeriodProperty, value); }
         }
 
         public IEnumerable<PeriodIntensity> GoodPeriods

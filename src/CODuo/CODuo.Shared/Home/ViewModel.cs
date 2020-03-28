@@ -115,6 +115,7 @@ namespace CODuo.Home
         private IDisposable ShouldRefreshRegionIntensityWhenDataChanges()
         {
             return _currentPeriod
+                .Where(period => !(period is null))
                 .Select(period => period.Regions.ToDictionary(region => region.RegionId, region => region.Estimated.GramsOfCO2PerkWh))
                 .ObserveOn(_schedulers.Dispatcher)
                 .Subscribe(_regionIntensity);
