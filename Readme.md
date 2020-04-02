@@ -22,14 +22,15 @@ This project uses the [Uno Platform](https://platform.uno/) to create native app
 CO<sub>_duo_</sub> can be found in the following stores:
 
 * [Microsoft App Store](https://www.microsoft.com/en-gb/p/coduo/9php2cf3z997) - For Windows 10 PC, Windows 10 Mobile, XBox, Hololens & Surface Hub  
-* [Google Play](https://play.google.com/store/apps/details?id=solutions.onecog.coduo) - For Android version 8 (Oreo) or above
+* [Google Play](https://play.google.com/store/apps/details?id=solutions.onecog.coduo) - For Android version 8 (Oreo) or above on Phone, Tablet or TV
 * [Apple App Store] - pending
 
 ## Dual-screen devices
 
 CO<sub>_duo_</sub> has been designed to capitalize on the opportunities presented by dual-screen devices such as the upcoming Surface Neo & Surface Duo. Below you can see CO<sub>_duo</sub> running on the Surface Neo and how the app becomes much more usable when both screens are used in tandem.
 
-[![CO<sub>_duo</sub> on Surface Neo](http://img.youtube.com/vi/8vArkQ8m4L4/0.jpg)](https://youtu.be/8vArkQ8m4L4 "CO<sub>_duo</sub> on Surface Neo")
+<iframe src="http://www.youtube.com/embed/8vArkQ8m4L4"
+   width="560" height="315" frameborder="0" allowfullscreen></iframe>
 
 ## Shared-Source
 
