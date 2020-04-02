@@ -27,10 +27,9 @@ CO<sub>_duo_</sub> can be found in the following stores:
 
 ## Dual-screen devices
 
-CO<sub>_duo_</sub> has been designed to capitalize on the opportunities presented by dual-screen devices such as the upcoming Surface Neo & Surface Duo. Below you can see CO<sub>_duo</sub> running on the Surface Neo and how the app becomes much more usable when both screens are used in tandem.
+CO<sub>_duo_</sub> has been designed to capitalize on the opportunities presented by dual-screen devices such as the upcoming Surface Neo & Surface Duo. Below you can see CO<sub>_duo_</sub> running on the Surface Neo and how the app becomes much more usable when both screens are used in tandem (click the image to play in YouTube).
 
-<iframe src="http://www.youtube.com/embed/8vArkQ8m4L4"
-   width="560" height="315" frameborder="0" allowfullscreen></iframe>
+[![COduo on Surface Neo](http://img.youtube.com/vi/8vArkQ8m4L4/0.jpg)](https://youtu.be/8vArkQ8m4L4 "COduo on Surface Neo")
 
 ## Shared-Source
 
