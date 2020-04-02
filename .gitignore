@@ -257,3 +257,5 @@ paket-files/
 __pycache__/
 *.pyc
 /deployment/*
+/.vscode/settings.json
+/.ionide/symbolCache.db

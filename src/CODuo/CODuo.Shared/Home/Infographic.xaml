@@ -33,7 +33,7 @@
             </Border>
 
             <Border Grid.ColumnSpan="4" Grid.Row="2" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,0">
-                <info:ForecastGeneration Container="{Binding Path=CurrentContainer, Mode=OneWay}" SelectedRegion="{Binding Path=SelectedRegion, Mode=OneWay}"/>
+                <info:ForecastGeneration Container="{Binding Path=CurrentContainer, Mode=OneWay}" SelectedRegion="{Binding Path=SelectedRegion, Mode=OneWay}" CurrentPeriod="{Binding Path=CurrentPeriod, Mode=OneWay}"/>
             </Border>
 
             <Border Grid.ColumnSpan="4" Grid.Row="3" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,8">

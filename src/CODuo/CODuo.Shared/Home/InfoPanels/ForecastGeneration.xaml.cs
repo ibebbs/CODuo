@@ -11,6 +11,7 @@ namespace CODuo.Home.InfoPanels
     {
         public static readonly DependencyProperty ContainerProperty = DependencyProperty.Register(nameof(Container), typeof(Common.Container), typeof(ForecastGeneration), new PropertyMetadata(null, DataPropertyChanged));
         public static readonly DependencyProperty SelectedRegionProperty = DependencyProperty.Register(nameof(SelectedRegion), typeof(int), typeof(ForecastGeneration), new PropertyMetadata(0, DataPropertyChanged));
+        public static readonly DependencyProperty CurrentPeriodProperty = DependencyProperty.Register(nameof(CurrentPeriod), typeof(Common.Period), typeof(ForecastGeneration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty PeriodsProperty = DependencyProperty.Register(nameof(Periods), typeof(IEnumerable<Common.Period>), typeof(ForecastGeneration), new PropertyMetadata(Enumerable.Empty<Common.Period>()));
 
@@ -46,6 +47,12 @@ namespace CODuo.Home.InfoPanels
         {
             get { return (int)GetValue(SelectedRegionProperty); }
             set { SetValue(SelectedRegionProperty, value); }
+        }
+
+        public Common.Period CurrentPeriod
+        {
+            get { return (Common.Period)GetValue(CurrentPeriodProperty); }
+            set { SetValue(CurrentPeriodProperty, value); }
         }
 
         public IEnumerable<Common.Period> Periods
