@@ -34,6 +34,7 @@ namespace CODuo.Home
         private readonly MVx.Observable.Property<Common.Operator> _currentOperator;
         private readonly MVx.Observable.Property<int> _currentRegionPopulation;
         private readonly MVx.Observable.Property<Common.RegionGeneration> _currentRegionGeneration;
+        private readonly MVx.Observable.Property<Common.Weather> _currentWeather;
         private readonly MVx.Observable.Property<double> _tonnesOfCO2PerHour;
         private readonly MVx.Observable.Property<double> _domesticConsumption;
         private readonly MVx.Observable.Property<double> _domesticCarbonOffsetCostPerHour;
@@ -58,6 +59,7 @@ namespace CODuo.Home
             _currentOperator = new MVx.Observable.Property<Common.Operator>(nameof(CurrentOperator), args => PropertyChanged?.Invoke(this, args));
             _currentRegionPopulation = new MVx.Observable.Property<int>(nameof(CurrentRegionPopulation), args => PropertyChanged?.Invoke(this, args));
             _currentRegionGeneration = new MVx.Observable.Property<Common.RegionGeneration>(nameof(CurrentRegionGeneration), args => PropertyChanged?.Invoke(this, args));
+            _currentWeather = new MVx.Observable.Property<Common.Weather>(nameof(CurrentWeather), args => PropertyChanged?.Invoke(this, args));
             _tonnesOfCO2PerHour = new MVx.Observable.Property<double>(nameof(TonnesOfCO2PerHour), args => PropertyChanged?.Invoke(this, args));
             _domesticConsumption = new MVx.Observable.Property<double>(nameof(DomesticConsumption), args => PropertyChanged?.Invoke(this, args));
             _domesticCarbonOffsetCostPerHour = new MVx.Observable.Property<double>(nameof(DomesticCarbonOffsetCostPerHour), args => PropertyChanged?.Invoke(this, args));
@@ -79,7 +81,6 @@ namespace CODuo.Home
                     .OrderBy(period => period.From)
                     .Select(period => period.From.Ticks)
                     .FirstOrDefault())
-                .Do(ticks => System.Diagnostics.Debug.WriteLine($"From: '{ticks}'"))
                 .Subscribe(_sliderMinimum);
         }
 
@@ -91,7 +92,6 @@ namespace CODuo.Home
                     .OrderByDescending(period => period.From)
                     .Select(period => period.From.Ticks)
                     .FirstOrDefault())
-                .Do(ticks => System.Diagnostics.Debug.WriteLine($"To: '{ticks}'"))
                 .Subscribe(_sliderMaximum);
         }
 
@@ -100,7 +100,6 @@ namespace CODuo.Home
             return _currentPeriod
                 .Where(period => !(period is null))
                 .Select(period => period.From.Ticks)
-                .Do(ticks => System.Diagnostics.Debug.WriteLine($"Current: '{ticks}'"))
                 .Subscribe(_sliderCurrent);
         }
 
@@ -170,6 +169,20 @@ namespace CODuo.Home
                 .Subscribe(_currentRegionGeneration);
         }
 
+        private IDisposable ShouldRefreshRegionWeatherWhenContainerCurrentPeriodOrSelectedRegionChanges()
+        {
+            return Observable
+                .CombineLatest(_currentContainer, _currentPeriod, _selectedRegion, (container, currentPeriod, regionId) => container?.Periods
+                    .SkipWhile(period => period.From < (currentPeriod?.From ?? DateTime.MaxValue))
+                    .SelectMany(period => period.Regions
+                        .Where(region => region.RegionId == regionId && region.Environment.Weather != null)
+                        .Select(region => region.Environment.Weather))
+                    .FirstOrDefault())
+                .Where(weather => !(weather is null))
+                .ObserveOn(_schedulers.Dispatcher)
+                .Subscribe(_currentWeather);
+        }
+
         private IDisposable ShouldRefreshTonnesOfCO2PerHourWhenPeriodOrSelectedRegionChanges()
         {
             return Observable
@@ -229,6 +242,7 @@ namespace CODuo.Home
                 ShouldRefreshCurrentOperatorWhenDataOrCurrentRegionChanges(),
                 ShouldRefreshRegionPopulationWhenDataOrSelectedRegionChanges(),
                 ShouldRefreshRegionGenerationWhenDataOrSelectedRegionChanges(),
+                ShouldRefreshRegionWeatherWhenContainerCurrentPeriodOrSelectedRegionChanges(),
                 ShouldRefreshTonnesOfCO2PerHourWhenPeriodOrSelectedRegionChanges(),
                 ShouldRefreshDomesticConsumptionWhenCurrentPeriodOrRegionChanges(),
                 ShouldRefreshCarbonOffsetCostPerHourWhenTonnesOfCO2PerHourChanges(),
@@ -296,6 +310,11 @@ namespace CODuo.Home
         public Common.RegionGeneration CurrentRegionGeneration
         {
             get { return _currentRegionGeneration.Get(); }
+        }
+
+        public Common.Weather CurrentWeather
+        {
+            get { return _currentWeather.Get(); }
         }
 
         public int SelectedRegion

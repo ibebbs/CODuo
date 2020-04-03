@@ -55,6 +55,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Home\Infographic.xaml.cs">
       <DependentUpon>Infographic.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CurrentRegion.xaml.cs">
+      <DependentUpon>CurrentRegion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CompanyFundamentals.xaml.cs">
       <DependentUpon>CompanyFundamentals.xaml</DependentUpon>
     </Compile>
@@ -66,6 +69,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Planning.xaml.cs">
       <DependentUpon>Planning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\RegionConsumption.xaml.cs">
+      <DependentUpon>RegionConsumption.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Region.xaml.cs">
       <DependentUpon>Region.xaml</DependentUpon>
@@ -139,6 +145,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CurrentRegion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\CompanyFundamentals.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\Planning.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Home\InfoPanels\RegionConsumption.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

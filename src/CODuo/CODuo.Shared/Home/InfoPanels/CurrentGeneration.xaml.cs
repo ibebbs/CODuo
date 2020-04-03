@@ -5,8 +5,6 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
-
 namespace CODuo.Home.InfoPanels
 {
     public sealed partial class CurrentGeneration : UserControl

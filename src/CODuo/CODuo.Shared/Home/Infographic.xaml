@@ -6,37 +6,46 @@
     xmlns:info="using:CODuo.Home.InfoPanels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignHeight="2262.751">
+    mc:Ignorable="d" d:DesignHeight="3122.802">
 
     <Viewbox VerticalAlignment="Top" Margin="1">
         <Grid Width="2496" >
             <Grid.RowDefinitions>
                 <!-- Row Height = 448 -->
+                <RowDefinition Height="448"/>
+                <RowDefinition Height="448"/>
                 <RowDefinition Height="1120"/>
                 <RowDefinition Height="1728"/>
                 <RowDefinition Height="896"/>
                 <RowDefinition Height="896"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25*"/>
-                <ColumnDefinition Width="25*"/>
-                <ColumnDefinition Width="25*"/>
-                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="832"/>
+                <ColumnDefinition Width="832"/>
+                <ColumnDefinition Width="832"/>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.ColumnSpan="4" BorderBrush="#FFEBF5F9" BorderThickness="8">
+            <Border Grid.ColumnSpan="3" BorderBrush="#FFEBF5F9" BorderThickness="8,8,8,0">
                 <info:Region Current="{Binding Path=CurrentRegion, Mode=OneWay}" Container="{Binding Path=CurrentContainer, Mode=OneWay}"  />
             </Border>
-
-            <Border Grid.ColumnSpan="4" Grid.Row="1" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,0">
-                <info:CurrentGeneration Composition="{Binding Path=CurrentComposition, Mode=OneWay}"/>
+            
+            <Border Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,0">
+                <info:CurrentRegion Weather="{Binding Path=CurrentWeather, Mode=OneWay}" />
+            </Border>
+            
+            <Border Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,0">
+                <info:RegionConsumption Current="{Binding Path=CurrentRegion, Mode=OneWay}" Container="{Binding Path=CurrentContainer, Mode=OneWay}"  />
             </Border>
 
-            <Border Grid.ColumnSpan="4" Grid.Row="2" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,0">
+            <Border Grid.ColumnSpan="3" Grid.Row="3" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,0">
+                <info:CurrentGeneration Composition="{Binding Path=CurrentComposition, Mode=OneWay}" />
+            </Border>
+
+            <Border Grid.ColumnSpan="3" Grid.Row="4" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,0">
                 <info:ForecastGeneration Container="{Binding Path=CurrentContainer, Mode=OneWay}" SelectedRegion="{Binding Path=SelectedRegion, Mode=OneWay}" CurrentPeriod="{Binding Path=CurrentPeriod, Mode=OneWay}"/>
             </Border>
 
-            <Border Grid.ColumnSpan="4" Grid.Row="3" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,8">
+            <Border Grid.ColumnSpan="3" Grid.Row="5" BorderBrush="#FFEBF5F9" BorderThickness="8,0,8,8">
                 <info:Planning Container="{Binding Path=CurrentContainer, Mode=OneWay}" CurrentPeriod="{Binding Path=CurrentPeriod, Mode=OneWay}" SelectedRegion="{Binding Path=SelectedRegion, Mode=OneWay}"/>
             </Border>
         </Grid>

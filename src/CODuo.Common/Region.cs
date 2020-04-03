@@ -5,19 +5,6 @@ namespace CODuo.Common
 {
     public class Region
     {
-        public static readonly Region UnitedKingdon = new Region
-        {
-            Id = 0,
-            Name = "United Kingdon",
-            OperatorId = Guid.Parse("72240edd-7500-49bf-ad61-5645d42d0e81"),
-            PercentOfNationalEnergyConsumption = 1,
-            PercentOfNationalPopulation = 1,
-            PercentOfNationalBusinesses = 1,
-            PercentOfConsumptionBeingDomestic = 0.3732408609
-        };
-
-        public static readonly IEnumerable<Region> AdditionalRegions = new[] { UnitedKingdon };
-
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -33,5 +20,19 @@ namespace CODuo.Common
         public double PercentOfNationalBusinesses { get; set; }
 
         public double PercentOfConsumptionBeingDomestic { get; set; }
+
+        public string City { get; set; }
+
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
+        public DateTime? Dawn { get; set; }
+
+        public DateTime? SunRise { get; set; }
+
+        public DateTime? SunSet { get; set; }
+
+        public DateTime? Dusk { get; set; }
     }
 }
