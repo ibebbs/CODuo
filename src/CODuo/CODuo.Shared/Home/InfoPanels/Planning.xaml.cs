@@ -74,8 +74,8 @@ namespace CODuo.Home.InfoPanels
                     .Select(
                         tuple => new PeriodIntensity
                         {
-                            From = tuple.Period.From,
-                            To = tuple.Period.To,
+                            From = tuple.Period.From.ToLocalTime(),
+                            To = tuple.Period.To.ToLocalTime(),
                             GramsOfCO2PerkWh = tuple.GramsOfCO2PerkWh,
                             PercentOfMaxGramsOfCO2PerkWh = tuple.GramsOfCO2PerkWh / maxGramsOfCO2PerkWh,
                             RemainingPercentOfMaxGramsOfCO2PerkWh = 1 - (tuple.GramsOfCO2PerkWh / maxGramsOfCO2PerkWh)

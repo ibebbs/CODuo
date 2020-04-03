@@ -161,8 +161,8 @@ namespace CODuo.Controls
                 ForecastLeft = left;
                 ForecastWidth = ChartWidthValue - left;
 
-                ForecastStart = periods.Select(period => period.From).First();
-                ForecastEnd = periods.Reverse().Select(period => period.To).First();
+                ForecastStart = periods.Select(period => period.From.ToLocalTime()).First();
+                ForecastEnd = periods.Reverse().Select(period => period.To.ToLocalTime()).First();
             }
 
             return default;
