@@ -115,6 +115,28 @@
         </GuideModel>
       </GuideModels>
     </ProjectItemGuide>
+    <ProjectItemGuide TargetFile="..\CODuo.Shared\Home\InfoPanels\RegionConsumption.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Top" Position="0" />
+            <Guide Alignment="Left" Position="1280" />
+            <Guide Alignment="Left" Position="64" />
+            <Guide Alignment="Left" Position="1216" />
+            <Guide Alignment="Left" Position="256" />
+            <Guide Alignment="Left" Position="320" />
+            <Guide Alignment="Top" Position="384" />
+            <Guide Alignment="Top" Position="64" />
+            <Guide Alignment="Top" Position="128" />
+            <Guide Alignment="Left" Position="1792" />
+            <Guide Alignment="Left" Position="1856" />
+            <Guide Alignment="Left" Position="1920" />
+            <Guide Alignment="Left" Position="2496" />
+            <Guide Alignment="Left" Position="2432" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
     <ProjectItemGuide TargetFile="..\CODuo.Shared\Home\InfoPanels\Region.xaml">
       <GuideModels>
         <GuideModel>
@@ -158,28 +180,6 @@
             <Guide Alignment="Left" Position="1088" />
             <Guide Alignment="Left" Position="1792" />
             <Guide Alignment="Left" Position="1856" />
-          </Guides>
-        </GuideModel>
-      </GuideModels>
-    </ProjectItemGuide>
-    <ProjectItemGuide TargetFile="..\CODuo.Shared\Home\InfoPanels\RegionConsumption.xaml">
-      <GuideModels>
-        <GuideModel>
-          <Guides>
-            <Guide Alignment="Top" Position="0" />
-            <Guide Alignment="Left" Position="1280" />
-            <Guide Alignment="Left" Position="64" />
-            <Guide Alignment="Left" Position="1216" />
-            <Guide Alignment="Left" Position="256" />
-            <Guide Alignment="Left" Position="320" />
-            <Guide Alignment="Top" Position="384" />
-            <Guide Alignment="Top" Position="64" />
-            <Guide Alignment="Top" Position="128" />
-            <Guide Alignment="Left" Position="1792" />
-            <Guide Alignment="Left" Position="1856" />
-            <Guide Alignment="Left" Position="1920" />
-            <Guide Alignment="Left" Position="2496" />
-            <Guide Alignment="Left" Position="2432" />
           </Guides>
         </GuideModel>
       </GuideModels>

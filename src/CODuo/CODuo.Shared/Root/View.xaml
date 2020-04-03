@@ -12,8 +12,8 @@
         <NavigationView.PaneHeader>
             <StackPanel Orientation="Horizontal" Margin="4">
                 <Image Source="ms-appx:///Assets/Icon.png"/>
-                <TextBlock Text="CO" FontSize="24" FontFamily="Impact" VerticalAlignment="Top" Margin="4,0,0,0"/>
-                <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Bottom" Margin="0" Foreground="#FF2E7F18" FontStyle="Italic" />
+                <TextBlock Text="CO" FontSize="24" FontFamily="ms-appx:///Assets/Fonts/impact.ttf#Impact" VerticalAlignment="Top" Margin="4,0,0,0"/>
+                <TextBlock Text="duo" FontSize="12" FontFamily="Arial" VerticalAlignment="Bottom" Margin="0" Foreground="#FF2E7F18" FontStyle="Italic" FontWeight="Light" />
             </StackPanel>
         </NavigationView.PaneHeader>
         <NavigationView.MenuItems>
