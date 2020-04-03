@@ -11,8 +11,8 @@ namespace CODuo.Home.InfoPanels
 
         public static readonly DependencyProperty TemperatureProperty = DependencyProperty.Register(nameof(Temperature), typeof(float), typeof(CurrentRegion), new PropertyMetadata(0.0f));
         public static readonly DependencyProperty WindSpeedProperty = DependencyProperty.Register(nameof(WindSpeed), typeof(float), typeof(CurrentRegion), new PropertyMetadata(0.0f));
-
-        public static readonly DependencyProperty WindDirectionProperty = DependencyProperty.Register("WindDirection", typeof(double), typeof(CurrentRegion), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty RainProperty = DependencyProperty.Register(nameof(Rain), typeof(float), typeof(CurrentRegion), new PropertyMetadata(0.0f));
+        public static readonly DependencyProperty RainProbabilityProperty = DependencyProperty.Register(nameof(RainProbability), typeof(float), typeof(CurrentRegion), new PropertyMetadata(0.0f));
 
         private static void DataProperyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -33,10 +33,10 @@ namespace CODuo.Home.InfoPanels
 
             Temperature = weather?.Temperature ?? 0.0f;
             WindSpeed = weather?.WindSpeed ?? 0.0f;
+            Rain = weather?.PrecipitationRate ?? 0.0f;
+            RainProbability = (weather?.PrecipitationProbability ?? 0.0f) / 100.0f;
 
-            WindDirection = Convert.ToDouble(weather?.WindDirection ?? 0.0f);
-
-            WindDirectionArrow.RenderTransform = new RotateTransform { Angle = WindDirection };
+            WindDirectionArrow.RenderTransform = new RotateTransform { Angle = (weather?.WindDirection ?? 0.0f) };
         }
 
         public Common.Weather Weather
@@ -56,11 +56,18 @@ namespace CODuo.Home.InfoPanels
             get { return (float)GetValue(WindSpeedProperty); }
             set { SetValue(WindSpeedProperty, value); }
         }
-
-        public double WindDirection
+        public float Rain
         {
-            get { return (double)GetValue(WindDirectionProperty); }
-            set { SetValue(WindDirectionProperty, value); }
+            get { return (float)GetValue(RainProperty); }
+            set { SetValue(RainProperty, value); }
         }
+
+        public float RainProbability
+        {
+            get { return (float)GetValue(RainProbabilityProperty); }
+            set { SetValue(RainProbabilityProperty, value); }
+        }
+
+
     }
 }
