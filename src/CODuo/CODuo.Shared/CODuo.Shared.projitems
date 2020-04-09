@@ -87,9 +87,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)IState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Platform\ILaunch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\ISchedulers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\ILayout.cs" />
@@ -105,12 +102,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Home\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Initializing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\ITransition.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)State\Home\LeftRight.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Machine.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)State\Home\Single.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)State\Home\TopBottom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToHome.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewLocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Factory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IntensityToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\LayoutExtensions.cs" />
@@ -189,10 +182,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Resources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,8 +218,5 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)State\Home\" />
   </ItemGroup>
 </Project>

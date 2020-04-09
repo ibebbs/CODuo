@@ -27,6 +27,7 @@ namespace CODuo
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.Resuming += OnResuming;
 
             Platform.Services.Service.PerformRegistration();
         }
@@ -79,9 +80,22 @@ namespace CODuo
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+#if NETFX_CORE
             var deferral = e.SuspendingOperation.GetDeferral();
+#endif
+
             //TODO: Save application state and stop any background activity
+
+            //System.Diagnostics.Debugger.Break();
+
+#if NETFX_CORE
             deferral.Complete();
+#endif
+        }
+
+        private void OnResuming(object sender, object e)
+        {
+            //System.Diagnostics.Debugger.Break();
         }
 
 
