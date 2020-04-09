@@ -45,12 +45,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ValueToMinHeightConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Provider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\Application\Resuming.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\Application\Suspended.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\Application\Suspending.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\Bus.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutChanged.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\Data\Available.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\Data\Fetching.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\Data\Requested.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Event\Layout\Changed.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeChanged.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutModeResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Event\RefreshData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\Infographic.xaml.cs">
       <DependentUpon>Infographic.xaml</DependentUpon>
@@ -98,12 +103,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)Root\Layout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Root\View.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Root\ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Aggregate\Root.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Factory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Suspended.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Suspending.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Resuming.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Initializing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\ITransition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Machine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToHome.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToResuming.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToSuspended.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToSuspending.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Factory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IntensityToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\LayoutExtensions.cs" />
@@ -196,7 +208,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\COduo.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LargeTile.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LockScreenLogo.scale-200.png" />
@@ -218,5 +229,8 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Event\Layout\" />
   </ItemGroup>
 </Project>

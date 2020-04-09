@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -39,12 +41,6 @@ namespace CODuo
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-#if DEBUG
-			if (System.Diagnostics.Debugger.IsAttached)
-			{
-				// this.DebugSettings.EnableFrameRateCounter = true;
-			}
-#endif
             var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -78,24 +74,31 @@ namespace CODuo
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
 #if NETFX_CORE
             var deferral = e.SuspendingOperation.GetDeferral();
 #endif
+            var eventBus = Platform.Services.Service.Provider.GetService<Event.IBus>();
 
-            //TODO: Save application state and stop any background activity
+            var task = eventBus.GetEvent<Event.Application.Suspended>().Take(1).ToTask();
 
-            //System.Diagnostics.Debugger.Break();
-
+            eventBus.Publish(new Event.Application.Suspending());
 #if NETFX_CORE
+            await task;
+
             deferral.Complete();
+#else
+            // No deferral in Uno so wait for event Application.Suspended event synchronously
+            task.GetAwaiter().GetResult();
 #endif
         }
 
         private void OnResuming(object sender, object e)
         {
-            //System.Diagnostics.Debugger.Break();
+            Platform.Services.Service.Provider
+                .GetService<Event.IBus>()
+                .Publish(new Event.Application.Resuming());
         }
 
 

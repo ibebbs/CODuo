@@ -38,7 +38,10 @@ namespace CODuo.State
 
             // Then, for each transition type, select the new state...
             IObservable<IState> states = Observable.Merge(
-                transitions.OfType<Transition.ToHome>().Select(transition => _factory.Home())
+                transitions.OfType<Transition.ToResuming>().Select(transition => _factory.Resuming(transition.AggregateRoot)),
+                transitions.OfType<Transition.ToHome>().Select(transition => _factory.Home(transition.AggregateRoot)),
+                transitions.OfType<Transition.ToSuspending>().Select(transition => _factory.Suspending(transition.AggregateRoot)),
+                transitions.OfType<Transition.ToSuspended>().Select(transition => _factory.Suspended(transition.AggregateRoot))
             );
 
             // Finally, subscribe to the state observable ...

@@ -43,7 +43,7 @@ namespace CODuo.Root
 
         private IDisposable ShouldUpdateLayoutWhenLayoutUpdatedReceivedOrLayoutUpdaterChanges()
         {
-            return _eventBus.GetEvent<Event.LayoutChanged>()
+            return _eventBus.GetEvent<Event.Layout.Changed>()
                 .WithLatestFrom(_view, (@event, view) => (@event.Layout, View: view))
                 .Where(tuple => tuple.View != null)
                 .ObserveOn(_schedulers.Dispatcher)
@@ -55,7 +55,7 @@ namespace CODuo.Root
             return _view
                 .Select(view => view is null ? Observable.Never<Unit>() : view.RefreshData)
                 .Switch()
-                .Select(_ => new Event.RefreshData())
+                .Select(_ => new Event.Data.Requested())
                 .Subscribe(_eventBus.Publish);
         }
 

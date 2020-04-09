@@ -1,8 +1,8 @@
 ﻿namespace CODuo.State.Transition
 {
-    public class ToHome : ITransition
+    public class ToSuspended : ITransition
     {
-        public ToHome(Aggregate.IRoot aggregateRoot)
+        public ToSuspended(Aggregate.IRoot aggregateRoot)
         {
             AggregateRoot = aggregateRoot;
         }

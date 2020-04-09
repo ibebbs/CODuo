@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Numerics;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
@@ -8,12 +7,14 @@ namespace CODuo.Home
 {
     public class State : IState
     {
+        private readonly CODuo.State.Aggregate.IRoot _aggregateRoot;
         private readonly Event.IBus _eventBus;
         private readonly CODuo.ViewModel.IFactory _viewModelFactory;
         private readonly Platform.ISchedulers _schedulers;
 
-        public State(Event.IBus eventBus, CODuo.ViewModel.IFactory viewModelFactory, Platform.ISchedulers schedulers)
+        public State(CODuo.State.Aggregate.IRoot aggregateRoot, Event.IBus eventBus, CODuo.ViewModel.IFactory viewModelFactory, Platform.ISchedulers schedulers)
         {
+            _aggregateRoot = aggregateRoot;
             _eventBus = eventBus;
             _viewModelFactory = viewModelFactory;
             _schedulers = schedulers;
@@ -52,9 +53,9 @@ namespace CODuo.Home
             };
         }
 
-        private Event.LayoutChanged AsEvent(Root.Layout layout)
+        private Event.Layout.Changed AsEvent(Root.Layout layout)
         {
-            return new Event.LayoutChanged(layout);
+            return new Event.Layout.Changed(layout);
         }
 
         public IObservable<CODuo.State.ITransition> Enter()
@@ -75,9 +76,14 @@ namespace CODuo.Home
 
                     _eventBus.Publish(new Event.LayoutModeRequest());
 
+                    var transitions = _eventBus
+                        .GetEvent<Event.Application.Suspending>()
+                        .Select(_ => new CODuo.State.Transition.ToSuspending(_aggregateRoot));
+
                     return new CompositeDisposable(
                         viewModel.Activate(),
-                        layouts
+                        layouts,
+                        transitions.Subscribe(observer)
                     );
                 }
             );

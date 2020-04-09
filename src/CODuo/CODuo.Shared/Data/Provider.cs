@@ -17,17 +17,20 @@ namespace CODuo.Data
         //private const string Uri = "http://127.0.0.1:10000/devstoreaccount1/ukenergy/CurrentV1.json";
         private const string Uri = "https://coduo.blob.core.windows.net/ukenergy/CurrentV1.json";
 
+        private readonly Event.IBus _eventBus;
         private readonly IConnectableObservable<Common.Container> _observable;
 
         public Provider(Platform.ISchedulers schedulers, Event.IBus eventBus)
         {
+            _eventBus = eventBus;
+
             var httpClient = new HttpClient();
 
             var timedSource = Observable
                 .Interval(TimeSpan.FromMinutes(15), schedulers.Default);
 
             var requestSource = eventBus
-                .GetEvent<Event.RefreshData>()
+                .GetEvent<Event.Data.Requested>()
                 .Select(_ => schedulers.Default.Now.Ticks);
 
             _observable = Observable
@@ -49,12 +52,16 @@ namespace CODuo.Data
                 {
                     try
                     {
+                        _eventBus.Publish(new Event.Data.Fetching());
+
                         var result = await httpClient.GetAsync(Uri).ConfigureAwait(false);
 
                         result.EnsureSuccessStatusCode();
 
                         var stream = await result.Content.ReadAsStreamAsync().ConfigureAwait(false);
                         var container = await Common.Serializer.Deserialize(stream).ConfigureAwait(false);
+
+                        _eventBus.Publish(new Event.Data.Available(container));
 
                         observer.OnNext(container);
                         observer.OnCompleted();

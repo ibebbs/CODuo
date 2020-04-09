@@ -1,8 +1,8 @@
-﻿namespace CODuo.Event
+﻿namespace CODuo.Event.Layout
 {
-    public class LayoutChanged
+    public class Changed
     {
-        public LayoutChanged(Root.Layout layout)
+        public Changed(Root.Layout layout)
         {
             Layout = layout;
         }

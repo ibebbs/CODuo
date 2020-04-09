@@ -21,12 +21,12 @@
             <!--
             <NavigationViewItem Content="Generation" IsSelected="True">
                 <NavigationViewItem.Icon>
-                    <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="D" Foreground="#FF2E7F18" />
+                    <FontIcon Glyph="D" Foreground="#FF2E7F18" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem Content="Action">
                 <NavigationViewItem.Icon>
-                    <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="F" Foreground="#FF2E7F18" />
+                    <FontIcon Glyph="F" Foreground="#FF2E7F18" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             -->
