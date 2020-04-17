@@ -118,12 +118,7 @@ namespace CODuo
 						// DependencyObject memory references tracking
 						// { "ReferenceHolder", LogLevel.Debug },
 					}
-                )
-#if DEBUG
-				.AddConsole(LogLevel.Debug);
-#else
-                .AddConsole(LogLevel.Information);
-#endif
+                );
         }
     }
 }
