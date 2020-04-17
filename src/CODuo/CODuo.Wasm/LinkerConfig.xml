@@ -1,7 +1,12 @@
 ﻿<linker>
+  <assembly fullname="CODuo.Common" />
   <assembly fullname="CODuo.Wasm" />
   <assembly fullname="Uno.UI" />
 
+  <assembly fullname="System.Text.Json"/>
+  <assembly fullname="System.Runtime.CompilerServices.Unsafe">
+    <method fullname="System.Runtime.CompilerServices.Unsafe.Unbox"/>
+  </assembly>
   <assembly fullname="System.Core">
 	<!-- This is required by JSon.NET and any expression.Compile caller -->
 	<type fullname="System.Linq.Expressions*" />

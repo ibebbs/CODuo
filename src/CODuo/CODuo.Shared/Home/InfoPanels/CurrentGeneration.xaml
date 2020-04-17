@@ -65,7 +65,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="WIND" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0"/>
             <TextBlock Text="@ 0.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
-            <TextBlock Text="{x:Bind Path=Composition['Wind'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
+            <TextBlock Text="{x:Bind Path=Composition[\'Wind\'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
         <Grid Height="98" Canvas.Left="1408" Canvas.Top="738" Width="1024" Background="{StaticResource HydroBrush}">
             <Grid.ColumnDefinitions>
@@ -75,7 +75,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="HYDRO" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0"/>
             <TextBlock Text="@ 0.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
-            <TextBlock Text="{x:Bind Path=Composition['Hydro'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
+            <TextBlock Text="{x:Bind Path=Composition[\'Hydro\'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
         <Grid Height="98" Canvas.Left="1408" Canvas.Top="836" Width="1024" Background="{StaticResource SolarBrush}">
             <Grid.ColumnDefinitions>
@@ -85,7 +85,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="SOLAR" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0"/>
             <TextBlock Text="@ 0.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
-            <TextBlock Text="{x:Bind Path=Composition['Solar'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
+            <TextBlock Text="{x:Bind Path=Composition[\'Solar\'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
         <Grid Height="98" Canvas.Left="1408" Canvas.Top="934" Width="1024" Background="{StaticResource NuclearBrush}">
             <Grid.ColumnDefinitions>
@@ -95,7 +95,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="NUCLEAR" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0"/>
             <TextBlock Text="@ 0.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
-            <TextBlock Text="{x:Bind Path=Composition['Nuclear'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
+            <TextBlock Text="{x:Bind Path=Composition[\'Nuclear\'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
         <Grid Height="98" Canvas.Left="1408" Canvas.Top="1032" Width="1024" Background="{StaticResource BiomassBrush}">
             <Grid.ColumnDefinitions>
@@ -105,7 +105,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="BIOMASS" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0"/>
             <TextBlock Text="@ 120.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
-            <TextBlock Text="{x:Bind Path=Composition['Biomass'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
+            <TextBlock Text="{x:Bind Path=Composition[\'Biomass\'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
         <Grid Height="98" Canvas.Left="1408" Canvas.Top="1130" Width="1024" Background="{StaticResource OtherBrush}">
             <Grid.ColumnDefinitions>
@@ -125,7 +125,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="IMPORT" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0"/>
             <TextBlock Text="@ 328.33 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
-            <TextBlock Text="{x:Bind Path=Composition['Import'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
+            <TextBlock Text="{x:Bind Path=Composition[\'Import\'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
         <Grid Height="98" Canvas.Left="1408" Canvas.Top="1326" Width="1024" Background="{StaticResource GasBrush}">
             <Grid.ColumnDefinitions>
@@ -135,7 +135,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="GAS" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Black" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0"/>
             <TextBlock Text="@ 522.5 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" FontWeight="Normal" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="1"/>
-            <TextBlock Text="{x:Bind Path=Composition['Gas'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
+            <TextBlock Text="{x:Bind Path=Composition[\'Gas\'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="Bold"/>
         </Grid>
         <Grid Height="98" Canvas.Left="1408" Canvas.Top="1424" Width="1024" Background="{StaticResource OilBrush}">
             <Grid.ColumnDefinitions>
@@ -145,7 +145,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="OIL" FontFamily="Arial" FontSize="56" Foreground="White" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" Margin="16,0,0,0" TextLineBounds="TrimToBaseline" FontWeight="Black"/>
             <TextBlock Text="@ 935.0 gCO₂/kWh" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="16,0,0,0" TextLineBounds="TrimToBaseline" Grid.Column="1"/>
-            <TextBlock Text="{x:Bind Path=Composition['Coal'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" TextLineBounds="TrimToBaseline"/>
+            <TextBlock Text="{x:Bind Path=Composition[\'Coal\'], Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=[0:P0]}" FontFamily="Arial" FontSize="56" Foreground="White" VerticalAlignment="Center" Margin="0,0,16,0" Grid.Column="2" HorizontalAlignment="Right" TextLineBounds="TrimToBaseline"/>
         </Grid>
         <Grid Height="98" Canvas.Left="1408" Canvas.Top="1522" Width="1024" Background="{StaticResource CoalBrush}">
             <Grid.ColumnDefinitions>
