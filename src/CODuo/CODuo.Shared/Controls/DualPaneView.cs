@@ -398,7 +398,7 @@ namespace CODuo.Controls
 			DefaultStyleKey = typeof(DualPaneView);
 
 			SizeChanged += OnSizeChanged;
-			Window.Current.SizeChanged += OnWindowSizeChanged;
+			Windows.UI.Xaml.Window.Current.SizeChanged += OnWindowSizeChanged;
 		}
 
 		protected override void OnApplyTemplate()

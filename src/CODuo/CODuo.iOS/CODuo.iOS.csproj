@@ -100,6 +100,9 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <None Include="Info.plist" />
+    <Compile Include="Platform\Layout\Provider.cs" />
+    <Compile Include="Platform\Schedulers.cs" />
+    <Compile Include="Platform\Services.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <BundleResource Include="Resources\SplashScreen%402x.png" />
