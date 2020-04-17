@@ -99,6 +99,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
+    <BundleResource Include="..\..\Fonts\impact.ttf">
+      <Link>Resources\Fonts\impact.ttf</Link>
+    </BundleResource>
     <None Include="Info.plist" />
     <Compile Include="Platform\Layout\Provider.cs" />
     <Compile Include="Platform\Schedulers.cs" />
