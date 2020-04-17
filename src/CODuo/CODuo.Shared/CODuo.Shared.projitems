@@ -87,8 +87,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Platform\ILaunch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\ISchedulers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\ILayout.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\Instance.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\IProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Layout\Mode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Services.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Root\Helpers.cs" />
