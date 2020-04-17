@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CODuo.Controls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="#FFF7FBFD">
 
@@ -33,7 +34,7 @@
         </NavigationView.MenuItems>
         <NavigationView.Content>
             <Grid>
-                <controls:DualPaneView x:Name="dualPaneView" Background="#FFF7FBFD" TallModeConfiguration="SinglePane" MinWideModeWidth="1024" Pane1Length="0.5*" Pane2Length="0.5*"/>
+                <winui:TwoPaneView x:Name="twoPaneView" Background="#FFF7FBFD" TallModeConfiguration="SinglePane" MinWideModeWidth="1024" Pane1Length="0.5*" Pane2Length="0.5*"/>
             </Grid>
         </NavigationView.Content>
         <NavigationView.PaneFooter>
