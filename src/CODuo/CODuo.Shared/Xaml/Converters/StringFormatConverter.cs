@@ -2,17 +2,19 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace CODuo.Converters
+namespace CODuo.Xaml.Converters
 {
-    public class StringCaseConverter : IValueConverter
+    public class StringFormatConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return value switch
+            var result = parameter switch
             {
-                string s => s.ToUpper(),
+                string format => string.Format(format.Replace('[', '{').Replace(']', '}'), value),
                 _ => DependencyProperty.UnsetValue
             };
+
+            return result;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

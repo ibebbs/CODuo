@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace CODuo.Converters
+namespace CODuo.Xaml.Converters
 {
     public class NumberToGridLengthConverter : IValueConverter
     {

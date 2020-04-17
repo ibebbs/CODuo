@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace CODuo.Converters
+namespace CODuo.Xaml.Converters
 {
     public class RegionToLogoConverter : IValueConverter
     {

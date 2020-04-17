@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace CODuo.Converters
+namespace CODuo.Xaml.Converters
 {
     public class RegionSelectionToOpacityConverter : IValueConverter
     {

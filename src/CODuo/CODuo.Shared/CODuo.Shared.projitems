@@ -32,18 +32,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\RegionCompositionChart.xaml.cs">
       <DependentUpon>RegionCompositionChart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\RegionSelectionToOpacityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\RegionSelectionToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquarePanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml.cs">
       <DependentUpon>ContactButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\ElementWidthConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\LevelToBrushConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\NumberToGridLengthConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\RegionToLogoConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringCaseConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\ValueToMinHeightConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\ElementWidthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\LevelToBrushConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\NumberToGridLengthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\RegionToLogoConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\StringCaseConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\StringFormatConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\ValueToMinHeightConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Provider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\Bus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\LayoutChanged.cs" />
@@ -104,7 +104,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToHome.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewLocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Factory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\IntensityToBrushConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\IntensityToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\LayoutExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\WindowHelper.cs" />
   </ItemGroup>

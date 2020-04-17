@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
-namespace CODuo.Converters
+namespace CODuo.Xaml.Converters
 {
     public class LevelToBrushConverter : IValueConverter
     {
