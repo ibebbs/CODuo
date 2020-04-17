@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Media;
 
 // The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
 
-namespace CODuo.Controls
+namespace CODuo.Xaml.Controls
 {
     public partial class SquarePanel : Panel
     {

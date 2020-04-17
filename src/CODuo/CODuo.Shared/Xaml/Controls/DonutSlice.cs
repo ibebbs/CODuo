@@ -4,7 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
-namespace CODuo.Controls
+namespace CODuo.Xaml.Controls
 {
     public partial class DonutSlice : Path
     {

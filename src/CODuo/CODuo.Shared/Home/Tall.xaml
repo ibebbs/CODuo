@@ -8,18 +8,16 @@
     mc:Ignorable="d"
     >
 
-    <ScrollViewer HorizontalScrollMode="Disabled">
-        <Grid Background="#FFF7FBFD">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Border Grid.Row="0"  Padding="10,10,10,0">
-                <local:Left />
-            </Border>
-            <Border Grid.Row="1" Padding="10,0,10,10">
-                <local:Infographic />
-            </Border>
-        </Grid>
-    </ScrollViewer>
+    <Grid Background="#FFF7FBFD">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"  Padding="10,10,10,0">
+            <local:Left />
+        </Border>
+        <Border Grid.Row="1" Padding="10,0,10,10">
+            <local:Infographic />
+        </Border>
+    </Grid>
 </Page>

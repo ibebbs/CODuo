@@ -1,4 +1,4 @@
-﻿using CODuo.Controls;
+﻿using CODuo.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls;
 using System;
 

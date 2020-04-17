@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Shapes;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace CODuo.Controls
+namespace CODuo.Xaml.Controls
 {
     public sealed partial class RegionCompositionChart : UserControl
     {

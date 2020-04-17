@@ -18,25 +18,25 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CompositionGrid.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\CompositionGrid.xaml.cs">
       <DependentUpon>CompositionGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CountryByRegion.xaml.cs">
-      <DependentUpon>CountryByRegion.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DualPaneView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DomesticToNonDomesticConsumption.xaml.cs">
-      <DependentUpon>DomesticToNonDomesticConsumption.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DonutSlice.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\RegionCompositionChart.xaml.cs">
-      <DependentUpon>RegionCompositionChart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\RegionSelectionToOpacityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\SquarePanel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\ContactButton.xaml.cs">
       <DependentUpon>ContactButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\CountryByRegion.xaml.cs">
+      <DependentUpon>CountryByRegion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\DomesticToNonDomesticConsumption.xaml.cs">
+      <DependentUpon>DomesticToNonDomesticConsumption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\DonutSlice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\DualPaneView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\RegionCompositionChart.xaml.cs">
+      <DependentUpon>RegionCompositionChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\SquarePanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\RegionSelectionToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\ElementWidthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\LevelToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\Converters\NumberToGridLengthConverter.cs" />
@@ -113,26 +113,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\CompositionGrid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\CountryByRegion.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\DomesticToNonDomesticConsumption.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\ContactButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\RegionCompositionChart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Home\Infographic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +166,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Xaml\Controls\CompositionGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Xaml\Controls\ContactButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Xaml\Controls\CountryByRegion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Xaml\Controls\DomesticToNonDomesticConsumption.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Xaml\Controls\RegionCompositionChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

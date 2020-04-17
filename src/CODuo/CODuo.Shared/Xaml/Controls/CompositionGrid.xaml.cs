@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace CODuo.Controls
+namespace CODuo.Xaml.Controls
 {
     public sealed partial class CompositionGrid : UserControl, INotifyPropertyChanged
     {

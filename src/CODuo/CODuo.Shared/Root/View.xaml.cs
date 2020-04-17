@@ -1,11 +1,10 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Reactive;
 using System.Reactive.Linq;
 using Windows.Foundation;
 using Windows.UI.Xaml;
-using System.Reactive;
 using Windows.UI.Xaml.Input;
-using CODuo.Controls;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 

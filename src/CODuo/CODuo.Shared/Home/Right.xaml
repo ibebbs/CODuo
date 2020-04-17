@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <ScrollViewer HorizontalScrollMode="Disabled">
+    <ScrollViewer>
         <Border Padding="4">
             <local:Infographic />
         </Border>

@@ -4,7 +4,7 @@
     xmlns:local="using:CODuo.Home.InfoPanels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:CODuo.Controls"
+    xmlns:controls="using:CODuo.Xaml.Controls"
     x:Class="CODuo.Home.InfoPanels.ForecastGeneration"
     mc:Ignorable="d" Width="2496" Height="896">
 
