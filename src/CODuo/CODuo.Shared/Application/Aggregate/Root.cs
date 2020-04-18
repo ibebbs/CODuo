@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CODuo.State.Aggregate
+namespace CODuo.Application.Aggregate
 {
     public interface IRoot
     {

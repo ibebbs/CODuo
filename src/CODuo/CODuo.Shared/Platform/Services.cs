@@ -22,10 +22,11 @@ namespace CODuo.Platform
 
             services.AddSingleton<Data.IProvider, Data.Provider>();
 
-            services.AddTransient<State.Launching>();
+            services.AddSingleton<Application.State.IFactory, Application.State.Factory>();
+            services.AddSingleton<Application.State.IMachine, Application.State.Machine>();
 
-            services.AddSingleton<State.IFactory, State.Factory>();
-            services.AddSingleton<State.IMachine, State.Machine>();
+            services.AddSingleton<Navigation.State.IFactory, Navigation.State.Factory>();
+            services.AddSingleton<Navigation.State.IMachine, Navigation.State.Machine>();
 
             services.AddSingleton<ViewModel.IFactory, ViewModel.Factory>();
 

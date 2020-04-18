@@ -3,7 +3,7 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
-namespace CODuo.State
+namespace CODuo.Application.State
 {
     public interface IMachine
     {
@@ -40,7 +40,7 @@ namespace CODuo.State
             IObservable<IState> states = Observable.Merge(
                 transitions.OfType<Transition.ToInitializing>().Select(transition => _factory.Initializing(transition.AggregateRoot)),
                 transitions.OfType<Transition.ToResuming>().Select(transition => _factory.Resuming(transition.AggregateRoot)),
-                transitions.OfType<Transition.ToHome>().Select(transition => _factory.Home(transition.AggregateRoot)),
+                transitions.OfType<Transition.ToRunning>().Select(transition => _factory.Running(transition.AggregateRoot)),
                 transitions.OfType<Transition.ToSuspending>().Select(transition => _factory.Suspending(transition.AggregateRoot)),
                 transitions.OfType<Transition.ToSuspended>().Select(transition => _factory.Suspended(transition.AggregateRoot))
             );

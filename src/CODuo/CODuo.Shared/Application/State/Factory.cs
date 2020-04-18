@@ -1,40 +1,26 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-
-namespace CODuo.State
+﻿namespace CODuo.Application.State
 {
     public interface IFactory
     {
         IState Launching();
         IState Initializing(Aggregate.IRoot aggregateRoot);
         IState Resuming(Aggregate.IRoot aggregateRoot);
+        IState Running(Aggregate.IRoot aggregateRoot);
         IState Suspending(Aggregate.IRoot aggregateRoot);
         IState Suspended(Aggregate.IRoot aggregateRoot);
-        IState Home(Aggregate.IRoot aggregateRoot);
     }
 
     public class Factory : IFactory
     {
         private readonly Event.IBus _eventBus;
         private readonly Data.IProvider _dataProvider;
-        private readonly ViewModel.IFactory _viewModelFactory;
-        private readonly Platform.ISchedulers _platformSchedulers;
 
         public Factory(
             Event.IBus eventBus, 
-            Data.IProvider dataProvider, 
-            ViewModel.IFactory viewModelFactory, 
-            Platform.ISchedulers platformSchedulers)
+            Data.IProvider dataProvider)
         {
             _eventBus = eventBus;
             _dataProvider = dataProvider;
-            _viewModelFactory = viewModelFactory;
-            _platformSchedulers = platformSchedulers;
-        }
-
-        public IState Home(Aggregate.IRoot aggregateRoot)
-        {
-            return new Home.State(aggregateRoot, _eventBus, _viewModelFactory, _platformSchedulers);
         }
 
         public IState Launching()
@@ -50,6 +36,11 @@ namespace CODuo.State
         public IState Resuming(Aggregate.IRoot aggregateRoot)
         {
             return new Resuming(aggregateRoot, _dataProvider);
+        }
+
+        public IState Running(Aggregate.IRoot aggregateRoot)
+        {
+            return new Running(aggregateRoot, _eventBus);
         }
 
         public IState Suspending(Aggregate.IRoot aggregateRoot)

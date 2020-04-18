@@ -1,4 +1,4 @@
-﻿namespace CODuo.State.Transition
+﻿namespace CODuo.Application.State.Transition
 {
     public class ToResuming : ITransition 
     {

@@ -3,7 +3,7 @@ using System;
 using System.Reactive.Linq;
 using Windows.UI.Xaml.Controls;
 
-namespace CODuo.State
+namespace CODuo.Application.State
 {
     public class Initializing : IState
     {

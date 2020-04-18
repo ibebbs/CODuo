@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reactive.Linq;
 
-namespace CODuo.State
+namespace CODuo.Application.State
 {
     public class Suspended : IState
     {

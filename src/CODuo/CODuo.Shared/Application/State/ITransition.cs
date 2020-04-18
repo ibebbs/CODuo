@@ -1,4 +1,4 @@
-﻿namespace CODuo.State
+﻿namespace CODuo.Application.State
 {
     public interface ITransition
     {

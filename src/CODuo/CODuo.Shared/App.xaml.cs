@@ -48,7 +48,7 @@ namespace CODuo
 
             if (_app == null)
             {
-                _app = Platform.Services.Service.Provider.GetService<State.IMachine>().Start();
+                _app = Platform.Services.Service.Provider.GetService<Application.State.IMachine>().Start();
             }
 
             Windows.UI.Xaml.Window.Current.Activate();

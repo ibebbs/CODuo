@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Reactive.Linq;
 
-namespace CODuo.State
+namespace CODuo.Application.State
 {
-    public class Running : IState
+    public class Suspending : IState
     {
         private readonly Aggregate.IRoot _aggregateRoot;
-        private readonly Data.IProvider _dataProvider;
 
-        public Running(Aggregate.IRoot aggregateRoot, Data.IProvider dataProvider)
+        public Suspending(Aggregate.IRoot aggregateRoot)
         {
             _aggregateRoot = aggregateRoot;
-            _dataProvider = dataProvider;
         }
 
         public IObservable<ITransition> Enter()
@@ -19,10 +17,10 @@ namespace CODuo.State
             return Observable.Create<ITransition>(
                 observer =>
                 {
-                    var aggregateRoot = _aggregateRoot.SubscribeToDataProvider(() => _dataProvider.Activate());
+                    var aggregateRoot = _aggregateRoot.UnsubscribeFromDataProvider(disposable => disposable.Dispose());
 
                     return Observable
-                        .Return(new Transition.ToHome(aggregateRoot))
+                        .Return(new Transition.ToSuspended(aggregateRoot))
                         .Subscribe(observer);
                 });
             ;

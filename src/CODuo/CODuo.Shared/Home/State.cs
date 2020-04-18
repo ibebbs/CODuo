@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Numerics;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
 namespace CODuo.Home
 {
-    public class State : IState
+    public class State : Navigation.IState
     {
-        private readonly CODuo.State.Aggregate.IRoot _aggregateRoot;
         private readonly Event.IBus _eventBus;
         private readonly CODuo.ViewModel.IFactory _viewModelFactory;
         private readonly Platform.ISchedulers _schedulers;
 
-        public State(CODuo.State.Aggregate.IRoot aggregateRoot, Event.IBus eventBus, CODuo.ViewModel.IFactory viewModelFactory, Platform.ISchedulers schedulers)
+        public State(Event.IBus eventBus, CODuo.ViewModel.IFactory viewModelFactory, Platform.ISchedulers schedulers)
         {
-            _aggregateRoot = aggregateRoot;
             _eventBus = eventBus;
             _viewModelFactory = viewModelFactory;
             _schedulers = schedulers;
@@ -59,9 +56,9 @@ namespace CODuo.Home
             return new Event.Layout.Changed(layout);
         }
 
-        public IObservable<CODuo.State.ITransition> Enter()
+        public IObservable<Navigation.State.ITransition> Enter()
         {
-            return Observable.Create<CODuo.State.ITransition>(
+            return Observable.Create<Navigation.State.ITransition>(
                 observer =>
                 {
                     var viewModel = _viewModelFactory.Create<IViewModel>();
@@ -76,15 +73,10 @@ namespace CODuo.Home
                         .Subscribe(_eventBus.Publish);
 
                     _eventBus.Publish(new Event.LayoutModeRequest()); 
-                    
-                    var transitions = _eventBus
-                        .GetEvent<Event.Application.Suspending>()
-                        .Select(_ => new CODuo.State.Transition.ToSuspending(_aggregateRoot));
 
                     return new CompositeDisposable(
                         viewModel.Activate(),
-                        layouts,
-                        transitions.Subscribe(observer)
+                        layouts
                     );
                 }
             );

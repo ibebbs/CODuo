@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CODuo
+namespace CODuo.Application
 {
     public interface IState
     {
