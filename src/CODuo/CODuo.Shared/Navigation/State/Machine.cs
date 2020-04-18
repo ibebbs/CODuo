@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive.Concurrency;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
@@ -7,47 +8,53 @@ namespace CODuo.Navigation.State
 {
     public interface IMachine
     {
-        IDisposable Start();
+        IObservable<IData> Run(IData data);
     }
 
     public class Machine : IMachine
     {
         private readonly IFactory _factory;
-        private readonly Subject<IState> _states;
 
         public Machine(IFactory factory)
         {
             _factory = factory;
-            _states = new Subject<IState>();
         }
 
-        public IDisposable Start()
+        public IObservable<IData> Run(IData initialData)
         {
-            // First create a stream of transitions by ...
-            IObservable<ITransition> transitions = _states
-                // ... starting from the initializing state ...
-                .StartWith(_factory.Home())
-                // ... enter the current state ...
-                .Select(state => state.Enter())
-                // ... subscribing to the transition observable ...
-                .Switch()
-                // ... and ensure only a single shared subscription is made to the transitions observable ...
-                .Publish()
-                // ... held until there are no more subscribers
-                .RefCount();
+            return Observable.Create<IData>(
+                observer =>
+                {
+                    var state = _factory.FromData(initialData);
 
-            // Then, for each transition type, select the new state...
-            IObservable<IState> states = Observable.Merge(
-                // To be replace with state projects from transitions
-                transitions.Select(_ => _factory.Home())
+                    var states = new BehaviorSubject<IState>(state);
+
+                    // First create a stream of changes by ...
+                    IObservable<IChange> changes = states
+                        // ... enter the current state ...
+                        .Select(state => state.Enter())
+                        // ... subscribing to the change observable ...
+                        .Switch()
+                        // ... and ensure only a single shared subscription is made to the change observable ...
+                        .Publish()
+                        // ... held until there are no more subscribers
+                        .RefCount();
+
+                    IObservable<IData> data = changes.OfType<IData>();
+
+                    // Then, for each transition type, select the new state...
+                    IObservable<IState> transitions = changes
+                        .OfType<ITransition>()
+                        .Select(_ => _factory.FromData(initialData))
+                        .ObserveOn(Scheduler.CurrentThread);
+
+                    return new CompositeDisposable(
+                        transitions.Subscribe(states),
+                        data.Subscribe(observer),
+                        states
+                    );
+                }
             );
-
-            // Finally, subscribe to the state observable ...
-            return states
-                // ... ensuring all transitions are serialized ...
-                .ObserveOn(Scheduler.CurrentThread)
-                // ... back onto the source state observable
-                .Subscribe(_states);
         }
     }
 }

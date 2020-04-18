@@ -22,14 +22,16 @@ namespace CODuo.Application.State
                 observer =>
                 {
                     var navigation = Platform.Services.Service.Provider
-                        .GetService<Navigation.State.IMachine>();
+                        .GetService<Navigation.State.IMachine>()
+                        .Run(_aggregateRoot.GetNavigationStateData());
 
                     var transitions = _eventBus
                         .GetEvent<Event.Application.Suspending>()
-                        .Select(_ => new Transition.ToSuspending(_aggregateRoot));
+                        .WithLatestFrom(navigation, (_, data) => data)
+                        .Scan(_aggregateRoot, (aggregateRoot, data) => aggregateRoot.SetNavigationStateData(() => data))
+                        .Select(aggregateRoot => new Transition.ToSuspending(aggregateRoot));
 
                     return new CompositeDisposable(
-                        navigation.Start(),
                         transitions.Subscribe(observer)
                     );
                 });

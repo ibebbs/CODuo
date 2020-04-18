@@ -4,6 +4,6 @@ namespace CODuo.Navigation
 {
     public interface IState
     {
-        IObservable<State.ITransition> Enter();
+        IObservable<State.IChange> Enter();
     }
 }

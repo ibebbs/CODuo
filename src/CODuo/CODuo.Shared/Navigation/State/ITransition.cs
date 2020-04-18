@@ -1,4 +1,4 @@
 ﻿namespace CODuo.Navigation.State
 {
-    public interface ITransition { }
+    public interface ITransition : IChange { }
 }

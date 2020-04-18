@@ -33,5 +33,22 @@ namespace CODuo
                 }
             }
         }
+
+        public static IObservable<TSource> Using<TSource>(this IObservable<TSource> source, Func<TSource, IDisposable> resource)
+        {
+            return Observable.Create<TSource>(
+                observer =>
+                {
+                    SerialDisposable disposable = new SerialDisposable();
+
+                    var observable = source.Do(item => disposable.Disposable = resource(item));
+
+                    return new CompositeDisposable(
+                        observable.Subscribe(observer),
+                        disposable
+                    );
+                }
+            );
+        }
     }
 }

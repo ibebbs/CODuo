@@ -1,8 +1,11 @@
-﻿namespace CODuo.Navigation.State
+﻿using System;
+
+namespace CODuo.Navigation.State
 {
     public interface IFactory
     {
-        IState Home();
+        IState Home(Home.IViewModel viewModel);
+        IState FromData(IData data);
     }
 
     public class Factory : IFactory
@@ -21,9 +24,19 @@
             _platformSchedulers = platformSchedulers;
         }
 
-        public IState Home()
+        public IState FromData(IData data)
         {
-            return new Home.State(_eventBus, _viewModelFactory, _platformSchedulers);
+            return data switch
+            {
+                null => Home(null),
+                Home.IViewModel viewModel => Home(viewModel),
+                _ => throw new ArgumentException("Unknown navigation data type")
+            };
+        }
+
+        public IState Home(Home.IViewModel viewModel)
+        {
+            return new Home.State(_eventBus, _viewModelFactory, _platformSchedulers, viewModel);
         }
     }
 }

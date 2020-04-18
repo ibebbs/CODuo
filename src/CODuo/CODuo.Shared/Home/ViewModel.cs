@@ -8,7 +8,7 @@ using Windows.UI.Xaml;
 
 namespace CODuo.Home
 {
-    public interface IViewModel : CODuo.IViewModel, CODuo.IViewAware
+    public interface IViewModel : CODuo.IViewModel, IViewAware, Navigation.State.IData
     {
 
     }

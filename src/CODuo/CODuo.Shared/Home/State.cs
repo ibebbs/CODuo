@@ -10,12 +10,14 @@ namespace CODuo.Home
         private readonly Event.IBus _eventBus;
         private readonly CODuo.ViewModel.IFactory _viewModelFactory;
         private readonly Platform.ISchedulers _schedulers;
+        private readonly IViewModel _initialViewModel;
 
-        public State(Event.IBus eventBus, CODuo.ViewModel.IFactory viewModelFactory, Platform.ISchedulers schedulers)
+        public State(Event.IBus eventBus, CODuo.ViewModel.IFactory viewModelFactory, Platform.ISchedulers schedulers, IViewModel initialViewModel)
         {
             _eventBus = eventBus;
             _viewModelFactory = viewModelFactory;
             _schedulers = schedulers;
+            _initialViewModel = initialViewModel;
         }
 
         private Root.Layout LeftRight(IViewModel viewModel)
@@ -56,28 +58,54 @@ namespace CODuo.Home
             return new Event.Layout.Changed(layout);
         }
 
-        public IObservable<Navigation.State.ITransition> Enter()
+        private (IViewModel, Platform.Layout.Mode, bool, bool) ConstructViewModel(IViewModel viewModel, Platform.Layout.Mode oldMode, Platform.Layout.Mode newMode)
         {
-            return Observable.Create<Navigation.State.ITransition>(
+            return viewModel switch
+            {
+                null => (_viewModelFactory.Create<IViewModel>(), newMode, true, true),
+                _ when oldMode != newMode => (viewModel, newMode, false, true),
+                _ => (viewModel, newMode, false, false)
+            };
+        }
+
+        public IObservable<Navigation.State.IChange> Enter()
+        {
+            return Observable.Create<Navigation.State.IChange>(
                 observer =>
                 {
-                    var viewModel = _viewModelFactory.Create<IViewModel>();
-
-                    var layouts = Observable
+                    var tuples = Observable
+                        // Listen to layout changes ...
                         .Merge(
                             _eventBus.GetEvent<Event.LayoutModeResponse>().Select(@event => @event.Mode),
                             _eventBus.GetEvent<Event.LayoutModeChanged>().Select(@event => @event.Mode))
+                        // ... selecting the view model to use after each layout change ...
+                        .Scan((ViewModel: _initialViewModel, Mode: default(Platform.Layout.Mode), RequiresActivation: true, RequiresLayout: false), (tuple, newMode) => ConstructViewModel(tuple.ViewModel, tuple.Mode, newMode))
+                        .Publish();
+
+                    var viewModels = tuples
+                        .Where(tuple => tuple.RequiresActivation)
+                        .Select(tuple => tuple.ViewModel)
+                        .Using(viewModel => viewModel.Activate());
+
+                    var layouts = tuples
+                        // ... and where it's a new view model ...
+                        .Where(tuple => tuple.RequiresLayout)
+                        // ... move onto the UI thread ...
                         .ObserveOn(_schedulers.Dispatcher)
-                        .Select(mode => AsLayout(viewModel, mode))
-                        .Select(AsEvent)
-                        .Subscribe(_eventBus.Publish);
+                        // ... to create and attach views ...
+                        .Select(tuple => AsLayout(tuple.ViewModel, tuple.Mode))
+                        // ... then create an event for the layout
+                        .Select(AsEvent);
 
-                    _eventBus.Publish(new Event.LayoutModeRequest()); 
-
-                    return new CompositeDisposable(
-                        viewModel.Activate(),
-                        layouts
+                    var disposable = new CompositeDisposable(
+                        layouts.Subscribe(_eventBus.Publish),
+                        viewModels.Subscribe(observer),
+                        tuples.Connect()
                     );
+
+                    _eventBus.Publish(new Event.LayoutModeRequest());
+
+                    return disposable;
                 }
             );
         }

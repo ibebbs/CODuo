@@ -37,6 +37,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Application\State\Transition\ToSuspending.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\IState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\State\Factory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Navigation\State\IChange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Navigation\State\IData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\State\ITransition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\State\Machine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\CompositionGrid.xaml.cs">

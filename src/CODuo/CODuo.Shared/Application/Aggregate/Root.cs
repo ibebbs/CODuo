@@ -11,12 +11,17 @@ namespace CODuo.Application.Aggregate
         IRoot SubscribeToDataProvider(Func<IDisposable> subscriber);
 
         IRoot UnsubscribeFromDataProvider(Action<IDisposable> unsubscriber);
+
+        IRoot SetNavigationStateData(Func<Navigation.State.IData> source);
+
+        Navigation.State.IData GetNavigationStateData();
     }
 
     public class Root : IRoot
     {
         private IDisposable _rootViewModelActivation;
         private IDisposable _dataProviderSubscription;
+        private Navigation.State.IData _navigationStateData;
 
         public IRoot ActiveRootViewModel(Func<IDisposable> activation)
         {
@@ -76,6 +81,19 @@ namespace CODuo.Application.Aggregate
             {
                 throw new InvalidOperationException("Not subscribed to data provider");
             }
+        }
+
+
+        public IRoot SetNavigationStateData(Func<Navigation.State.IData> source)
+        {
+            _navigationStateData = source();
+
+            return this;
+        }
+
+        public Navigation.State.IData GetNavigationStateData()
+        {
+            return _navigationStateData;
         }
     }
 }
