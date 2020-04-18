@@ -79,7 +79,6 @@ namespace CODuo.Home
                     .OrderBy(period => period.From)
                     .Select(period => period.From.Ticks)
                     .FirstOrDefault())
-                .Do(ticks => System.Diagnostics.Debug.WriteLine($"From: '{ticks}'"))
                 .Subscribe(_sliderMinimum);
         }
 
@@ -91,7 +90,6 @@ namespace CODuo.Home
                     .OrderByDescending(period => period.From)
                     .Select(period => period.From.Ticks)
                     .FirstOrDefault())
-                .Do(ticks => System.Diagnostics.Debug.WriteLine($"To: '{ticks}'"))
                 .Subscribe(_sliderMaximum);
         }
 

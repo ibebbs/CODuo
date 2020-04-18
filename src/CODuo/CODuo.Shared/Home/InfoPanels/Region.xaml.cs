@@ -20,15 +20,18 @@ namespace CODuo.Home.InfoPanels
 {
     public sealed partial class Region : UserControl
     {
+        private const string LastUpdateFormat = "hh:mmtt on dddd, dd MMMM yyyy";
+        private const string LastUpdateTimeFormat = "hh:mmtt";
+        private const string LastUpdateDateFormat = "dddd, dd MMMM yyyy";
+
         public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register("Current", typeof(Common.Region), typeof(Region), new PropertyMetadata(null, DataPropertyChanged));
         public static readonly DependencyProperty ContainerProperty = DependencyProperty.Register("Container", typeof(Common.Container), typeof(Region), new PropertyMetadata(null, DataPropertyChanged));
+
+        public static readonly DependencyProperty LastUpdateProperty = DependencyProperty.Register(nameof(LastUpdate), typeof(string), typeof(Region), new PropertyMetadata(DateTime.Now.ToString(LastUpdateFormat)));
 
         public static readonly DependencyProperty PopulationProperty = DependencyProperty.Register("Population", typeof(double), typeof(Region), new PropertyMetadata(65.0));
         public static readonly DependencyProperty BusinessesProperty = DependencyProperty.Register("Businesses", typeof(double), typeof(Region), new PropertyMetadata(4.3));
         public static readonly DependencyProperty BusinessStringProperty = DependencyProperty.Register("BusinessString", typeof(string), typeof(Region), new PropertyMetadata("4.3m"));
-
-        //public static readonly DependencyProperty PopulationBrushesProperty = DependencyProperty.Register("PopulationBrushes", typeof(Brush[]), typeof(Region), new PropertyMetadata(Enumerable.Range(0, 10).Select(_ => new SolidColorBrush(Colors.Green)).ToArray()));
-        //public static readonly DependencyProperty BusinessBrushesProperty = DependencyProperty.Register("BusinessBrushes", typeof(Brush[]), typeof(Region), new PropertyMetadata(Enumerable.Range(0, 6).Select(_ => new SolidColorBrush(Colors.Red)).ToArray()));
 
         public static readonly DependencyProperty DomesticConsumptionProperty = DependencyProperty.Register("DomesticConsumption", typeof(double), typeof(Region), new PropertyMetadata(0.3));
         public static readonly DependencyProperty NonDomesticConsumptionProperty = DependencyProperty.Register("NonDomesticConsumption", typeof(double), typeof(Region), new PropertyMetadata(0.7));
@@ -37,7 +40,7 @@ namespace CODuo.Home.InfoPanels
         {
             if (d is Region region)
             {
-                region.DataChanged();
+                region.OnDataChanged();
             }
         }
 
@@ -46,10 +49,14 @@ namespace CODuo.Home.InfoPanels
             this.InitializeComponent();
         }
 
-        private void DataChanged()
+        private void OnDataChanged()
         {
             if (Container != null && Current != null)
             {
+                var lastUpdate = (Container?.LastUpdated ?? DateTime.UtcNow).ToLocalTime();
+
+                LastUpdate = $"{lastUpdate.ToString(LastUpdateTimeFormat).ToLower()} on {lastUpdate.ToString(LastUpdateDateFormat)}";
+
                 Population = Container.Static.UkPopulation * Current.PercentOfNationalPopulation / 1000000.0;
                 Businesses = Container.Static.UkBusinesses * Current.PercentOfNationalBusinesses / 1000000.0;
 
@@ -73,6 +80,12 @@ namespace CODuo.Home.InfoPanels
         {
             get { return (Common.Region)GetValue(CurrentProperty); }
             set { SetValue(CurrentProperty, value); }
+        }
+
+        public string LastUpdate
+        {
+            get { return (string)GetValue(LastUpdateProperty); }
+            set { SetValue(LastUpdateProperty, value); }
         }
 
         public double Population

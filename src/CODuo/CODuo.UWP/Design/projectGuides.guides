@@ -46,31 +46,6 @@
         </GuideModel>
       </GuideModels>
     </ProjectItemGuide>
-    <ProjectItemGuide TargetFile="..\CODuo.Shared\Home\InfoPanels\Region.xaml">
-      <GuideModels>
-        <GuideModel>
-          <Guides>
-            <Guide Alignment="Top" Position="0" />
-            <Guide Alignment="Left" Position="64" />
-            <Guide Alignment="Left" Position="256" />
-            <Guide Alignment="Left" Position="320" />
-            <Guide Alignment="Top" Position="321" />
-            <Guide Alignment="Top" Position="64" />
-            <Guide Alignment="Top" Position="256" />
-            <Guide Alignment="Left" Position="1792" />
-            <Guide Alignment="Left" Position="1856" />
-            <Guide Alignment="Left" Position="1920" />
-            <Guide Alignment="Left" Position="2496" />
-            <Guide Alignment="Left" Position="2432" />
-            <Guide Alignment="Left" Position="896" />
-            <Guide Alignment="Left" Position="960" />
-            <Guide Alignment="Left" Position="1024" />
-            <Guide Alignment="Left" Position="1216" />
-            <Guide Alignment="Left" Position="1280" />
-          </Guides>
-        </GuideModel>
-      </GuideModels>
-    </ProjectItemGuide>
     <ProjectItemGuide TargetFile="..\CODuo.Shared\Home\InfoPanels\ForecastGeneration.xaml">
       <GuideModels>
         <GuideModel>
@@ -136,6 +111,32 @@
             <Guide Alignment="Left" Position="1920" />
             <Guide Alignment="Left" Position="2496" />
             <Guide Alignment="Left" Position="2432" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
+    <ProjectItemGuide TargetFile="..\CODuo.Shared\Home\InfoPanels\Region.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Top" Position="0" />
+            <Guide Alignment="Left" Position="64" />
+            <Guide Alignment="Left" Position="256" />
+            <Guide Alignment="Left" Position="320" />
+            <Guide Alignment="Top" Position="321" />
+            <Guide Alignment="Top" Position="64" />
+            <Guide Alignment="Top" Position="256" />
+            <Guide Alignment="Left" Position="1792" />
+            <Guide Alignment="Left" Position="1856" />
+            <Guide Alignment="Left" Position="1920" />
+            <Guide Alignment="Left" Position="2496" />
+            <Guide Alignment="Left" Position="2432" />
+            <Guide Alignment="Left" Position="896" />
+            <Guide Alignment="Left" Position="960" />
+            <Guide Alignment="Left" Position="1024" />
+            <Guide Alignment="Left" Position="1216" />
+            <Guide Alignment="Left" Position="1280" />
+            <Guide Alignment="Top" Position="384" />
           </Guides>
         </GuideModel>
       </GuideModels>

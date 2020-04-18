@@ -64,7 +64,7 @@ namespace CODuo.Home
             {
                 null => (_viewModelFactory.Create<IViewModel>(), newMode, true, true),
                 _ when oldMode != newMode => (viewModel, newMode, false, true),
-                _ => (viewModel, newMode, false, false)
+                _ => (viewModel, newMode, true, false)
             };
         }
 

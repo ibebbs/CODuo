@@ -26,19 +26,16 @@ namespace CODuo.Navigation.State
                 observer =>
                 {
                     var state = _factory.FromData(initialData);
-
                     var states = new BehaviorSubject<IState>(state);
 
                     // First create a stream of changes by ...
-                    IObservable<IChange> changes = states
+                    IConnectableObservable<IChange> changes = states
                         // ... enter the current state ...
                         .Select(state => state.Enter())
                         // ... subscribing to the change observable ...
                         .Switch()
                         // ... and ensure only a single shared subscription is made to the change observable ...
-                        .Publish()
-                        // ... held until there are no more subscribers
-                        .RefCount();
+                        .Publish();
 
                     IObservable<IData> data = changes.OfType<IData>();
 
@@ -51,6 +48,7 @@ namespace CODuo.Navigation.State
                     return new CompositeDisposable(
                         transitions.Subscribe(states),
                         data.Subscribe(observer),
+                        changes.Connect(),
                         states
                     );
                 }
