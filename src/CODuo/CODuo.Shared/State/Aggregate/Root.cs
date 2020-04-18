@@ -4,6 +4,10 @@ namespace CODuo.State.Aggregate
 {
     public interface IRoot
     {
+        IRoot ActiveRootViewModel(Func<IDisposable> activation);
+
+        IRoot DeactivateRootViewModel(Action<IDisposable> deactivation);
+
         IRoot SubscribeToDataProvider(Func<IDisposable> subscriber);
 
         IRoot UnsubscribeFromDataProvider(Action<IDisposable> unsubscriber);
@@ -11,7 +15,38 @@ namespace CODuo.State.Aggregate
 
     public class Root : IRoot
     {
+        private IDisposable _rootViewModelActivation;
         private IDisposable _dataProviderSubscription;
+
+        public IRoot ActiveRootViewModel(Func<IDisposable> activation)
+        {
+            if (_rootViewModelActivation == null)
+            {
+                _rootViewModelActivation = activation();
+
+                return this;
+            }
+            else
+            {
+                throw new InvalidOperationException("Already activated root view model");
+            }
+        }
+
+        public IRoot DeactivateRootViewModel(Action<IDisposable> deactivation)
+        {
+            if (_rootViewModelActivation != null)
+            {
+                deactivation(_rootViewModelActivation);
+
+                _rootViewModelActivation = null;
+
+                return this;
+            }
+            else
+            {
+                throw new InvalidOperationException("Root view model not activated");
+            }
+        }
 
         public IRoot SubscribeToDataProvider(Func<IDisposable> subscriber)
         {

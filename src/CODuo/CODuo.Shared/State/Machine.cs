@@ -26,7 +26,7 @@ namespace CODuo.State
             // First create a stream of transitions by ...
             IObservable<ITransition> transitions = _states
                 // ... starting from the initializing state ...
-                .StartWith(_factory.Initializing())
+                .StartWith(_factory.Launching())
                 // ... enter the current state ...
                 .Select(state => state.Enter())
                 // ... subscribing to the transition observable ...
@@ -38,6 +38,7 @@ namespace CODuo.State
 
             // Then, for each transition type, select the new state...
             IObservable<IState> states = Observable.Merge(
+                transitions.OfType<Transition.ToInitializing>().Select(transition => _factory.Initializing(transition.AggregateRoot)),
                 transitions.OfType<Transition.ToResuming>().Select(transition => _factory.Resuming(transition.AggregateRoot)),
                 transitions.OfType<Transition.ToHome>().Select(transition => _factory.Home(transition.AggregateRoot)),
                 transitions.OfType<Transition.ToSuspending>().Select(transition => _factory.Suspending(transition.AggregateRoot)),

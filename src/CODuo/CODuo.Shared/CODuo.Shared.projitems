@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Application\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\Application\Resuming.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\Application\Suspended.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\Application\Suspending.cs" />
@@ -26,9 +27,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Event\Data\Requested.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Event\Layout\Changed.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Aggregate\Root.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Initializing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Running.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Resuming.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Suspended.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Suspending.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToInitializing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToResuming.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToSuspended.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToSuspending.cs" />
@@ -107,12 +111,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Root\ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Factory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Home\State.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)State\Initializing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)State\Launching.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\ITransition.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)State\Home\LeftRight.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Machine.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)State\Home\Single.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)State\Home\TopBottom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)State\Transition\ToHome.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewLocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Factory.cs" />
@@ -224,8 +225,5 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)State\Home\" />
   </ItemGroup>
 </Project>

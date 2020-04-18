@@ -22,7 +22,7 @@ namespace CODuo.Platform
 
             services.AddSingleton<Data.IProvider, Data.Provider>();
 
-            services.AddTransient<State.Initializing>();
+            services.AddTransient<State.Launching>();
 
             services.AddSingleton<State.IFactory, State.Factory>();
             services.AddSingleton<State.IMachine, State.Machine>();

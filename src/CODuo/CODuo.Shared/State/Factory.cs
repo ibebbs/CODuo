@@ -5,7 +5,8 @@ namespace CODuo.State
 {
     public interface IFactory
     {
-        IState Initializing();
+        IState Launching();
+        IState Initializing(Aggregate.IRoot aggregateRoot);
         IState Resuming(Aggregate.IRoot aggregateRoot);
         IState Suspending(Aggregate.IRoot aggregateRoot);
         IState Suspended(Aggregate.IRoot aggregateRoot);
@@ -36,6 +37,16 @@ namespace CODuo.State
             return new Home.State(aggregateRoot, _eventBus, _viewModelFactory, _platformSchedulers);
         }
 
+        public IState Launching()
+        {
+            return new Launching();
+        }
+
+        public IState Initializing(Aggregate.IRoot aggregateRoot)
+        {
+            return new Initializing(aggregateRoot);
+        }
+
         public IState Resuming(Aggregate.IRoot aggregateRoot)
         {
             return new Resuming(aggregateRoot, _dataProvider);
@@ -49,11 +60,6 @@ namespace CODuo.State
         public IState Suspended(Aggregate.IRoot aggregateRoot)
         {
             return new Suspended(aggregateRoot, _eventBus);
-        }
-
-        public IState Initializing()
-        {
-            return new Initializing(_eventBus);
         }
     }
 }

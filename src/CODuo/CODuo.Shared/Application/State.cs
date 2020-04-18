@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CODuo.State.Home1
+namespace CODuo.Application
 {
-    public class LeftRight
+    public class State
     {
     }
 }

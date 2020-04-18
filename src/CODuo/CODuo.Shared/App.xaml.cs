@@ -6,7 +6,6 @@ using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace CODuo
@@ -14,7 +13,7 @@ namespace CODuo
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App : Windows.UI.Xaml.Application
     {
         private IDisposable _app;
 
@@ -46,27 +45,10 @@ namespace CODuo
 				// this.DebugSettings.EnableFrameRateCounter = true;
 			}
 #endif
-            var rootFrame = Windows.UI.Xaml.Window.Current.Content as Frame;
 
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (rootFrame == null)
+            if (_app == null)
             {
-                var rootView = Platform.Services.Service.Provider.GetService<Root.View>();
-                var rootViewModel = Platform.Services.Service.Provider.GetService<Root.IViewModel>();
-
-                rootViewModel.AttachView(rootView);
-
-                rootFrame = new Frame();
-                rootFrame.Content = rootView;
-
-                // Place the frame in the current Window
-                Windows.UI.Xaml.Window.Current.Content = rootFrame;
-
-                _app = new CompositeDisposable(
-                    rootViewModel.Activate(),
-                    Platform.Services.Service.Provider.GetService<State.IMachine>().Start()
-                );
+                _app = Platform.Services.Service.Provider.GetService<State.IMachine>().Start();
             }
 
             Windows.UI.Xaml.Window.Current.Activate();
