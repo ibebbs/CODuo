@@ -2,11 +2,12 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace CODuo
 {
@@ -27,6 +28,7 @@ namespace CODuo
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.Resuming += OnResuming;
 
             Platform.Services.Service.PerformRegistration();
         }
@@ -77,13 +79,32 @@ namespace CODuo
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
+#if NETFX_CORE
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+#endif
+            var eventBus = Platform.Services.Service.Provider.GetService<Event.IBus>();
+
+            var task = eventBus.GetEvent<Event.Application.Suspended>().Take(1).ToTask();
+
+            eventBus.Publish(new Event.Application.Suspending());
+#if NETFX_CORE
+            await task;
+
             deferral.Complete();
+#else
+            // No deferral in Uno so wait for event Application.Suspended event synchronously
+            task.GetAwaiter().GetResult();
+#endif
         }
 
+        private void OnResuming(object sender, object e)
+        {
+            Platform.Services.Service.Provider
+                .GetService<Event.IBus>()
+                .Publish(new Event.Application.Resuming());
+        }
 
         /// <summary>
         /// Configures global logging
