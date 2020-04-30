@@ -3,6 +3,7 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using Windows.UI.Xaml;
 
 namespace CODuo.Root
 {
@@ -16,11 +17,20 @@ namespace CODuo.Root
         private readonly Platform.ISchedulers _schedulers;
         private readonly BehaviorSubject<View> _view;
 
-        public ViewModel(Event.IBus eventBus, Platform.ISchedulers schedulers)
+        public ViewModel(Event.IBus eventBus, Platform.IInformation platformInformation, Platform.ISchedulers platformSchedulers)
         {
             _eventBus = eventBus;
-            _schedulers = schedulers;
+            _schedulers = platformSchedulers;
             _view = new BehaviorSubject<View>(null);
+
+            SafeMargin = platformInformation.RequiredMargin;
+        }
+
+        private IDisposable ShouldSetDataContextWhenViewAttached()
+        {
+            return _view
+                .Where(view => view != null)
+                .Subscribe(view => view.DataContext = this);
         }
 
         private IDisposable ShouldSendLayoutModeChangedEventWhenModeChanges()
@@ -77,11 +87,14 @@ namespace CODuo.Root
         public IDisposable Activate()
         {
             return new CompositeDisposable(
+                ShouldSetDataContextWhenViewAttached(),
                 ShouldSendLayoutModeChangedEventWhenModeChanges(),
                 ShouldSendLayoutModeResponseWhenLayoutModeRequestReceived(),
                 ShouldUpdateLayoutWhenLayoutUpdatedReceivedOrLayoutUpdaterChanges(),
                 ShouldSendRefreshDataWhenRefreshDataCommandExecuted()
             );
         }
+
+        public Thickness SafeMargin { get; }
     }
 }

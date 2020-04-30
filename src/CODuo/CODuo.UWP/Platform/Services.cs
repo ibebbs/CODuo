@@ -7,6 +7,7 @@ namespace CODuo.Platform
         partial void RegisterPlatformServices(IServiceCollection services)
         {
             services.AddSingleton<ISchedulers, Schedulers>();
+            services.AddSingleton<IInformation, Information>();
         }
     }
 }

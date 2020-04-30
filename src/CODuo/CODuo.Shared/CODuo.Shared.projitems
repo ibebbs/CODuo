@@ -41,6 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\State\IData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\State\ITransition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\State\Machine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platform\IInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\Controls\CompositionGrid.xaml.cs">
       <DependentUpon>CompositionGrid.xaml</DependentUpon>
     </Compile>

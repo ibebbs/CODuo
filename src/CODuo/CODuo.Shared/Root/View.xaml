@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="CODuo.Root.View"
+    x:Class="CODuo.Root.View" x:Name="page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,38 +7,42 @@
     xmlns:controls="using:CODuo.Xaml.Controls"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
-    Background="#FFF7FBFD">
+    Background="Black">
 
-    <NavigationView x:Name="NavigationBar" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed">
-        <NavigationView.PaneHeader>
-            <StackPanel Orientation="Horizontal" Margin="4">
-                <Image Source="ms-appx:///Assets/Icon.png"/>
-                <TextBlock Text="CO" FontSize="24" FontFamily="Impact" VerticalAlignment="Top" Margin="4,0,0,0"/>
-                <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Bottom" Margin="0" Foreground="#FF2E7F18" FontStyle="Italic" />
-            </StackPanel>
-        </NavigationView.PaneHeader>
-        <NavigationView.MenuItems>
-            <NavigationViewItemSeparator />
-            <!--
-            <NavigationViewItem Content="Generation" IsSelected="True">
-                <NavigationViewItem.Icon>
-                    <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="D" Foreground="#FF2E7F18" />
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-            <NavigationViewItem Content="Action">
-                <NavigationViewItem.Icon>
-                    <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="F" Foreground="#FF2E7F18" />
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-            -->
-        </NavigationView.MenuItems>
-        <NavigationView.Content>
-            <Grid>
-                <winui:TwoPaneView x:Name="twoPaneView" Background="#FFF7FBFD" TallModeConfiguration="SinglePane" MinWideModeWidth="1024" Pane1Length="0.5*" Pane2Length="0.5*"/>
-            </Grid>
-        </NavigationView.Content>
-        <NavigationView.PaneFooter>
-            <NavigationViewItem x:Name="Refresh" Icon="Refresh" Foreground="{ThemeResource SystemBaseMediumColor}" />
-        </NavigationView.PaneFooter>
-    </NavigationView>
+    <Border Background="Black" Padding="{Binding Path=SafeMargin, Mode=OneWay}">
+        <Border Background="#FFF7FBFD">
+            <NavigationView x:Name="NavigationBar" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed">
+                <NavigationView.PaneHeader>
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <Image Source="ms-appx:///Assets/Icon.png"/>
+                        <TextBlock Text="CO" FontSize="24" FontFamily="Impact" VerticalAlignment="Top" Margin="4,0,0,0"/>
+                        <TextBlock Text="duo" FontSize="12" FontFamily="Tahoma" VerticalAlignment="Bottom" Margin="0" Foreground="#FF2E7F18" FontStyle="Italic" />
+                    </StackPanel>
+                </NavigationView.PaneHeader>
+                <NavigationView.MenuItems>
+                    <NavigationViewItemSeparator />
+                    <!--
+                <NavigationViewItem Content="Generation" IsSelected="True">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="D" Foreground="#FF2E7F18" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Action">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="ms-appx:/Assets/COduo.ttf#COduo" Glyph="F" Foreground="#FF2E7F18" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                -->
+                </NavigationView.MenuItems>
+                <NavigationView.Content>
+                    <Grid>
+                        <winui:TwoPaneView x:Name="twoPaneView" Background="#FFF7FBFD" TallModeConfiguration="SinglePane" Pane1Length="0.5*" Pane2Length="0.5*"/>
+                    </Grid>
+                </NavigationView.Content>
+                <NavigationView.PaneFooter>
+                    <NavigationViewItem x:Name="Refresh" Icon="Refresh" Foreground="{ThemeResource SystemBaseMediumColor}" />
+                </NavigationView.PaneFooter>
+            </NavigationView>
+        </Border>
+    </Border>
 </Page>

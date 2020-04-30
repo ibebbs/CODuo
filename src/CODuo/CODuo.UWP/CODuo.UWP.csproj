@@ -132,6 +132,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platform\Information.cs" />
     <Compile Include="Platform\Schedulers.cs" />
     <Compile Include="Platform\Services.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
