@@ -102,6 +102,7 @@
     <BundleResource Include="..\..\Fonts\impact.ttf">
       <Link>Resources\Fonts\impact.ttf</Link>
     </BundleResource>
+    <BundleResource Include="Resources\CustomSplash.png" />
     <None Include="Info.plist" />
     <Compile Include="Platform\Information.cs" />
     <Compile Include="Platform\Schedulers.cs" />
@@ -111,6 +112,7 @@
     <BundleResource Include="Resources\SplashScreen%402x.png" />
     <BundleResource Include="Resources\SplashScreen%403x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
+    <InterfaceDefinition Include="SplashScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
