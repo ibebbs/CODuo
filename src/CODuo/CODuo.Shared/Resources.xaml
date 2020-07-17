@@ -149,7 +149,7 @@
                     <Color x:Key="SystemAccentColorDark1">#FF3A7095</Color>
                     <Color x:Key="SystemAccentColorDark2">#FF2B5F87</Color>
                     <Color x:Key="SystemAccentColorDark3">#FF1D4F7A</Color>
-                    <RevealBackgroundBrush x:Key="SystemControlHighlightListLowRevealBackgroundBrush" TargetTheme="Light" Color="{ThemeResource SystemRevealListMediumColor}" FallbackColor="{ StaticResource SystemListMediumColor}" />
+                    <RevealBackgroundBrush x:Key="SystemControlHighlightListLowRevealBackgroundBrush" TargetTheme="Light" Color="{ThemeResource SystemRevealListMediumColor}" FallbackColor="{StaticResource SystemListMediumColor}" />
                     <Color x:Key="RegionColor">#FFEBF5F9</Color>
                     <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}" />
                 </ResourceDictionary>

@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>COduo</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.COduo</string>
+	<string>com.cogenity.COduo</string>
 	<key>CFBundleShortVersionString</key>
 	<string>0.2</string>
 	<key>CFBundleVersion</key>
@@ -56,5 +56,7 @@
 	<true/>
 	<key>XSAppIconAssets</key>
 	<string>Media.xcassets/AppIcons.appiconset</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 </dict>
 </plist>
