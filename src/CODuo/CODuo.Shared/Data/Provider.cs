@@ -12,7 +12,7 @@ namespace CODuo.Data
         IDisposable Activate();
     }
 
-    public class Provider : IProvider
+    public partial class Provider : IProvider
     {
         //private const string Uri = "http://127.0.0.1:10000/devstoreaccount1/ukenergy/CurrentV1.json";
         private const string Uri = "https://coduo.blob.core.windows.net/ukenergy/CurrentV1.json";
@@ -24,7 +24,7 @@ namespace CODuo.Data
         {
             _eventBus = eventBus;
 
-            var httpClient = new HttpClient();
+            var httpClient = CreateHttpClient();
 
             var timedSource = Observable
                 .Interval(TimeSpan.FromMinutes(15), schedulers.Default);
@@ -38,6 +38,19 @@ namespace CODuo.Data
                 .StartWith(0)
                 .SelectMany(_ => FetchContainer(httpClient))
                 .Replay(1);
+        }
+
+        partial void OverrideHttpClient(ref HttpClient client);
+
+        private HttpClient CreateHttpClient()
+        {
+            HttpClient client = null;
+
+            OverrideHttpClient(ref client);
+
+            return client == null
+                ? new HttpClient()
+                : client;
         }
 
         public IDisposable Activate()
