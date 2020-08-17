@@ -7,9 +7,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.cogenity.COduo</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2</string>
+	<string>0.2.1</string>
 	<key>CFBundleVersion</key>
-	<string>0.2</string>
+	<string>0.2.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -58,5 +58,7 @@
 	<string>Media.xcassets/AppIcons.appiconset</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs permission to access photos on your device</string>
 </dict>
 </plist>

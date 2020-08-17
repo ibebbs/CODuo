@@ -44,7 +44,7 @@
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
     <LangVersion>8.0</LangVersion>
-    <PackageCertificateThumbprint>6C196E799E8E657D8E00776AB2F611F2623FE8E8</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>4A2E22A1A255D7804EAAD71E8B935D9AD651E941</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
